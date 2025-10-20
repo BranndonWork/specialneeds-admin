@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "specialneeds-admin"
+version = "0.1.0"
+description = "Special needs admin portal"
+authors = ["Branndon Coelho"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

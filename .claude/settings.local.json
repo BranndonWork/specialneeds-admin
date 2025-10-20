@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:marmelab.com)",
+      "Bash(npm run build)",
+      "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/frontend/react/**)",
+      "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/articles/**)",
+      "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/**)",
+      "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/users/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
