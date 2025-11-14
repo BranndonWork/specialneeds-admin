@@ -7,7 +7,8 @@
       "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/frontend/react/**)",
       "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/articles/**)",
       "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/**)",
-      "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/users/**)"
+      "Read(//Volumes/Storage/Dropbox/workspace/projects/special-needs/www.specialneeds.com/backend/specialneeds/users/**)",
+      "WebFetch(domain:code.claude.com)"
     ],
     "deny": [],
     "ask": []

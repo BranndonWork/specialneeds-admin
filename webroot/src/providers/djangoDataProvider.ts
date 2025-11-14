@@ -80,8 +80,11 @@ export const djangoDataProvider: DataProvider = {
 
     const { data } = await axiosInstance.get(url, { params });
 
+    // Extract response data (Django wraps in { success, response, error })
+    const responseData = data.response || data;
+
     // Transform articles to flatten the nested structure
-    const articles = (data.articles || data.data || data.results || data || []).map((item: any) => {
+    const articles = (responseData.articles || responseData.data || responseData.results || responseData || []).map((item: any) => {
       // If the article has article_data (from SummarySerializer), flatten it
       if (item.article_data) {
         const flattened = { ...item.article_data };
@@ -99,7 +102,7 @@ export const djangoDataProvider: DataProvider = {
 
     return {
       data: articles,
-      total: data.totalResults || data.total || data.count || articles.length,
+      total: responseData.totalResults || responseData.total || responseData.count || articles.length,
     };
   },
 
@@ -107,8 +110,24 @@ export const djangoDataProvider: DataProvider = {
     const url = `/${resource}/${id}/`;
     const { data } = await axiosInstance.get(url);
 
+    // Extract response data (Django wraps in { success, response, error })
+    const responseData = data.response || data;
+
+    // Flatten article_data if present (same structure as getList)
+    let article = responseData.data || responseData;
+    if (article.article_data) {
+      article = { ...article.article_data };
+      // Add category slug as id for Refine to work with categories
+      if (article.category && !article.category.id) {
+        article.category = {
+          ...article.category,
+          id: article.category.slug,
+        };
+      }
+    }
+
     return {
-      data: data.data || data,
+      data: article,
     };
   },
 
@@ -116,8 +135,11 @@ export const djangoDataProvider: DataProvider = {
     const url = `/${resource}/`;
     const { data } = await axiosInstance.post(url, variables);
 
+    // Extract response data (Django wraps in { success, response, error })
+    const responseData = data.response || data;
+
     return {
-      data: data.data || data,
+      data: responseData.data || responseData,
     };
   },
 
@@ -125,8 +147,11 @@ export const djangoDataProvider: DataProvider = {
     const url = `/${resource}/${id}/`;
     const { data } = await axiosInstance.put(url, variables);
 
+    // Extract response data (Django wraps in { success, response, error })
+    const responseData = data.response || data;
+
     return {
-      data: data.data || data,
+      data: responseData.data || responseData,
     };
   },
 
@@ -134,8 +159,11 @@ export const djangoDataProvider: DataProvider = {
     const url = `/${resource}/${id}/`;
     const { data } = await axiosInstance.delete(url);
 
+    // Extract response data (Django wraps in { success, response, error })
+    const responseData = data.response || data;
+
     return {
-      data: data.data || data,
+      data: responseData.data || responseData,
     };
   },
 

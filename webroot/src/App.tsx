@@ -14,6 +14,7 @@ import routerProvider, {
   CatchAllNavigate,
 } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
+import { withProse } from "@nikolovlazar/chakra-ui-prose";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages";
 import { djangoDataProvider } from "./providers/djangoDataProvider";
@@ -27,7 +28,7 @@ const App: React.FC = () => {
       initialColorMode: "light",
       useSystemColorMode: false,
     },
-  });
+  }, withProse());
 
   return (
     <BrowserRouter>

@@ -11,7 +11,9 @@ export const authProvider: AuthProvider = {
         password,
       });
 
-      const { access, refresh, user } = response.data;
+      // Extract response data (Django wraps in { success, response, error })
+      const responseData = response.data.response || response.data;
+      const { access, refresh, user } = responseData;
 
       // Store tokens and user info
       localStorage.setItem("access_token", access);
@@ -27,7 +29,7 @@ export const authProvider: AuthProvider = {
         success: false,
         error: {
           name: "LoginError",
-          message: error.response?.data?.detail || "Invalid email or password",
+          message: error.response?.data?.detail || error.response?.data?.error || "Invalid email or password",
         },
       };
     }

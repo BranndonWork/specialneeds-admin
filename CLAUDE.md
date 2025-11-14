@@ -53,6 +53,36 @@ npm install
 npm run dev
 ```
 
+### Dev Server Management
+
+Use Python scripts in `./scripts/` to manage the dev server:
+
+**Start the dev server:**
+```bash
+poetry run python scripts/start_dev.py
+```
+- Starts Vite dev server in background
+- Saves PID to `.dev-server.pid`
+- Logs output to `.dev-server.log`
+- Server runs at:
+  - http://manage.specialneeds.localhost:5173 (recommended)
+  - http://localhost:5173
+
+**Stop the dev server:**
+```bash
+poetry run python scripts/stop_dev.py
+```
+
+**Restart the dev server:**
+```bash
+poetry run python scripts/restart_dev.py
+```
+
+**When user requests to start/stop/restart dev server:**
+- Use the appropriate script from `./scripts/`
+- Run with `poetry run python scripts/<script_name>.py`
+- Do NOT run `npm run dev` directly unless specifically requested
+
 ### Environment Variables
 - See `.env.example` for required variables
 - `VITE_API_ENDPOINT` - API URL (api.specialneeds.com)

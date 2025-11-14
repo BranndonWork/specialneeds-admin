@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "specialneeds-admin"
-version = "0.1.0"
+version = "0.1.1"
 description = "Special needs admin portal"
 authors = ["Branndon Coelho"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.13"
-
+psutil = "^7.1.3"
 
 [build-system]
 requires = ["poetry-core"]

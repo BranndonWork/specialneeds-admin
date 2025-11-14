@@ -30,8 +30,8 @@ export const PostEdit = () => {
 
   const { options } = useSelect({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
-    queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+    defaultValue: queryResult?.data?.data?.category?.id,
+    queryOptions: { enabled: !!queryResult?.data?.data?.category?.id },
 
     pagination: {
       mode: "server",

@@ -1,22 +1,15 @@
-import { useShow, useOne } from "@refinedev/core";
-import { Show, MarkdownField } from "@refinedev/chakra-ui";
+import { useShow } from "@refinedev/core";
+import { Show } from "@refinedev/chakra-ui";
+import { Prose } from "@nikolovlazar/chakra-ui-prose";
 
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
-import type { ICategory, IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
   const { query: queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
-
-  const { result: categoryData } = useOne<ICategory>({
-    resource: "categories",
-    id: record?.category.id || "",
-    queryOptions: {
-      enabled: !!record?.category.id,
-    },
-  });
 
   return (
     <Show isLoading={isLoading}>
@@ -35,12 +28,18 @@ export const PostShow: React.FC = () => {
       <Heading as="h5" size="sm" mt={4}>
         Category
       </Heading>
-      <Text mt={2}>{categoryData?.title}</Text>
+      <Text mt={2}>
+        {record?.category?.parent?.name && `${record.category.parent.name} > `}
+        {record?.category?.name}
+      </Text>
       <Heading as="h5" size="sm" mt={4}>
         Content
       </Heading>
       <Spacer mt={2} />
-      <MarkdownField value={record?.content} />
+      <Prose
+        mt={2}
+        dangerouslySetInnerHTML={{ __html: record?.content || "" }}
+      />
     </Show>
   );
 };
