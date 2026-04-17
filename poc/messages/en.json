@@ -1,0 +1,704 @@
+{
+  "auth": {
+    "login": {
+      "pageTitle": "Login",
+      "pageHeader": "Welcome Back, Friend! 🤗",
+      "welcomeMessage": "It's great to see you again! 😄 Let's log you in with your email and password.",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "loginButton": "Let's Go! 🎉",
+      "forgotPasswordMessage": "Forgot your password?",
+      "forgotPasswordAnchorText": "Click here to reset it.",
+      "noAccount": "Don't have an account?",
+      "signup": "Sign up now",
+      "loggedIn": "Hey there, <displayname>! You're already logged in. 🎉",
+      "dashboardButton": "Go to Dashboard",
+      "loginSuccess": "Yay! You're in! 🎉",
+      "unknownError": "Oops, something seems to have gone wrong. Let's try again!"
+    },
+    "signup": {
+      "pageTitle": "Sign Up",
+      "pageHeading": "Let's Be Friends! 👫",
+      "description": "Let's get you signed up so you can join our family. Please fill in the boxes below with your details. 📋✏️",
+      "pageKeywords": "register, signup, sign up, join, family, friends, community, special needs, specialneeds, specialneeds.com",
+      "closedHeading": "Oh No! Registration Is Closed 🙅‍♂️🚫",
+      "closedBody": "<p>Aw, shucks! We're not quite ready for more friends to join in just yet. 😿</p><p>But here's the good news! We have a special, sparkly waitlist made just for you! 🥳🎉</p><p><b>All you have to do is hop over to <a href='/waitlist/' alt='Waitlist Page' title='Waitlist Page'><b><u>the waitlist</u></b></a> and sign up.</b> We'll get everything ready and before you know it, you'll be part of our SpecialNeeds.com family!🌟🤗💕</p><br /><p>We can't wait to see you soon, 😃</p>",
+      "displaynameLabel": "Nickname 🦸",
+      "displaynamePlaceholder": "This is you! Cannot be changed later 😄",
+      "displaynameFieldLabel": "Your Awesome Display Name 🦸",
+      "displaynameFieldPlaceholder": "Cannot be changed later 🚫",
+      "emailFieldLabel": "💌 Email",
+      "passwordFieldLabel": "Password 🔒",
+      "confirmPasswordFieldLabel": "Double-Check Password 🔍",
+      "submitButtonText": "Let's Go! 🎉",
+      "submitButtonLabel": "Onwards! 🎉",
+      "confirmButtonText": "Double-Check Password 🔍",
+      "successMessage": "Yay! You're in! 🥳 Welcome to the SpecialNeeds.com family!",
+      "errorMessage": "Oops, something seems to have gone wrong. Let's try again! 🔄",
+      "invalidDisplayNameError": "Invalid character. Only letters, numbers, and @.-'&_! are allowed.",
+      "reservedDisplayNameError": "Sorry, that display name contains a reserved word \"<reservedName>\". Please try again.",
+      "shortDisplayNameError": "Display name must be at least 3 characters long.",
+      "pageBody": "Let's get you signed up so you can join our family. Please fill in the boxes below with your details. 📋✏️"
+    },
+    "logout": {
+      "pageTitle": "Logout",
+      "pageDescription": "Logout",
+      "loggedIn": "Sorry! It looks like you're not logged in.",
+      "messages": [
+        {
+          "title": "Zippedy Zap, You're Out!",
+          "message": "You've successfully logged out!<br/>🎉 Can't wait to have more fun together next time! 😊"
+        },
+        {
+          "title": "Poof! You're Logged Out!",
+          "message": "Great job today!<br/>🌟 We'll see you again soon for more exciting adventures! 🎈"
+        },
+        {
+          "title": "Logged Out and Ready to Go!",
+          "message": "You're now logged out!<br/>🎉 See you later for more fun and smiles! 😄"
+        },
+        {
+          "title": "See You Later, Friend!",
+          "message": "You've successfully logged out!<br/>🌈 We'll meet again soon for more amazing moments! 🌟"
+        },
+        {
+          "title": "Bye for Now!",
+          "message": "You're logged out!<br/>⏳ Looking forward to creating more joyful memories together! 🎊"
+        },
+        {
+          "title": "Farewell, Buddy!",
+          "message": "You're now logged out!<br/>🎉 We'll catch up again soon for more fantastic times! 🎈"
+        },
+        {
+          "title": "Adios, Amigo!",
+          "message": "You've logged out!<br/>🌞 Can't wait to explore more fun together! 🌈"
+        },
+        {
+          "title": "Until Next Time!",
+          "message": "You're logged out!<br/>🎨 Excited to share more happy moments together! 🖌️"
+        },
+        {
+          "title": "So Long, Friend!",
+          "message": "Logged out!<br/>👋 We're looking forward to more laughter and joy next time! 🤗"
+        },
+        {
+          "title": "Ciao, Buddy!",
+          "message": "You're logged out!<br/>🎵 Can't wait for our next fun-filled session! 🎶"
+        },
+        {
+          "title": "Bon Voyage, Friend!",
+          "message": "You've logged out!<br/>⛵ We'll embark on more wonderful adventures together soon! 🌠"
+        },
+        {
+          "title": "Goodbye for Now!",
+          "message": "Logged out!<br/>🌟 Excited to have more fun and make more memories together! 🎉"
+        },
+        {
+          "title": "Hasta Luego, Amigo!",
+          "message": "You're logged out!<br/>🌼 Can't wait to share more good times and smiles together! 😊"
+        },
+        {
+          "title": "Catch You Later!",
+          "message": "Logged out!<br/>🎢 Excited to enjoy more thrilling moments with you next time! 🎡"
+        },
+        {
+          "title": "See You Soon!",
+          "message": "You've logged out!<br/>🏞️ Looking forward to our next great adventure together! 🌄"
+        },
+        {
+          "title": "Farewell for Now!",
+          "message": "You're logged out!<br/>🎠 See you soon for more fun and laughter! 😃"
+        },
+        {
+          "title": "Bye-Bye, Friend!",
+          "message": "You're logged out!<br/>🌟 Can't wait to see you again for more excitement and joy! 🎉"
+        },
+        {
+          "title": "Until We Meet Again!",
+          "message": "You've successfully logged out!<br/>🌈 We'll be here waiting for our next fun time together! 😊"
+        }
+      ]
+    },
+    "forgotPassword": {
+      "pageTitle": "Forgot Password",
+      "pageHeader": "No worries! We got you. 🙌",
+      "welcomeMessage": "We know that sometimes it's hard to remember passwords, but don't worry, we're here to help! 🎈 Just enter your email address and we'll send you a link to reset your password.",
+      "emailLabel": "Email",
+      "submitButton": "Reset Password 🔑",
+      "successMessage": "Yay! Password reset link sent! 💌 Check your email and follow the instructions to reset your password.",
+      "invalidEmail": "Hmm, that email doesn't look right 🕵️‍♀️.",
+      "processingRequest": "Hang tight! We're processing your request. This usually takes a few seconds.",
+      "alreadyLoggedInHeading": "You're Already Logged In! 🎉",
+      "alreadyLoggedInBody": "You're already logged in! If you've forgotten your password and would like to reset it, <a href=\"/logout/?redirect=/forgot-password/\" alt=\"Logout page link\" title=\"Logout page link\"><b>log out</b></a> first."
+    },
+    "resetPassword": {
+      "pageTitle": "Reset Password 🔑",
+      "pageHeading": "Reset Your Password 🔓",
+      "description": "Let's give you a brand new password. Please fill in the boxes below with your details. 📋✏️",
+      "pageBody": "Let's get your password reset. Please fill in the boxes below with your details. 📋✏️",
+      "passwordFieldLabel": "New Password 🔒",
+      "confirmPasswordFieldLabel": "Confirm Your New Password 🔍",
+      "submitButtonText": "Reset Password 🔑",
+      "confirmButtonText": "Confirm Your New Password 🔍",
+      "successMessage": "Your password has been reset! You can now log in with your new password. 🔒",
+      "invalidResetIdHeading": "Uh-Oh! Invalid Reset ID 🕵️‍♀️",
+      "invalidResetIdBody": "The reset ID you provided is invalid. Please check the link you used to get here and try again. To request a new reset link, please visit the <a href=\"/forgot-password/\">forgot password page</a>. 🔄",
+      "successfulResetHeading": "Success! 🎉",
+      "successfulResetBody": "Your password has been reset! You can now <a href=\"/login/\" alt=\"Login page link\" title=\"Login page link\"><b>log in</b></a> with your new password. 🔒"
+    }
+  },
+  "checkout": {
+    "pageTitle": "Checkout",
+    "pageHeading": "Almost There! 🎉",
+    "pageBody": "Just a few more details and your fantastic journey begins! 😊<br/>Rest assured, your data is as safe as a treasure in a dragon's den! 🐉🔒",
+    "nameFieldLabel": "Full Name 🧑",
+    "street1FieldLabel": "Street Address 1 🏠",
+    "street2FieldLabel": "Street Address 2 (Optional) 🏡",
+    "cityFieldLabel": "City 🏙️",
+    "stateFieldLabel": "State 🏞️",
+    "zipcodeFieldLabel": "Zip Code 🎯",
+    "cardNumberFieldLabel": "Card Number 💳",
+    "expiryDateFieldLabel": "Expiry Date (MM/YY) ⏳",
+    "cvvFieldLabel": "CVV 🕵️‍♂️",
+    "submitButtonText": "Start the Adventure! 🎉",
+    "successMessage": "Voila! Your subscription is all set! 🎉 Do check your email for all the shiny details. 📧",
+    "invalidPlanMessage": "Oh, fiddlesticks! The chosen plan appears to have hit a glitch. Let's give it another whirl, shall we? 🔄",
+    "invalidParamsHeading": "Ruh-Roh! Mischievous Link 🕵️‍♀️",
+    "invalidParamsBody": "The link you clicked appears to have embarked on its own adventure.<br/>Double-check it and let's try again, explorer! 🧭",
+    "switchToAnnualPlan": "Switch to annual plan",
+    "switchToMonthlyPlan": "Switch to monthly plan"
+  },
+  "common": {
+    "buttons": {
+      "submit": "Submit",
+      "search": "Search",
+      "login": "Login",
+      "logout": "Logout",
+      "signup": "Sign Up",
+      "learnMore": "Learn More",
+      "dismiss": "Dismiss",
+      "addToFavorites": "Add to Favorites",
+      "removeFromFavorites": "Remove from Favorites"
+    },
+    "labels": {
+      "email": "Email",
+      "title": "Title",
+      "location": "Location",
+      "category": "Category",
+      "categories": "Categories",
+      "image": "Image",
+      "menu": "Menu",
+      "allCategories": "All Categories"
+    },
+    "terms": {
+      "article": "Article",
+      "articles": "Articles",
+      "listing": "Listing",
+      "listings": "Listings",
+      "event": "Event",
+      "events": "Events",
+      "directory": "Directory",
+      "news": "News",
+      "popular": "Popular",
+      "recent": "Recent",
+      "result": "Result",
+      "results": "Results",
+      "found": "Found",
+      "none": "None",
+      "specialNeeds": "Special Needs",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us"
+    },
+    "validation": {
+      "passwordsDontMatch": "Hmm, those passwords don't match. 🧐",
+      "invalidCreditCard": "Oh, fiddlesticks! The credit card details appear off. Could you check them again? 🔄",
+      "confirmUnsavedChanges": "Hold up there, partner! If you proceed without saving, you might lose some of your work. Are you sure you want to head off into the sunset without saving?"
+    },
+    "errors": {
+      "error": "Error",
+      "unknownError": "Oops, something seems to have gone wrong. Let's try again!",
+      "chatTopicExists": "An active chat with this topic title already exists. Please choose a different chat topic."
+    }
+  },
+  "contactOwner": {
+    "unregisteredTitle": "Whoa, There! 🖐️",
+    "unregisteredBody": "Looks like you need to join our fantastic community to contact the owner. Sign up now and dive into the adventure! 🎉",
+    "contactListingOwner": "Contact Listing Owner 🗣️",
+    "buttonText": "Start a Chat",
+    "registerButtonText": "Join the Party 🎉",
+    "cancelButtonText": "Abort Mission 🚧",
+    "cannotContactYourself": "You cannot contact yourself! 🙅‍♂️",
+    "successMessage": "Your message has been sent! 🎉",
+    "errorMessage": "Oops, something seems to have gone wrong. Let's try again! 🔄",
+    "warningMessage": "Please fill in all the fields before sending your message. 📋✏️",
+    "modalTitle": "Contact Listing Owner 🗣️",
+    "welcomeTitle": "Step right up! 🎪",
+    "welcomeBody": "This magical form lets you send an initial message to the listing owner. Just jot down a snappy topic (50 characters or less) and your message. Let's get the conversation rolling! 💌",
+    "topicLabel": "Your Topic (50 characters or less) 📝",
+    "messageLabel": "Your Grand Message 📜",
+    "submitButtonText": "Fire off the Message 🚀",
+    "blockedMessage": "Regretfully, this user has chosen not to connect with you through chat. 😔"
+  },
+  "content": {
+    "note": "This namespace holds large content blocks like FAQs, privacy policy, terms and conditions, etc. These will be migrated from individual files as needed.",
+    "auth": {
+      "note": "Authentication-related content will be organized here"
+    },
+    "pages": {
+      "note": "Page-specific content will be organized here"
+    }
+  },
+  "descriptions": {
+    "popularCategories": "Looking for a comprehensive directory of top-rated therapists, schools, camps, and more to support your loved ones with special needs? Look no further than our special needs directory, your one-stop location for simplifying your search. We provide a wide range of categories to ensure you find the resources you need to meet your unique requirements.",
+    "popularArticles": "Explore our library of informative articles and resources tailored to special needs individuals and their families. From success stories to practical advice, these hand-curated articles offer valuable insights and guidance for your journey.",
+    "popularListings": "Discover our top-rated listings for special needs resources over the past 30 days. Whether you're searching for a therapist, school, or camp, we have carefully curated the best options available. Take a look through our selection to find the perfect fit for your specific needs.",
+    "recentNews": "Stay up-to-date with the latest news in the special needs community on SpecialNeeds.com. From new research studies to inspiring stories, we've got you covered.",
+    "recentArticles": "Explore our library of informative articles and resources tailored to special needs individuals and their families. From success stories to practical advice, practical advice, these hand-curated articles offer valuable insights and guidance for your journey.",
+    "recentListings": "Discover our latest listings for special needs resources. Whether you're searching for a therapist, school, or camp, we have carefully curated the best options available. Take a look through our selection to find the perfect fit for your specific needs.",
+    "directorySearch": "Search our comprehensive directory",
+    "directorySearchArea": "Search our comprehensive directory of therapists, schools, camps, and special needs resources to find the support you need.",
+    "articleSearch": "Discover informative articles and resources tailored to special needs individuals and their families."
+  },
+  "errorPage": {
+    "copiedMessage": "We've copied the error message for you. Please paste it into an email or support ticket and send it to us. This will help us figure out what's wrong and how we can fix it. Thank you for your help!",
+    "errorMessagePrefix": "If you keep seeing this error message, don't worry, we're here to help. Please contact our support team and be sure to include the error information below so we can better understand the problem.",
+    "copyErrorInformation": "Copy Error Information",
+    "successfulCopy": "We've copied the error message for you. Please paste it into an email or support ticket and send it to us. This will help us figure out what's wrong and how we can fix it. Thank you for your help!",
+    "defaultErrorMessage": "The action you were trying to perform might have encountered an issue. Please try again or contact support if the problem persists.",
+    "unknownError": "Unknown Error"
+  },
+  "events": {
+    "formSubTitle": "Find local special needs events near you.",
+    "pageTitle": "Events",
+    "eventDate": "Event Date",
+    "eventManagement": "Event Management"
+  },
+  "faq": {
+    "pageTitle": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "question": "What exactly is a directory listing?",
+        "answer": "Our directory is an extensive collection where each listing represents a unique entity. This can range from specialized schools and therapeutic summer camps to expert therapists. Every listing has its own dedicated page, allowing it to showcase its distinct features and benefits."
+      },
+      {
+        "question": "Do I have to commit to an annual contract?",
+        "answer": "There is no requirement for an annual contract. We offer both monthly and annual payment options to suit your preferences. Our goal is to ensure you are satisfied with our service, with no obligations to a long-term commitment."
+      },
+      {
+        "question": "How long until my submission is approved?",
+        "answer": "Our review team works efficiently to approve submissions, typically completing the process within a few days. They are dedicated to ensuring your listing goes live promptly after your submission."
+      },
+      {
+        "question": "Can I submit content for free?",
+        "answer": "Absolutely! We support the sharing of knowledge and offer the option to create listings at no cost. However, each submission must meet our quality standards before approval."
+      },
+      {
+        "question": "Is there a maximum number of listings I can create?",
+        "answer": "We offer a range of plans to suit different needs. To see the current plans and the maximum number of listings available for each, please visit our <a href='/pricing/'>Pricing</a>. It's important that each listing is unique and adds value to our directory."
+      },
+      {
+        "question": "What if I want to remove my content?",
+        "answer": "You have complete control over your content. If you decide to remove it, we will assist you in doing so efficiently. Our aim is to facilitate a seamless experience for you."
+      },
+      {
+        "question": "How do I create a directory listing?",
+        "answer": "Creating a directory listing is straightforward. Simply register with us, provide information about your service, and your listing will be set up promptly. Our team is always available to assist you whenever needed."
+      },
+      {
+        "question": "What are the additional features of the Directory Listing?",
+        "answer": "Our Directory Listing platform offers a variety of features including advanced search filters, user ratings, and reviews. These tools are designed to enhance your experience and help you fully utilize our platform."
+      }
+    ]
+  },
+  "feedback": {
+    "sectionTitle": "Feedback",
+    "title": "User’s Feedback About SpecialNeeds.com",
+    "description": "Discover the inspiring stories and experiences of our users who have found invaluable resources, support, and connections through SpecialNeeds.com.",
+    "imgAlt": "A photo of",
+    "testimonials": [
+      {
+        "name": "John Luthor",
+        "position": "Parent",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/john-luthor/w=60",
+        "rating": 5,
+        "text": "SpecialNeeds.com has been instrumental in helping me find the right resources for my child. The wealth of information and supportive community is invaluable."
+      },
+      {
+        "name": "Sarah Taylor",
+        "position": "Special Education Teacher",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/sarah-taylor/w=60",
+        "rating": 4.5,
+        "text": "As a teacher, SpecialNeeds.com is my go-to website for understanding my students' diverse needs. The strategies and tips shared have been very helpful."
+      },
+      {
+        "name": "Alex Hales",
+        "position": "UX Designer",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/alex-hales/w=60",
+        "rating": 4,
+        "text": "The user interface of SpecialNeeds.com is very friendly and easy to navigate. It's a great platform with a lot of useful features for individuals with special needs."
+      },
+      {
+        "name": "David Warner",
+        "position": "Parent",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/david-warner/w=60",
+        "rating": 4.5,
+        "text": "SpecialNeeds.com is a beacon of hope for parents like us. The online resources are fantastic and the supportive community is heartwarming."
+      },
+      {
+        "name": "Jessica Brown",
+        "position": "Speech Therapist",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/jessica-brown/w=60",
+        "rating": 5,
+        "text": "The speech therapy resources on SpecialNeeds.com are top-notch. They've been incredibly helpful in my practice."
+      },
+      {
+        "name": "Michael Johnson",
+        "position": "Parent",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/michael-johnson/w=60",
+        "rating": 4,
+        "text": "I've found so much support and understanding in the SpecialNeeds.com community. It has made all the difference for my family."
+      },
+      {
+        "name": "Emily Davis",
+        "position": "Special Education Teacher",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/emily-davis/w=60",
+        "rating": 4.5,
+        "text": "SpecialNeeds.com is an invaluable tool in my classroom. The educational resources and community support are amazing."
+      },
+      {
+        "name": "Oliver Smith",
+        "position": "Occupational Therapist",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/oliver-smith/w=60",
+        "rating": 5,
+        "text": "SpecialNeeds.com offers practical and actionable occupational therapy strategies. It's a resource I use daily in my practice."
+      },
+      {
+        "name": "Sophia Miller",
+        "position": "Parent",
+        "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/sophia-miller/w=60",
+        "rating": 4,
+        "text": "Navigating the world of special needs parenting can be challenging, but SpecialNeeds.com provides resources and a community that truly help."
+      }
+    ]
+  },
+  "footer": {
+    "section1": {
+      "heading": "About"
+    },
+    "section2": {
+      "heading": "Discover"
+    },
+    "section3": {
+      "heading": "Explore"
+    },
+    "languages": {
+      "heading": "Languages",
+      "selectOptions": [
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Italian",
+        "Portuguese",
+        "Russian",
+        "Japanese",
+        "Arabic",
+        "Chinese"
+      ]
+    }
+  },
+  "headings": {
+    "popularCategories": "Popular Directory Categories",
+    "popularArticles": "Popular Articles",
+    "popularListings": "Popular Listings",
+    "popularEvents": "Popular Events",
+    "recentArticles": "Recent Articles",
+    "recentListings": "Recent Listings",
+    "recentNews": "Recent News",
+    "directory": "Directory",
+    "articles": "Articles",
+    "events": "Events",
+    "search": "Search"
+  },
+  "howItWorks": {
+    "pageTitle": "How It Works",
+    "title": "Supporting Your Business Growth",
+    "description": "Guide your special needs-related business to reach its full potential. Here's the straightforward path to success",
+    "pageSteps": [
+      {
+        "title": "Join Our Community",
+        "content": "Begin by signing up for an account to join our community and initiate your journey.",
+        "href": "/signup/",
+        "anchorText": "Sign Up"
+      },
+      {
+        "title": "Create Your Listing",
+        "content": "With your account set up, it's time to create your business listing. A well-crafted and engaging listing can attract more visitors."
+      },
+      {
+        "title": "Select Your Package",
+        "content": "Choose from our range of packages for your listing, including various features to suit your needs. We offer multiple options, including a free package.",
+        "href": "/pricing/",
+        "anchorText": "View Packages"
+      },
+      {
+        "title": "Await Approval",
+        "content": "Once you submit your listing, our team will review it. Upon approval, your listing will be published on the site for public viewing."
+      },
+      {
+        "title": "Your Listing is Live",
+        "content": "Congratulations! Your listing is now live. You can view it on our site and begin attracting new visitors."
+      }
+    ],
+    "steps": [
+      {
+        "title": "Explore Our Directory",
+        "description": "Discover our extensive directory featuring a wide range of special needs-related listings. Add your listing to join our growing community.",
+        "icon": "flaticon-placeholder"
+      },
+      {
+        "title": "Connect and Communicate",
+        "description": "Engage directly with users through our messaging feature. Manage all your conversations efficiently from your dashboard.",
+        "icon": "flaticon-support-1"
+      },
+      {
+        "title": "Enhance Your Listing",
+        "description": "Draw more visitors and grow your business. You have full control over your listing and can update or modify it as needed from your dashboard.",
+        "icon": "flaticon-tick"
+      }
+    ]
+  },
+  "messages": {
+    "noResults": "No results found",
+    "loading": "Loading...",
+    "success": "Success!",
+    "error": "An error occurred",
+    "saved": "Saved successfully",
+    "deleted": "Deleted successfully",
+    "updated": "Updated successfully",
+    "searchResults": "Search results",
+    "websocket": {
+      "disconnected": "Alas! Our magical link to the server has been severed! 😱\nSome features might play hide and seek till it's back. 🔄",
+      "connected": "Yay! We're back online! 🎉"
+    }
+  },
+  "navigation": {
+    "footer": {
+      "section1": {
+        "heading": "About"
+      },
+      "section2": {
+        "heading": "Discover"
+      },
+      "section3": {
+        "heading": "Explore"
+      }
+    },
+    "links": {
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us",
+      "login": "Login",
+      "logout": "Logout",
+      "signup": "Sign Up"
+    },
+    "languages": {
+      "heading": "Languages",
+      "options": [
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Italian",
+        "Portuguese",
+        "Russian",
+        "Japanese",
+        "Arabic",
+        "Chinese"
+      ]
+    },
+    "copyright": {
+      "copyright": "Copyright",
+      "reserved": "All Rights Reserved"
+    }
+  },
+  "notifications": {
+    "newChatReceivedTitle": "New Chat Received! 🎉",
+    "newChatReceivedMessage": "You have a new chat from <senderName>! 🎉",
+    "noUnreadNotifications": "It looks like you've caught up with everything! 🎉",
+    "defaultSuccessMessage": "Success!",
+    "defaultPendingMessage": "Processing..."
+  },
+  "placeholders": {
+    "search": "What are you looking for?",
+    "location": "Location",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "name": "Enter your name",
+    "message": "Enter your message"
+  },
+  "pricing": {
+    "freePlan": "Free Plan",
+    "silverPlan": "Silver Plan",
+    "goldPlan": "Gold Plan",
+    "platinumPlan": "Platinum Plan",
+    "annually": "Annually",
+    "monthly": "Monthly",
+    "pageTitle": "Pricing",
+    "selectAPlan": "Select Plan",
+    "labels": {
+      "listings": "Number of Listings",
+      "verifiedBadge": "Verified Badge",
+      "detailedListing": "Detailed Listing",
+      "analytics": "Analytics",
+      "respondToReviews": "Respond to Reviews",
+      "onSiteChat": "On-site Chat",
+      "featuredListing": "Featured Listing",
+      "prioritySupport": "Priority Support"
+    },
+    "infoText": {
+      "listings": "This is the number of listings you can have with this plan.",
+      "verifiedBadge": "With this feature, your listings will have a verified badge, increasing their visibility and trustworthiness.",
+      "detailedListing": "This feature allows you to add more details to your listings, providing more information for users.",
+      "analytics": "Analytics allow you to see how your listings are performing, gain insights to improve them, and track demographics and conversions depending on your plan level.",
+      "respondToReviews": "This feature allows you to respond to reviews left by users on your listings. This is important for maintaining your online reputation and addressing any concerns or issues raised.",
+      "onSiteChat": "On-site chat allows registered site users to contact you directly through the platform. This can be useful for answering questions or providing additional information on your services.",
+      "featuredListing": "With this feature, your listings will be highlighted and appear at the top of certain search results, increasing their visibility.",
+      "prioritySupport": "With priority support, your queries and issues will be addressed as a priority by our support team."
+    }
+  },
+  "privacyPolicy": {
+    "pageTitle": "Privacy Policy",
+    "subTitle": "Privacy Policy for SpecialNeeds.com",
+    "policies": [
+      {
+        "title": "1. Our Promise",
+        "content": "Hi there! At SpecialNeeds.com, we care a lot about keeping your information private. We promise to do our best to keep your information safe and sound. This means we collect only the necessary information to provide you with the best possible experience on our site, and we take all the necessary steps to protect your information from unauthorized access, use, or disclosure."
+      },
+      {
+        "title": "2. What We Collect",
+        "content": "When you join our site, we collect your email, display name, and password. We don't ever collect your location unless you tell us it's okay. Additionally, we use various analytics tools, which may collect other information like which pages you visit on our site, your IP address, and other data related to your use of our site. These tools help us understand how our site is used and enable us to improve your experience."
+      },
+      {
+        "title": "3. How We Collect It",
+        "content": "We collect information from you when you fill out forms on our site, like when you sign up. We also use cookies and Google Analytics to learn more about how you use our site. If you choose to enable the distance search feature, we'll collect your location information after getting your consent by clicking a button."
+      },
+      {
+        "title": "4. How We Use It",
+        "content": "We use your information to help you use our site and to make our site better for you. We also use it to see how people use our site, so we can make it better for everyone. Your location information, if you choose to share it, is used to help you find resources and services near you."
+      },
+      {
+        "title": "5. Who We Share It With",
+        "content": "The majority of your information is kept confidential and is not shared with any third parties outside of SpecialNeeds.com. However, for users interacting with our directory listings (such as camps, schools, etc.), we may share aggregated and anonymized analytics data with the owners of these listings. This data may include metrics like the number of page views, time spent on the site, and other related usage statistics. It's important to note that this shared data will not include any personally identifiable information and is solely used to provide insights to our paid listing owners."
+      },
+      {
+        "title": "6. How We Keep It Safe",
+        "content": "We use some fancy tech stuff to keep your information safe, like HTTPS for secure browsing, bcrypt to keep your password safe, and encryption to keep your location safe if you choose to share it with us. We also store your encrypted location information (if provided) in your browser's local storage and not on our servers, to add an extra layer of security."
+      },
+      {
+        "title": "7. Changing or Deleting Your Info",
+        "content": "You can change your email and password whenever you want. You can't change your display name once it's set, though. If you want to delete your account, you can do that, too. And remember, you can always tell us to stop using your location info by revoking your consent."
+      },
+      {
+        "title": "8. Kids Under 13",
+        "content": "Our site isn't made for kids under 13. We don't collect information from anyone under 13, and if we become aware of any such information, we will take steps to delete it."
+      },
+      {
+        "title": "9. People Outside the U.S.",
+        "content": "Our site is made for people in the U.S. Even though we collect some information from people outside the U.S. through Google Analytics, our website is not targeted at them, and we do not use their information for anything other than Google Analytics."
+      },
+      {
+        "title": "10. Changes to This Policy",
+        "content": "Sometimes we might need to change this policy. If we do, we'll send you an email, and we'll put a notice on our site and on our social media accounts, if we have any. Please keep checking so you always know our latest policy."
+      },
+      {
+        "title": "Remember, we're here to help. If you have any questions about this privacy policy, just ask!"
+      }
+    ]
+  },
+  "searchResults": {
+    "networkError": "Oops! Something went wrong. Please try again.",
+    "perPage": "Per Page",
+    "sortBy": "Sort By",
+    "relevance": "Relevance",
+    "distance": "Distance",
+    "popularity": "Popularity",
+    "latest": "Latest",
+    "display": "Display",
+    "full": "Full",
+    "minimal": "Minimal",
+    "pagination": {
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "noResults": "No results found."
+  },
+  "searchUtils": {
+    "noImage": "No Images Added",
+    "featuredImage": "Featured Image",
+    "locationBlockedMessage": "Oops! We can't see your location.",
+    "locationUnavailableMessage": "Oops! We can't find your location.",
+    "milesAway": "miles away",
+    "findingYourLocation": "Finding your location...",
+    "findMyDistance": "Find my distance"
+  },
+  "siteStats": {
+    "justLaunched": "Just Launched!",
+    "monthlyVisitors": "Monthly Visitors"
+  },
+  "termsAndConditions": {
+    "pageTitle": "Terms and Conditions",
+    "subTitle": "Terms and Conditions for SpecialNeeds.com",
+    "terms": [
+      {
+        "title": "1. Welcome to Our Site!",
+        "content": "Hi there! Welcome to SpecialNeeds.com. We're a website that helps people learn about special needs resources, like camps, schools, and therapists. We also share articles and news about special needs topics. But before you start exploring, we need you to understand and agree to our rules."
+      },
+      {
+        "title": "2. Who Can Use Our Site",
+        "content": "Our site is primarily made for people who are 13 years or older. However, individuals under the age of 13 may access the content on our site under the supervision of a parent or legal guardian. While they cannot register for an account, they are welcome to read and learn from the information available with appropriate guidance."
+      },
+      {
+        "title": "3. Our Rules",
+        "content": "We want everyone to have a good time here, so we have some rules. You can't use our site to do anything illegal, to bother other people, to share spam, or to post mean or offensive things. And please, don't share anything that belongs to someone else without their permission."
+      },
+      {
+        "title": "4. Adding to Our Directory",
+        "content": "Users can add items to our directory, but we'll need to say okay first. We use a smart computer program to check if anything mean or offensive gets posted. And we'll take down anything that's not okay right away."
+      },
+      {
+        "title": "5. Accounts and What Can Happen",
+        "content": "If you break any of our rules, we might have to stop your account. This means you won't be able to use our site anymore. We don't want to do this, but sometimes we have to."
+      },
+      {
+        "title": "6. What We Can Promise",
+        "content": "We do our best to share good, helpful information. But we can't promise that everything is perfect or right for you. We're not doctors, and we don't give medical advice. Always check with your own doctor or do your own research."
+      },
+      {
+        "title": "7. What Happens If We Disagree",
+        "content": "If we have a disagreement, we'd like to work it out with you. But if we can't, then we'll have to ask a neutral person or group (this is called an arbitrator) to help us solve it."
+      },
+      {
+        "title": "8. Changes to These Rules",
+        "content": "Sometimes we might need to change these rules. If we do, we'll send you an email, and post on our social media accounts, if we have any. Please keep checking so you always know our latest rules."
+      },
+      {
+        "title": "Remember, we're here to help. If you have any questions about these terms and conditions, just ask!",
+        "content": ""
+      }
+    ]
+  },
+  "verifiedBadge": {
+    "pageTitle": "Verified Badge",
+    "pageHeading": "The Mark of Trust: The Verified Badge at SpecialNeeds.com",
+    "pageBody": "<p>At SpecialNeeds.com, we strive to foster a community of <strong>trust</strong> and <strong>reliability</strong>. One significant way we ensure this trust is through our Verified Badge. You may have spotted this little checkmark symbol on our platform. But do you know what it signifies? Allow us to pull back the curtain on this important aspect of our platform.</p> <p>The Verified Badge isn't merely decorative - it's a symbol of authenticity, accuracy, and connection. When you see this badge associated with a company, you can rest assured that the <strong>company has been thoroughly vetted and is confirmed to be genuine</strong>. But how do we ascertain this genuineness? The process is both rigorous and meticulous.</p> <p>To earn the Verified Badge, <strong>a company representative or a SpecialNeeds.com staff member</strong> must first register with us and provide evidence of their affiliation with the company. This is typically in the form of a business email address. However, the badge doesn't just signify affiliation. It's also a testament to accuracy. <strong>The representative or our staff member is responsible for verifying all information associated with the company</strong> - from contact details to rates and features. Only when every piece of information has been scrutinized and confirmed do we award the coveted Verified Badge.</p> <p><strong>Maintaining the Verified Badge isn't a one-time effort</strong> - it requires an <strong>annual renewal</strong>. Each year, company representatives are required to reaffirm their details and reverify their information. This ensures that the data associated with Verified Badge holders remains up-to-date and accurate. If the information isn't refreshed yearly, the Verified Badge status lapses. This renewal requirement serves as an ongoing commitment to accuracy, reinforcing our dedication to providing reliable, current information for our community.</p> <p>But why is this badge important? Why should you, as a user of our platform, trust it? The answer is simple. The Verified Badge is your compass on SpecialNeeds.com, guiding you with the assurance of truth and reliability.</p> <p>This badge is our commitment to you. It's our <strong>guarantee that the information you're viewing has been checked for accuracy</strong> and confirmed for authenticity. Whenever you see this badge, you know you're looking at a company that has been meticulously verified. That's our promise to you.</p> <p>So, as you explore the vibrant world of special needs-related businesses on SpecialNeeds.com, remember to look out for our Verified Badge. It's more than a symbol - it's the mark of trust you can rely on.</p>",
+    "tooltipContent": "Verified Listing: Last verified <lastVerified>. Click to learn more."
+  },
+  "waitlist": {
+    "pageTitle": "Waitlist",
+    "pageHeader": "Join the SpecialNeeds.com Family! 🎉",
+    "welcomeMessage": "<p>Hey there future friend! We're so happy you want to join our SpecialNeeds.com family. 😊 We're busy making our website a fun, safe, and helpful place for everyone.🌈💕</p><p>To join us, all you have to do is put your email in the box below. We'll send you a message as soon as we're ready for you! 💌🥳</p><p>You can send along message too if you'd like to say hi! We'd love to hear from you! 🤗</p>",
+    "successResponse": "Hooray! 🎉 We've saved a spot just for you!",
+    "submitButton": "Join the Waitlist! 🎈",
+    "messageFieldLabel": "📝 Message (only if you want to)"
+  }
+}

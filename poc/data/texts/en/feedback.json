@@ -1,0 +1,71 @@
+{
+  "sectionTitle": "Feedback",
+  "title": "User’s Feedback About SpecialNeeds.com",
+  "description": "Discover the inspiring stories and experiences of our users who have found invaluable resources, support, and connections through SpecialNeeds.com.",
+  "imgAlt": "A photo of",
+  "testimonials": [
+    {
+      "name": "John Luthor",
+      "position": "Parent",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/john-luthor/w=60",
+      "rating": 5,
+      "text": "SpecialNeeds.com has been instrumental in helping me find the right resources for my child. The wealth of information and supportive community is invaluable."
+    },
+    {
+      "name": "Sarah Taylor",
+      "position": "Special Education Teacher",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/sarah-taylor/w=60",
+      "rating": 4.5,
+      "text": "As a teacher, SpecialNeeds.com is my go-to website for understanding my students' diverse needs. The strategies and tips shared have been very helpful."
+    },
+    {
+      "name": "Alex Hales",
+      "position": "UX Designer",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/alex-hales/w=60",
+      "rating": 4,
+      "text": "The user interface of SpecialNeeds.com is very friendly and easy to navigate. It's a great platform with a lot of useful features for individuals with special needs."
+    },
+    {
+      "name": "David Warner",
+      "position": "Parent",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/david-warner/w=60",
+      "rating": 4.5,
+      "text": "SpecialNeeds.com is a beacon of hope for parents like us. The online resources are fantastic and the supportive community is heartwarming."
+    },
+    {
+      "name": "Jessica Brown",
+      "position": "Speech Therapist",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/jessica-brown/w=60",
+      "rating": 5,
+      "text": "The speech therapy resources on SpecialNeeds.com are top-notch. They've been incredibly helpful in my practice."
+    },
+    {
+      "name": "Michael Johnson",
+      "position": "Parent",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/michael-johnson/w=60",
+      "rating": 4,
+      "text": "I've found so much support and understanding in the SpecialNeeds.com community. It has made all the difference for my family."
+    },
+    {
+      "name": "Emily Davis",
+      "position": "Special Education Teacher",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/emily-davis/w=60",
+      "rating": 4.5,
+      "text": "SpecialNeeds.com is an invaluable tool in my classroom. The educational resources and community support are amazing."
+    },
+    {
+      "name": "Oliver Smith",
+      "position": "Occupational Therapist",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/oliver-smith/w=60",
+      "rating": 5,
+      "text": "SpecialNeeds.com offers practical and actionable occupational therapy strategies. It's a resource I use daily in my practice."
+    },
+    {
+      "name": "Sophia Miller",
+      "position": "Parent",
+      "image": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/sophia-miller/w=60",
+      "rating": 4,
+      "text": "Navigating the world of special needs parenting can be challenging, but SpecialNeeds.com provides resources and a community that truly help."
+    }
+  ]
+}

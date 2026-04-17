@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — SpecialNeeds.com (V5: Warm)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/*
+ * DESIGN THEME: Warm & Trustworthy
+ * Strategy: Design for the actual audience — providers serving children and families
+ * with special needs. This community values warmth, trust, and approachability
+ * over tech-startup slickness. Cream background, forest green (calming, growth),
+ * warm terracotta accent. Round corners everywhere. Generous white space.
+ * Nunito — friendly, round, legible. Feels like a trusted nonprofit or
+ * pediatric healthcare brand. Not a SaaS vendor. A partner.
+ * The hero copy acknowledges the mission: reaching families that need you.
+ * Gentle shadows, soft hover states, no harsh contrasts.
+ * The goal: a provider should feel confident and cared for, not sold to.
+ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #FAF6EF;
+  --cream-deep: #F2ECE0;
+  --white: #FFFFFF;
+  --ink: #2C2420;
+  --muted: #7A6A62;
+  --border: #E5DDD0;
+  --green: #2A7055;
+  --green-light: #EBF5F0;
+  --green-mid: #C5E3D8;
+  --terra: #C85A2E;
+  --terra-light: #FDF0EA;
+  --terra-mid: #F0C4AF;
+  --gold: #B8860B;
+  --gold-light: #FFF8E1;
+  --shadow: 0 4px 24px rgba(44,36,32,0.08);
+  --shadow-hover: 0 8px 40px rgba(44,36,32,0.14);
+}
+
+body {
+  font-family: 'Nunito', -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+/* Design note */
+.design-note {
+  background: var(--ink); color: #B0A898;
+  padding: 1rem 2rem;
+  font-family: monospace; font-size: .78rem; line-height: 1.75;
+  border-bottom: 3px solid var(--terra);
+}
+.design-note strong { color: var(--terra-mid); display: block; margin-bottom: .2rem; }
+
+/* Header */
+header {
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  padding: 1.25rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 2px 12px rgba(44,36,32,0.06);
+}
+.logo {
+  font-size: 1.2rem; font-weight: 900; color: var(--green);
+  text-decoration: none; letter-spacing: -.01em;
+}
+.logo span { color: var(--terra); }
+.nav-cta {
+  background: var(--green); color: var(--white);
+  padding: .6rem 1.375rem; border-radius: 100px;
+  text-decoration: none; font-size: .9rem; font-weight: 700;
+  box-shadow: 0 2px 8px rgba(42,112,85,0.25);
+  transition: background .15s, box-shadow .15s;
+}
+.nav-cta:hover { background: #225C44; box-shadow: 0 4px 16px rgba(42,112,85,0.35); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem 3.5rem;
+  max-width: 680px; margin: 0 auto;
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--green-light); border: 1.5px solid var(--green-mid);
+  color: var(--green); padding: .4rem 1.125rem; border-radius: 100px;
+  font-size: .85rem; font-weight: 800; margin-bottom: 1.75rem;
+}
+.hero-pill::before { content: '♡'; font-size: .9rem; }
+.hero h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 900; letter-spacing: -.03em; line-height: 1.1;
+  color: var(--ink); margin-bottom: 1.25rem;
+}
+.hero h1 em { color: var(--green); font-style: normal; }
+.hero p {
+  font-size: 1.1rem; color: var(--muted); max-width: 500px;
+  margin: 0 auto 3rem; line-height: 1.75;
+}
+
+/* Billing toggle */
+.billing-wrap { display: flex; justify-content: center; margin-bottom: 3.5rem; }
+.billing-toggle {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 100px; padding: .3rem; display: flex; gap: .25rem;
+  box-shadow: var(--shadow);
+}
+.toggle-btn {
+  padding: .625rem 1.5rem; border: none; background: transparent;
+  font-family: 'Nunito', sans-serif; font-size: .95rem; font-weight: 700;
+  cursor: pointer; color: var(--muted); border-radius: 100px; transition: all .2s;
+}
+.toggle-btn.active {
+  background: var(--green); color: var(--white);
+  box-shadow: 0 2px 8px rgba(42,112,85,0.3);
+}
+.save-badge {
+  display: inline-flex; align-items: center;
+  background: var(--terra-light); border: 1.5px solid var(--terra-mid);
+  color: var(--terra); font-size: .78rem; font-weight: 800;
+  padding: .35rem .875rem; border-radius: 100px;
+  margin-left: .875rem; white-space: nowrap;
+}
+
+/* Plans grid */
+main { max-width: 1180px; margin: 0 auto; padding: 0 2rem 5rem; }
+.plans {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; align-items: start; margin-bottom: 5rem;
+}
+@media (max-width: 960px) { .plans { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .plans { grid-template-columns: 1fr; } }
+
+.plan-card {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 20px; padding: 2.25rem 2rem;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.plan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--green-mid); }
+.plan-card.featured {
+  border: 2.5px solid var(--green); background: var(--green-light);
+  box-shadow: 0 8px 40px rgba(42,112,85,0.18);
+}
+.plan-card.featured:hover { border-color: var(--green); }
+
+.rec-wrap { display: flex; justify-content: flex-start; margin-bottom: 1rem; }
+.rec-badge {
+  background: var(--green); color: var(--white);
+  font-size: .75rem; font-weight: 800; letter-spacing: .05em;
+  padding: .3rem .875rem; border-radius: 100px;
+}
+
+.plan-icon { font-size: 2rem; margin-bottom: .75rem; }
+.plan-name { font-size: 1.3rem; font-weight: 900; color: var(--ink); margin-bottom: .5rem; }
+.plan-price { font-size: 3rem; font-weight: 900; letter-spacing: -.04em; line-height: 1; color: var(--ink); }
+.plan-card.featured .plan-price { color: var(--green); }
+.plan-period { font-size: .9rem; color: var(--muted); font-weight: 600; margin-bottom: .25rem; }
+.plan-saving { font-size: .875rem; color: var(--terra); font-weight: 700; margin-bottom: 1.75rem; min-height: 1.3rem; }
+
+.sep { height: 2px; background: var(--border); border-radius: 2px; margin-bottom: 1.5rem; }
+.plan-card.featured .sep { background: var(--green-mid); }
+
+.features { list-style: none; flex: 1; margin-bottom: 2rem; }
+.features li {
+  display: flex; gap: .625rem; align-items: flex-start;
+  padding: .5rem 0; font-size: .9rem;
+  border-bottom: 1px solid var(--cream-deep);
+  color: var(--muted);
+}
+.features li:last-child { border-bottom: none; }
+.features li.yes { color: var(--ink); }
+.feat-icon {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: .1em;
+  display: flex; align-items: center; justify-content: center; font-size: .7rem;
+}
+.feat-icon.y { background: var(--green); color: var(--white); }
+.feat-icon.n { background: var(--cream-deep); color: var(--border); }
+.plan-card.featured .feat-icon.n { background: var(--green-mid); }
+
+.btn {
+  display: block; width: 100%; padding: 1rem;
+  text-align: center; font-family: 'Nunito', sans-serif;
+  font-size: 1rem; font-weight: 800; text-decoration: none;
+  border-radius: 100px; border: 2.5px solid var(--green);
+  background: transparent; color: var(--green);
+  transition: all .2s; box-shadow: none;
+}
+.btn:hover { background: var(--green); color: var(--white); box-shadow: 0 4px 16px rgba(42,112,85,0.3); }
+.btn.filled { background: var(--green); color: var(--white); box-shadow: 0 4px 16px rgba(42,112,85,0.25); }
+.btn.filled:hover { background: #225C44; box-shadow: 0 6px 20px rgba(42,112,85,0.4); }
+
+/* Volume section */
+.section-wrap { margin-bottom: 5rem; }
+.section-eyebrow {
+  font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: .75rem;
+}
+.section-title { font-size: 2rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .5rem; color: var(--ink); }
+.section-desc { font-size: 1rem; color: var(--muted); max-width: 580px; margin-bottom: 2.5rem; line-height: 1.75; }
+
+.volume {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 700px) { .volume { grid-template-columns: repeat(2, 1fr); } }
+.vol-card {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 16px; padding: 1.75rem 1.25rem; text-align: center;
+  box-shadow: var(--shadow); transition: border-color .2s;
+}
+.vol-card:hover { border-color: var(--green-mid); }
+.vol-card:last-child { border-color: var(--terra-mid); }
+.vol-range { font-size: 1.1rem; font-weight: 900; color: var(--ink); margin-bottom: .375rem; }
+.vol-label { font-size: .875rem; color: var(--muted); font-weight: 600; }
+.vol-card:last-child .vol-label { color: var(--terra); font-weight: 700; }
+
+/* CTA section */
+.cta-wrap {
+  background: var(--green); border-radius: 24px;
+  padding: 4.5rem 3rem; text-align: center;
+  box-shadow: 0 12px 50px rgba(42,112,85,0.25);
+  position: relative; overflow: hidden;
+}
+.cta-wrap::before {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); pointer-events: none;
+}
+.cta-wrap::after {
+  content: '';
+  position: absolute; bottom: -60px; left: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: rgba(255,255,255,0.05); pointer-events: none;
+}
+.cta-wrap h2 {
+  font-size: 2rem; font-weight: 900; letter-spacing: -.03em;
+  color: var(--white); margin-bottom: .75rem;
+}
+.cta-wrap p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 2.25rem; }
+.cta-btn-white {
+  display: inline-block; padding: 1rem 2.75rem;
+  background: var(--white); color: var(--green);
+  font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 900;
+  text-decoration: none; border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  transition: transform .2s, box-shadow .2s;
+}
+.cta-btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+.panel { display: none; }
+.panel.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="design-note">
+  <strong>V5: Warm &amp; Trustworthy (Special Needs Audience)</strong>
+  Designed for providers serving children and families with special needs — therapists, schools, camps.
+  This community values warmth, trust, and partnership over tech-startup aesthetics. Cream background,
+  forest green (growth, calm), terracotta accent (warm, human). Nunito — round, friendly, legible.
+  Feels like a pediatric healthcare brand or mission-driven nonprofit, not a SaaS vendor.
+  Hero copy acknowledges the mission: "reach the families who need you most."
+  Rounded corners, soft shadows, gentle hover states. The provider should feel cared for, not sold to.
+</div>
+
+<header>
+  <a href="/" class="logo">SpecialNeeds<span>.com</span></a>
+  <a href="/waitlist" class="nav-cta">Join Waitlist</a>
+</header>
+
+<div class="hero">
+  <div class="hero-pill">Plans for providers who care</div>
+  <h1>Reach the families who <em>need</em> you most.</h1>
+  <p>Transparent plans built for special needs service providers. Start free. Grow at your own pace. No contracts, no surprises.</p>
+</div>
+
+<div class="billing-wrap">
+  <div class="billing-toggle">
+    <button class="toggle-btn active" id="btn-m" onclick="setBill('m')">Monthly</button>
+    <button class="toggle-btn" id="btn-a" onclick="setBill('a')">Annually</button>
+  </div>
+  <span class="save-badge" id="save-badge">Save up to 20%</span>
+</div>
+
+<main>
+
+  <div class="panel show" id="p-m">
+    <div class="plans">
+
+      <div class="plan-card">
+        <div class="plan-icon">🌱</div>
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-period">no credit card needed</div>
+        <div class="plan-saving">&nbsp;</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li><span class="feat-icon n" aria-hidden="true"></span>1–2 photos</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>200 word description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Verified badge</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Analytics</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Review response</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Priority placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Featured placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started Free</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-icon">🌿</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-price">$49</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-saving">&nbsp;</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Up to 10 photos</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>1,000 word description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Verified badge</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Analytics: views, searches &amp; clicks</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Review response</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Priority placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Featured placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="rec-wrap"><span class="rec-badge">Most Popular</span></div>
+        <div class="plan-icon">🌳</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">$99</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-saving">&nbsp;</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited photos</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Verified badge</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Detailed analytics + benchmarking</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Review response</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Priority placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Featured placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn filled">Get Started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-icon">⭐</div>
+        <div class="plan-name">Featured</div>
+        <div class="plan-price">$149</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-saving">&nbsp;</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited photos</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Verified badge</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Detailed analytics + benchmarking</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Review response</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Priority placement</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Featured on homepage &amp; categories</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Dedicated account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel" id="p-a">
+    <div class="plans">
+
+      <div class="plan-card">
+        <div class="plan-icon">🌱</div>
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-period">no credit card needed</div>
+        <div class="plan-saving">&nbsp;</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li><span class="feat-icon n" aria-hidden="true"></span>1–2 photos</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>200 word description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Verified badge</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Analytics</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Review response</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Priority placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Featured placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started Free</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-icon">🌿</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-price">$470</div>
+        <div class="plan-period">per year · ~$39/mo</div>
+        <div class="plan-saving" style="color:var(--terra)">You save $118</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Up to 10 photos</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>1,000 word description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Verified badge</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Analytics: views, searches &amp; clicks</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Review response</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Priority placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Featured placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="rec-wrap"><span class="rec-badge">Most Popular</span></div>
+        <div class="plan-icon">🌳</div>
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">$950</div>
+        <div class="plan-period">per year · ~$79/mo</div>
+        <div class="plan-saving" style="color:var(--terra)">You save $238</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited photos</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Verified badge</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Detailed analytics + benchmarking</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Review response</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Priority placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Featured placement</li>
+          <li><span class="feat-icon n" aria-hidden="true"></span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn filled">Get Started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-icon">⭐</div>
+        <div class="plan-name">Featured</div>
+        <div class="plan-price">$1,430</div>
+        <div class="plan-period">per year · ~$119/mo</div>
+        <div class="plan-saving" style="color:var(--terra)">You save $358</div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited photos</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Unlimited description</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Monthly view count</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Verified badge</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Detailed analytics + benchmarking</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Review response</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Priority placement</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Featured on homepage &amp; categories</li>
+          <li class="yes"><span class="feat-icon y" aria-hidden="true">✓</span>Dedicated account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-eyebrow">Volume Pricing</div>
+    <h2 class="section-title">Multiple Locations?</h2>
+    <p class="section-desc">Volume discounts apply automatically. The more locations you list, the less you pay per location.</p>
+    <div class="volume">
+      <div class="vol-card">
+        <div class="vol-range">1–5 locations</div>
+        <div class="vol-label">Standard rate</div>
+      </div>
+      <div class="vol-card">
+        <div class="vol-range">6–15 locations</div>
+        <div class="vol-label">15% off per location</div>
+      </div>
+      <div class="vol-card">
+        <div class="vol-range">16–50 locations</div>
+        <div class="vol-label">25% off per location</div>
+      </div>
+      <div class="vol-card">
+        <div class="vol-range">50+ locations</div>
+        <div class="vol-label">Custom enterprise pricing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-wrap">
+    <h2>Have questions about pricing?</h2>
+    <p>We're happy to help you find the right fit for your organization.</p>
+    <a href="/waitlist" class="cta-btn-white">Join the Waitlist</a>
+  </div>
+
+</main>
+
+<script>
+function setBill(t) {
+  ['m','a'].forEach(function(x) {
+    document.getElementById('p-'+x).classList.toggle('show', x===t);
+    document.getElementById('btn-'+x).classList.toggle('active', x===t);
+  });
+  document.getElementById('save-badge').style.visibility = t === 'a' ? 'visible' : 'hidden';
+}
+</script>
+</body>
+</html>

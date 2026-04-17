@@ -1,0 +1,21 @@
+{
+  "pageTitle": "Checkout",
+  "pageHeading": "Almost There! 🎉",
+  "pageBody": "Just a few more details and your fantastic journey begins! 😊<br/>Rest assured, your data is as safe as a treasure in a dragon's den! 🐉🔒",
+  "nameFieldLabel": "Full Name 🧑",
+  "street1FieldLabel": "Street Address 1 🏠",
+  "street2FieldLabel": "Street Address 2 (Optional) 🏡",
+  "cityFieldLabel": "City 🏙️",
+  "stateFieldLabel": "State 🏞️",
+  "zipcodeFieldLabel": "Zip Code 🎯",
+  "cardNumberFieldLabel": "Card Number 💳",
+  "expiryDateFieldLabel": "Expiry Date (MM/YY) ⏳",
+  "cvvFieldLabel": "CVV 🕵️‍♂️",
+  "submitButtonText": "Start the Adventure! 🎉",
+  "successMessage": "Voila! Your subscription is all set! 🎉 Do check your email for all the shiny details. 📧",
+  "invalidPlanMessage": "Oh, fiddlesticks! The chosen plan appears to have hit a glitch. Let's give it another whirl, shall we? 🔄",
+  "invalidParamsHeading": "Ruh-Roh! Mischievous Link 🕵️‍♀️",
+  "invalidParamsBody": "The link you clicked appears to have embarked on its own adventure.<br/>Double-check it and let's try again, explorer! 🧭",
+  "switchToAnnualPlan": "Switch to annual plan",
+  "switchToMonthlyPlan": "Switch to monthly plan"
+}

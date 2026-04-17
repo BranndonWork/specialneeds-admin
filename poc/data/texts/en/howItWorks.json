@@ -1,0 +1,48 @@
+{
+  "pageTitle": "How It Works",
+  "title": "Supporting Your Business Growth",
+  "description": "Guide your special needs-related business to reach its full potential. Here's the straightforward path to success",
+  "pageSteps": [
+    {
+      "title": "Join Our Community",
+      "content": "Begin by signing up for an account to join our community and initiate your journey.",
+      "href": "/signup/",
+      "anchorText": "Sign Up"
+    },
+    {
+      "title": "Create Your Listing",
+      "content": "With your account set up, it's time to create your business listing. A well-crafted and engaging listing can attract more visitors."
+    },
+    {
+      "title": "Select Your Package",
+      "content": "Choose from our range of packages for your listing, including various features to suit your needs. We offer multiple options, including a free package.",
+      "href": "/pricing/",
+      "anchorText": "View Packages"
+    },
+    {
+      "title": "Await Approval",
+      "content": "Once you submit your listing, our team will review it. Upon approval, your listing will be published on the site for public viewing."
+    },
+    {
+      "title": "Your Listing is Live",
+      "content": "Congratulations! Your listing is now live. You can view it on our site and begin attracting new visitors."
+    }
+  ],
+  "steps": [
+    {
+      "title": "Explore Our Directory",
+      "description": "Discover our extensive directory featuring a wide range of special needs-related listings. Add your listing to join our growing community.",
+      "icon": "flaticon-placeholder"
+    },
+    {
+      "title": "Connect and Communicate",
+      "description": "Engage directly with users through our messaging feature. Manage all your conversations efficiently from your dashboard.",
+      "icon": "flaticon-support-1"
+    },
+    {
+      "title": "Enhance Your Listing",
+      "description": "Draw more visitors and grow your business. You have full control over your listing and can update or modify it as needed from your dashboard.",
+      "icon": "flaticon-tick"
+    }
+  ]
+}

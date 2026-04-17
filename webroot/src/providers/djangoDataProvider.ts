@@ -1,9 +1,25 @@
 import type { DataProvider } from "@refinedev/core";
 import axios, { type AxiosInstance } from "axios";
+import { flattenCategoryData } from "../utils/categoryDataTransform";
 
 const API_URL = import.meta.env.VITE_API_ENDPOINT;
+const MEILI_HOST = "https://search.specialneeds.com";
 
-const axiosInstance: AxiosInstance = axios.create({
+const activeRequests = new Map<string, Promise<any>>();
+
+function deduplicatedGet(url: string, params: Record<string, any>): Promise<any> {
+  const key = url + JSON.stringify(params);
+  if (activeRequests.has(key)) {
+    return activeRequests.get(key)!;
+  }
+  const promise = axiosInstance.get(url, { params }).finally(() => {
+    activeRequests.delete(key);
+  });
+  activeRequests.set(key, promise);
+  return promise;
+}
+
+export const axiosInstance: AxiosInstance = axios.create({
   baseURL: `${API_URL}/api/v1`,
 });
 
@@ -54,89 +70,208 @@ axiosInstance.interceptors.response.use(
   }
 );
 
+function buildMeiliBody(resource: string, filters: any[], sorters: any[], pagination: any) {
+  const meiliFilters: string[] = [];
+  let q = "";
+
+  for (const f of (filters || [])) {
+    if (!("field" in f) || f.value === undefined || f.value === null || f.value === "") continue;
+    if (f.field === "title") {
+      q = f.value;
+    } else if (f.field === "category" || f.field === "category_slug") {
+      meiliFilters.push(`category_slug = '${f.value}'`);
+    } else if (f.field === "status") {
+      meiliFilters.push(`status = '${f.value}'`);
+    }
+  }
+
+  const sortMap: Record<string, string> = {
+    created_at: "updated_at_timestamp",
+    updated_at: "updated_at_timestamp",
+    published_at: "published_at_timestamp",
+  };
+  const sort = sorters?.length
+    ? sorters.map((s: any) => `${sortMap[s.field] ?? s.field}:${s.order}`)
+    : [resource === "articles" ? "published_at_timestamp:desc" : "updated_at_timestamp:desc"];
+
+  const limit = pagination?.pageSize ?? 10;
+  const offset = ((pagination?.currentPage ?? 1) - 1) * limit;
+
+  return {
+    q,
+    filter: meiliFilters.length ? meiliFilters : undefined,
+    sort,
+    limit,
+    offset,
+  };
+}
+
+function transformMeiliHit(hit: any, resource: string) {
+  const parts = (hit.category_name || "").split(" > ");
+  const hasParent = parts.length === 2;
+  const category = {
+    id: hit.category_slug,
+    slug: hit.category_slug,
+    name: hasParent ? parts[1] : parts[0],
+    parent: hasParent ? { name: parts[0] } : undefined,
+  };
+
+  return {
+    id: hit.id,
+    title: hit.title,
+    status: hit.status,
+    category,
+    created_at: hit.updated_at_timestamp ? new Date(hit.updated_at_timestamp * 1000).toISOString() : null,
+    published_at: hit.published_at_timestamp ? new Date(hit.published_at_timestamp * 1000).toISOString() : null,
+  };
+}
+
 export const djangoDataProvider: DataProvider = {
-  getList: async ({ resource, pagination, filters, sorters, meta }) => {
-    // Use the search endpoint for articles listing
-    const url = `/${resource}/search/`;
+  getList: async ({ resource, pagination, filters, sorters }) => {
+    const indexName = resource === "listings" ? "listings" : "articles";
+    const body = buildMeiliBody(resource, filters as any[], sorters as any[], pagination);
 
-    const params: any = {};
+    const { data } = await axios.post(
+      `${MEILI_HOST}/indexes/${indexName}/search`,
+      body,
+    );
 
-    if (pagination) {
-      params.page = pagination.current;
-      params.limit = pagination.pageSize;
-    }
+    const hits = (data.hits || []).map((hit: any) => transformMeiliHit(hit, resource));
+    const total = data.totalHits ?? data.estimatedTotalHits ?? hits.length;
 
-    if (sorters && sorters.length > 0) {
-      params.sort = sorters[0].order === "desc" ? "-" + sorters[0].field : sorters[0].field;
-    }
-
-    if (filters) {
-      filters.forEach((filter: any) => {
-        if ("field" in filter) {
-          params[filter.field] = filter.value;
-        }
-      });
-    }
-
-    const { data } = await axiosInstance.get(url, { params });
-
-    // Extract response data (Django wraps in { success, response, error })
-    const responseData = data.response || data;
-
-    // Transform articles to flatten the nested structure
-    const articles = (responseData.articles || responseData.data || responseData.results || responseData || []).map((item: any) => {
-      // If the article has article_data (from SummarySerializer), flatten it
-      if (item.article_data) {
-        const flattened = { ...item.article_data };
-        // Add category slug as id for Refine to work with categories
-        if (flattened.category && !flattened.category.id) {
-          flattened.category = {
-            ...flattened.category,
-            id: flattened.category.slug,
-          };
-        }
-        return flattened;
-      }
-      return item;
-    });
-
-    return {
-      data: articles,
-      total: responseData.totalResults || responseData.total || responseData.count || articles.length,
-    };
+    return { data: hits, total };
   },
 
   getOne: async ({ resource, id, meta }) => {
-    const url = `/${resource}/${id}/`;
-    const { data } = await axiosInstance.get(url);
+    let url: string;
+    let params: any = {};
 
-    // Extract response data (Django wraps in { success, response, error })
-    const responseData = data.response || data;
-
-    // Flatten article_data if present (same structure as getList)
-    let article = responseData.data || responseData;
-    if (article.article_data) {
-      article = { ...article.article_data };
-      // Add category slug as id for Refine to work with categories
-      if (article.category && !article.category.id) {
-        article.category = {
-          ...article.category,
-          id: article.category.slug,
-        };
+    if (resource === "listings") {
+      url = `/listings/`;
+      params.id = id;
+      params.level = "editor"; // Returns full data with form_fields and categories
+    } else {
+      url = `/${resource}/${id}/`;
+      if (resource === "articles") {
+        params.level = "editor"; // Request editor-level data for articles
       }
     }
 
-    return {
-      data: article,
-    };
+    let apiResponse: any;
+    try {
+      const { data } = await axiosInstance.get(url, { params });
+      apiResponse = data;
+    } catch (err: any) {
+      // If Django fails for listings, fall back to Meilisearch for basic show data
+      if (resource === "listings") {
+        const { data: meiliData } = await axios.post(
+          `${MEILI_HOST}/indexes/listings/search`,
+          { q: "", filter: `id = '${id}'`, limit: 1 },
+        );
+        const hit = meiliData.hits?.[0];
+        if (!hit) throw err;
+        return { data: transformMeiliHit(hit, resource) as any };
+      }
+      throw err;
+    }
+    const data = apiResponse;
+
+    // Extract response data
+    // Note: Articles return raw data, Listings wrap in { success, response, error }
+    const responseData = data.response || data;
+
+    if (resource === "listings") {
+      // API returns: { listing_data: {...}, category_data: {...}, form_fields: {...}, categories: [...] }
+      const listingData = responseData.listing_data || responseData;
+      const categoryData = responseData.category_data || {};
+      const categories = responseData.categories || [];
+
+      // category_data is already in the nested format needed by the UI:
+      // category_data[section].fields[field].attributes.value
+      // So we just pass it through as-is
+
+      return {
+        data: {
+          ...listingData,
+          category_data: categoryData,
+          categories: categories,
+          // Ensure category has an id (convert slug to object if needed)
+          category: typeof listingData.category === 'string'
+            ? { id: listingData.category, slug: listingData.category }
+            : listingData.category && !listingData.category.id
+            ? { ...listingData.category, id: listingData.category.slug }
+            : listingData.category,
+        },
+      };
+    } else if (resource === "articles") {
+      // Articles API returns: { article_data: {...}, category_data: {}, form_fields: {}, categories: [...] }
+      // We need to flatten article_data and add the categories array for the category dropdown
+      const articleData = responseData.article_data || responseData;
+      const categories = responseData.categories || [];
+
+      // Add category slug as id for Refine to work with select components
+      if (articleData.category && !articleData.category.id) {
+        articleData.category = {
+          ...articleData.category,
+          id: articleData.category.slug,
+        };
+      }
+
+      return {
+        data: {
+          ...articleData,
+          // Include the categories array so the edit form can use it for the dropdown
+          categories: categories,
+        },
+      };
+    } else {
+      // Generic resource handling
+      let data = responseData.data || responseData;
+      return {
+        data: data,
+      };
+    }
   },
 
   create: async ({ resource, variables, meta }) => {
     const url = `/${resource}/`;
-    const { data } = await axiosInstance.post(url, variables);
+
+    let payload: any;
+    if (resource === "listings") {
+      // Transform to listing structure
+      const { category_data, category, ...listingData } = variables as any;
+
+      // Flatten category_data from UI format to API format
+      const flattenedCategoryData = flattenCategoryData(category_data || {});
+
+      // Convert category object to slug string if needed
+      const categorySlug = typeof category === 'string'
+        ? category
+        : category?.slug || category?.id || category;
+
+      payload = {
+        listing_data: {
+          ...listingData,
+          id: "new", // New listings use "new" as ID
+          category: categorySlug,
+        },
+        category_data: flattenedCategoryData,
+      };
+    } else {
+      payload = variables;
+    }
+
+    const { data } = await axiosInstance.post(url, payload);
 
     // Extract response data (Django wraps in { success, response, error })
     const responseData = data.response || data;
+
+    if (resource === "listings") {
+      const listing = responseData.listing;
+      return {
+        data: listing?.listing_data || listing || responseData.data || responseData,
+      };
+    }
 
     return {
       data: responseData.data || responseData,
@@ -144,11 +279,68 @@ export const djangoDataProvider: DataProvider = {
   },
 
   update: async ({ resource, id, variables, meta }) => {
-    const url = `/${resource}/${id}/`;
-    const { data } = await axiosInstance.put(url, variables);
+    let url: string;
+    let payload: any;
+
+    if (resource === "listings") {
+      url = `/listings/`;
+
+      // CRITICAL: The backend expects the FULL listing object
+      // The form component now merges all original fields with changes before sending
+
+      // Extract form fields
+      const { category_data, category, ...listingData } = variables as any;
+
+      // Convert category to slug string
+      const categorySlug = typeof category === 'string'
+        ? category
+        : category?.slug || category?.id || category;
+
+      // Flatten category_data from UI format to API format
+      const flattenedCategoryData = flattenCategoryData(category_data || {});
+
+      payload = {
+        listing_data: {
+          ...listingData,
+          id,
+          category: categorySlug,
+        },
+        category_data: flattenedCategoryData,
+      };
+    } else if (resource === "articles") {
+      url = `/${resource}/${id}/`;
+
+      // Remove the categories array (it was only for the UI dropdown)
+      const { categories, category, ...articleData } = variables as any;
+
+      // Extract category slug (form sends it as category.id)
+      const categorySlug = category?.id || category?.slug || category;
+
+      // Articles API expects: { article_data: {...}, category_data: {} }
+      payload = {
+        article_data: {
+          ...articleData,
+          id,
+          category: categorySlug,
+        },
+        category_data: {},
+      };
+    } else {
+      url = `/${resource}/${id}/`;
+      payload = variables;
+    }
+
+    const { data } = await axiosInstance.put(url, payload);
 
     // Extract response data (Django wraps in { success, response, error })
     const responseData = data.response || data;
+
+    if (resource === "listings") {
+      const listing = responseData.listing;
+      return {
+        data: listing?.listing_data || listing || responseData.data || responseData,
+      };
+    }
 
     return {
       data: responseData.data || responseData,
@@ -156,8 +348,17 @@ export const djangoDataProvider: DataProvider = {
   },
 
   deleteOne: async ({ resource, id, meta }) => {
-    const url = `/${resource}/${id}/`;
-    const { data } = await axiosInstance.delete(url);
+    let url: string;
+    let config: any = {};
+
+    if (resource === "listings") {
+      url = `/listings/`;
+      config.params = { id };
+    } else {
+      url = `/${resource}/${id}/`;
+    }
+
+    const { data } = await axiosInstance.delete(url, config);
 
     // Extract response data (Django wraps in { success, response, error })
     const responseData = data.response || data;

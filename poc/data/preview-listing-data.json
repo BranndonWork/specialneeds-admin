@@ -1,0 +1,87 @@
+{
+  "category_data": {
+    "school_information": {
+      "label": "School Information",
+      "fields": {
+        "school_type": { "label": "School Type", "attributes": { "value": ["Montessori School"] } },
+        "year_founded": { "label": "Year Founded", "attributes": { "value": 2003 } },
+        "yearly_tuition_cost": { "label": "Yearly Tuition Cost", "attributes": { "value": "$9,000" } },
+        "tuition_notes": { "label": "Tuition Notes", "attributes": { "value": "Depends on age and program length" } },
+        "total_students": { "label": "Total Students", "attributes": { "value": 117 } },
+        "total_classroom_teachers": { "label": "Total Classroom Teachers", "attributes": { "value": 9 } },
+        "percent_of_faculty_with_advanced_degree": { "label": "Faculty with Advanced Degree", "attributes": { "value": 50 } },
+        "average_class_size": { "label": "Average Class Size", "attributes": { "value": 15 } },
+        "grades_offered": { "label": "Grades Offered", "attributes": { "value": "Prekindergarten-8" } }
+      }
+    },
+    "admissions_information": {
+      "label": "Admissions Information",
+      "fields": {
+        "admissions_director": { "label": "Admissions Director", "attributes": { "value": "Sara Madle" } },
+        "admission_deadline": { "label": "Admission Deadline", "attributes": { "value": "None / Rolling" } },
+        "acceptance_rate": { "label": "Acceptance Rate", "attributes": { "value": 80 } },
+        "percent_on_financial_aid": { "label": "Percent on Financial Aid", "attributes": { "value": 10 } },
+        "average_financial_aid_grant": { "label": "Average Financial Aid Grant", "attributes": { "value": "$5,600" } }
+      }
+    },
+    "student_body_information": {
+      "label": "Student Body Information",
+      "fields": {
+        "student_body_type": { "label": "Student Body Type", "attributes": { "value": "Co-ed" } },
+        "percent_of_students_of_color": { "label": "Percent of Students of Color", "attributes": { "value": 37 } }
+      }
+    },
+    "sports_and_extracurricular_information": {
+      "label": "Sports and Extracurricular Information",
+      "fields": {
+        "sports": { "label": "Sports", "attributes": { "value": ["Dance", "Soccer", "Swimming"] } },
+        "clubs_and_organizations": { "label": "Clubs and Organizations", "attributes": { "value": ["Battle of the Books", "STEM", "Art Class", "Music Class", "Spanish"] } }
+      }
+    },
+    "academic_programs_information": {
+      "label": "Academic Programs Information",
+      "fields": {
+        "learning_programs_supported": { "label": "Learning Programs Supported", "attributes": { "value": ["Mild learning differences"] } },
+        "special_education_programs": { "label": "Special Education Programs", "attributes": { "value": ["Learning Difference Programs"] } }
+      }
+    },
+    "additional_information": {
+      "label": "Additional Information",
+      "fields": {
+        "classroom_dress_code": { "label": "Classroom Dress Code", "attributes": { "value": "Casual" } },
+        "school_memberships": { "label": "School Memberships", "attributes": { "value": ["American Montessori Society (AMS)"] } },
+        "religious_affiliations": { "label": "Religious Affiliations", "attributes": { "value": ["Nonsectarian"] } },
+        "summer_school_offered": { "label": "Summer School Offered", "attributes": { "value": true } }
+      }
+    }
+  },
+  "listing_data": {
+    "title": "Alegria Montessori School",
+    "category": {
+      "name": "Schools",
+      "slug": "education/schools",
+      "parent": {
+        "name": "Education",
+        "slug": "education"
+      }
+    },
+    "images": [
+      { "url": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/175dde1c-763e-485d-e05e-46bfd34c8c00/public", "alt": "Alegria Montessori School" },
+      { "url": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/36ba8567-d032-42d0-8b52-3d759b246c00/public", "alt": "Alegria Montessori School" },
+      { "url": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/ee66ebfa-314f-48de-31bc-59913ee31600/public", "alt": "Alegria Montessori School" }
+    ],
+    "phone": "(727) 866-1901",
+    "website": "https://alegriamontessori.com/",
+    "content": "<p>Alegria Montessori School provides a traditional Montessori education for children ages 1 through 8th grade, with two beautiful campuses in Saint Petersburg, FL. The school serves 117 students with a 15:1 average class size and 9 classroom teachers, ensuring personalized attention for each child. With 50% of faculty holding advanced degrees, the school emphasizes quality instruction and individualized learning approaches.</p><p>Recognized for supporting students with mild learning differences, Alegria Montessori offers specialized learning programs designed to meet the needs of children who may require additional support in their educational journey. The school's nonsectarian environment and Montessori-based curriculum create a nurturing space where students can explore, learn, and grow at their own pace. Families seeking a structured yet flexible educational setting will find the school's approach particularly beneficial for children with learning differences.</p><p>Admissions are on a rolling basis, and the school offers financial aid to 10% of students, with an average grant of $5,600. Tuition ranges from $9,000 depending on age and program length. Alegria Montessori is accredited by the American Montessori Society (AMS) and provides a rich array of extracurricular activities including dance, soccer, swimming, art, music, and Spanish classes to support holistic development.</p>",
+    "summary": "Alegria Montessori School in Saint Petersburg, Florida serves 117 students in grades Prekindergarten-8.",
+    "slug": "education/schools/alegria-montessori-school",
+    "address": {
+      "street_1": "3200 58th Ave S",
+      "street_2": "",
+      "city": "Saint Petersburg",
+      "state_province": "Florida",
+      "postal_code": "33712",
+      "country": "United States"
+    }
+  }
+}

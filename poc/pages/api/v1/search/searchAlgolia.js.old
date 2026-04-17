@@ -1,0 +1,162 @@
+import config from "@config/config";
+import Logger from "@utils/logging";
+import { attributesToRetrieve } from "./attributesToRetrieve";
+import { getCategories } from "./getCategories";
+const logger = new Logger("./pages/api/v1/search/searchAlgolia.js");
+
+const addDistanceToResults = (results) => {
+  results.forEach((result) => {
+    if (result._rankingInfo && result._rankingInfo.geoDistance) {
+      let distanceInMiles = (result._rankingInfo.geoDistance / 1609.34).toFixed(2);
+      if (distanceInMiles < 1) {
+        result.distance = "less than 1 mile away";
+      } else {
+        // round up
+        distanceInMiles = Math.ceil(distanceInMiles);
+        result.distance = `${distanceInMiles} miles away`;
+      }
+    }
+  });
+};
+
+const convertThumbnailURLs = (results) => {
+  results.forEach((result) => {
+    if (result.thumbnail) {
+      if (result.thumbnail.includes("image/upload")) {
+        let thumbnailURL = result.thumbnail;
+        let thumbnailURLParts = thumbnailURL.split("/image/upload/");
+        let finalParts = thumbnailURLParts[1].split("/");
+
+        const versionRegex = /^v\d+$/;
+        const newPathParts = finalParts.filter((part) => !versionRegex.test(part));
+        const basePath = [
+          "wp-content",
+          "specialneeds",
+          "images",
+          "articles",
+          "listings",
+          "avatars",
+          "core",
+        ].includes(newPathParts[0])
+          ? ""
+          : "core/";
+
+        result.thumbnail = `/assets/${basePath}${newPathParts.join("/")}`;
+      } else if (result.thumbnail.includes("assets.specialneeds.com")) {
+        // split at assets.specialneeds.com and prefix it with /assets/
+        let thumbnailURL = result.thumbnail;
+        let thumbnailURLParts = thumbnailURL.split("assets.specialneeds.com");
+        result.thumbnail = `/assets/${thumbnailURLParts[1]}`;
+      }
+
+      // if it doesn't start with http, then replace all double slashes with single slashes
+      if (!result.thumbnail.startsWith("http"))
+        result.thumbnail = result.thumbnail.replace(/\/\//g, "/");
+      if (result.thumbnail.startsWith("/assets/"))
+        result.thumbnail = `${config.siteUrl}${result.thumbnail}`;
+
+      // set default url search params for thumbnail
+      console.log("result.thumbnail:", result.thumbnail);
+      const url = new URL(
+        result.thumbnail,
+        result.thumbnail.startsWith("http") ? undefined : config.host
+      );
+      console.log("url:", url);
+      const queryParams = [];
+      if (!url.searchParams.has("gravity")) queryParams.push("gravity=smart");
+      if (!url.searchParams.has("func")) queryParams.push("func=fitmin");
+      if (!url.searchParams.has("width")) queryParams.push("width=200");
+      if (!url.searchParams.has("height")) queryParams.push("height=200");
+
+      result.thumbnail = `${url.pathname}?${queryParams.join("&")}`;
+    }
+  });
+};
+
+export const searchAlgolia = async (req) => {
+  logger.info("Algolia searchAlgolia req.data:", req.data);
+
+  // ALGOLIA DISABLED: Return empty response immediately
+  logger.warn("ALGOLIA DISABLED - RETURNING EMPTY RESPONSE");
+  return {
+    timestamp: new Date().toISOString(),
+    results: [],
+    categories: {},
+    pageNumber: req.data.pageNumber,
+    perPage: parseInt(req.data.perPage, 10),
+    totalHits: 0,
+    totalPages: 0,
+  };
+
+  const {
+    q,
+    perPage,
+    pageNumber,
+    userId,
+    filterString,
+    algoliaClient,
+    locationBasedSearch,
+    sortBy,
+    index,
+    dashboardRequest,
+  } = req.data;
+
+  const maxPerQuery = 1000;
+  let parsedPerPage = parseInt(perPage, 10);
+  if (perPage === "-1" && dashboardRequest) {
+    parsedPerPage = 10000;
+  }
+  const parsedPageNumber = parseInt(pageNumber, 10) - 1;
+
+  const settings = {
+    attributesToRetrieve: attributesToRetrieve[index],
+    hitsPerPage: parsedPerPage,
+    page: parsedPageNumber,
+    filters: filterString,
+    getRankingInfo: Object.keys(locationBasedSearch).length > 0,
+    ...locationBasedSearch,
+    ...sortBy,
+  };
+  // disable sorting for now
+  delete settings.customRanking;
+  delete settings.sortBy;
+
+  let results = [];
+  let totalHits = 0;
+  let currentPage = parsedPageNumber;
+
+  while (true) {
+    try {
+      const searchPayload = [q, { ...settings, page: currentPage }];
+      // logger.debug("Algolia searchAlgolia searchPayload:", searchPayload);
+      await new Promise((resolve) => setTimeout(resolve, 100)); // delay to avoid rate limiting or bad code smashing the server
+      logger.warn("PERFORMING ALGOLIA SEARCH", { searchPayload });
+      const { hits, nbHits } = await algoliaClient.search(...searchPayload);
+      logger.info("Algolia searchAlgolia results:", { hits, nbHits });
+      results = results.concat(hits);
+      totalHits = nbHits;
+      currentPage++;
+    } catch (error) {
+      logger.error("Algolia searchAlgolia error:", error);
+    }
+
+    // Break the loop if not fetching all (-1) or all results have been fetched
+    if (perPage !== "-1" || results.length >= totalHits || hits.length === 0) break;
+  }
+
+  addDistanceToResults(results);
+  convertThumbnailURLs(results);
+
+  const finalResults = {
+    timestamp: new Date().toISOString(),
+    results,
+    categories: await getCategories(req),
+    pageNumber,
+    perPage: parsedPerPage,
+    totalHits,
+    totalPages: Math.ceil(totalHits / parsedPerPage),
+  };
+  let allAthumbs = results.map((result) => result.thumbnail);
+  logger.info("Algolia result thumbnails:", JSON.stringify(allAthumbs, null, 2));
+  return finalResults;
+};

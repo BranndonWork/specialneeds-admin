@@ -1,0 +1,17 @@
+{
+  "networkError": "Oops! Something went wrong. Please try again.",
+  "perPage": "Per Page",
+  "sortBy": "Sort By",
+  "relevance": "Relevance",
+  "distance": "Distance",
+  "popularity": "Popularity",
+  "latest": "Latest",
+  "display": "Display",
+  "full": "Full",
+  "minimal": "Minimal",
+  "pagination": {
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "noResults": "No results found."
+}

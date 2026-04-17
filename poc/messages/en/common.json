@@ -1,0 +1,52 @@
+{
+  "buttons": {
+    "submit": "Submit",
+    "search": "Search",
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up",
+    "learnMore": "Learn More",
+    "dismiss": "Dismiss",
+    "addToFavorites": "Add to Favorites",
+    "removeFromFavorites": "Remove from Favorites"
+  },
+  "labels": {
+    "email": "Email",
+    "title": "Title",
+    "location": "Location",
+    "category": "Category",
+    "categories": "Categories",
+    "image": "Image",
+    "menu": "Menu",
+    "allCategories": "All Categories"
+  },
+  "terms": {
+    "article": "Article",
+    "articles": "Articles",
+    "listing": "Listing",
+    "listings": "Listings",
+    "event": "Event",
+    "events": "Events",
+    "directory": "Directory",
+    "news": "News",
+    "popular": "Popular",
+    "recent": "Recent",
+    "result": "Result",
+    "results": "Results",
+    "found": "Found",
+    "none": "None",
+    "specialNeeds": "Special Needs",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us"
+  },
+  "validation": {
+    "passwordsDontMatch": "Hmm, those passwords don't match. 🧐",
+    "invalidCreditCard": "Oh, fiddlesticks! The credit card details appear off. Could you check them again? 🔄",
+    "confirmUnsavedChanges": "Hold up there, partner! If you proceed without saving, you might lose some of your work. Are you sure you want to head off into the sunset without saving?"
+  },
+  "errors": {
+    "error": "Error",
+    "unknownError": "Oops, something seems to have gone wrong. Let's try again!",
+    "chatTopicExists": "An active chat with this topic title already exists. Please choose a different chat topic."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "freePlan": "Free",
+  "professionalPlan": "Professional",
+  "premiumPlan": "Premium",
+  "featuredPlan": "Featured",
+  "annually": "Annually",
+  "monthly": "Monthly",
+  "pageTitle": "Pricing",
+  "selectAPlan": "Get Started",
+  "labels": {
+    "photos": "Photos",
+    "description": "Listing Description",
+    "viewCount": "Monthly View Count",
+    "verifiedBadge": "Verified Badge",
+    "analytics": "Analytics",
+    "reviewResponse": "Review Response",
+    "priorityPlacement": "Priority Placement",
+    "featuredPlacement": "Featured Placement",
+    "accountSupport": "Account Support"
+  },
+  "infoText": {
+    "photos": "Number of photos you can add to your listing.",
+    "description": "Maximum word count for your listing description.",
+    "viewCount": "See how many people viewed your listing each month.",
+    "verifiedBadge": "A verified credential badge displayed on your listing, increasing trust with families.",
+    "analytics": "Insights into how your listing is performing in search and on the platform.",
+    "reviewResponse": "Respond publicly to reviews left by families on your listing.",
+    "priorityPlacement": "Your listing rotates through priority positions in search results among Premium and Featured members.",
+    "featuredPlacement": "Your listing rotates through featured spots on the homepage and category pages.",
+    "accountSupport": "A dedicated account support representative to help you get the most from your listing."
+  }
+}

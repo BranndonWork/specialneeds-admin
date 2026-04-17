@@ -1,0 +1,19 @@
+{
+  "unregisteredTitle": "Whoa, There! 🖐️",
+  "unregisteredBody": "Looks like you need to join our fantastic community to contact the owner. Sign up now and dive into the adventure! 🎉",
+  "contactListingOwner": "Contact Listing Owner 🗣️",
+  "buttonText": "Start a Chat",
+  "registerButtonText": "Join the Party 🎉",
+  "cancelButtonText": "Abort Mission 🚧",
+  "cannotContactYourself": "You cannot contact yourself! 🙅‍♂️",
+  "successMessage": "Your message has been sent! 🎉",
+  "errorMessage": "Oops, something seems to have gone wrong. Let's try again! 🔄",
+  "warningMessage": "Please fill in all the fields before sending your message. 📋✏️",
+  "modalTitle": "Contact Listing Owner 🗣️",
+  "welcomeTitle": "Step right up! 🎪",
+  "welcomeBody": "This magical form lets you send an initial message to the listing owner. Just jot down a snappy topic (50 characters or less) and your message. Let's get the conversation rolling! 💌",
+  "topicLabel": "Your Topic (50 characters or less) 📝",
+  "messageLabel": "Your Grand Message 📜",
+  "submitButtonText": "Fire off the Message 🚀",
+  "blockedMessage": "Regretfully, this user has chosen not to connect with you through chat. 😔"
+}

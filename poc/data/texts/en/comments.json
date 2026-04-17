@@ -1,0 +1,7 @@
+{
+  "enterComment": "Please enter a comment.",
+  "commentTooLong": "Your comment is too long. Please shorten it to 2000 characters or less.",
+  "existingTopLevelComment": "You have already commented on this article. You can only have one top level comment.",
+  "errorAddingComment": "There was an error adding your comment. Please try again.",
+  "editPeriodExpired": "The edit period for this comment has expired."
+}

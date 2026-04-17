@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — SpecialNeeds.com (V1: ADA)</title>
+<style>
+/*
+ * DESIGN THEME: ADA Accessibility Champion
+ * Strategy: WCAG 2.1 AAA compliance as a design constraint that shapes beauty.
+ * Every text element exceeds 7:1 contrast ratio. 18px minimum body text.
+ * No color used as sole indicator (icons + text labels always paired).
+ * Visible 3px focus outlines in high-contrast orange on all interactive elements.
+ * Semantic HTML5 with ARIA labels. Skip-to-content link. 44px minimum touch targets.
+ * Clean, unambiguous layout. Generous white space. System fonts for max readability.
+ * Inspired by GOV.UK design system — utilitarian can still be beautiful.
+ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FFFFFF;
+  --surface: #F3F3F3;
+  --text: #111111;
+  --muted: #444444;
+  --border: #767676;
+  --blue: #0055CC;
+  --blue-dark: #003D99;
+  --blue-light: #EEF3FF;
+  --green: #1A6B2A;
+  --red: #B91C1C;
+  --focus: #FF6800;
+  --gold: #B45309;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute; top: -100px; left: 1.5rem;
+  background: #000; color: #fff;
+  padding: .75rem 1.5rem; font-weight: 700; font-size: 1rem;
+  z-index: 9999; text-decoration: none; border-radius: 0 0 4px 4px;
+  transition: top .1s;
+}
+.skip-link:focus { top: 0; }
+
+*:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Design note */
+.design-note {
+  background: #1E1E2E; color: #CDD6F4;
+  padding: 1.25rem 2rem;
+  font-family: "Courier New", "Courier", monospace;
+  font-size: .85rem; line-height: 1.75;
+  border-left: 5px solid var(--focus);
+}
+.design-note strong { color: #F0C040; display: block; margin-bottom: .3rem; font-size: 1rem; }
+
+/* Header */
+header {
+  background: #111111;
+  padding: 1.25rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.site-name { color: #fff; font-size: 1.2rem; font-weight: 800; text-decoration: none; letter-spacing: -.01em; }
+.site-name:focus-visible { outline-color: var(--focus); }
+
+/* Layout */
+main { max-width: 1180px; margin: 0 auto; padding: 4rem 2rem; }
+
+.page-header { margin-bottom: 3.5rem; }
+.page-header h1 { font-size: 3rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .5rem; }
+.page-header p { font-size: 1.2rem; color: var(--muted); max-width: 540px; }
+
+/* Billing toggle */
+.billing-group {
+  display: inline-flex; margin-bottom: 3rem;
+  border: 2px solid var(--text); border-radius: 6px; overflow: hidden;
+}
+.billing-group button {
+  padding: .875rem 1.75rem; border: none; background: var(--bg);
+  font-size: 1rem; font-weight: 700; cursor: pointer; color: var(--text);
+  min-width: 140px; min-height: 44px;
+}
+.billing-group button.active { background: var(--text); color: var(--bg); }
+.billing-group button:focus-visible { outline: 3px solid var(--focus); outline-offset: -2px; z-index: 1; position: relative; }
+.savings-pill {
+  background: var(--green); color: #fff;
+  font-size: .75rem; font-weight: 700;
+  padding: .15rem .5rem; border-radius: 100px;
+  margin-left: .5rem; vertical-align: middle;
+}
+
+/* Plans grid */
+.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
+@media (max-width: 920px) { .plans { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .plans { grid-template-columns: 1fr; } }
+
+.plan-card {
+  border: 2px solid var(--border); border-radius: 8px;
+  padding: 2rem 1.75rem; display: flex; flex-direction: column;
+  background: var(--bg);
+}
+.plan-card.featured {
+  border: 3px solid var(--blue); background: var(--blue-light);
+}
+
+.plan-badge {
+  font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--blue); background: #C7D9FF; padding: .25rem .625rem;
+  border-radius: 4px; display: inline-block; margin-bottom: .875rem;
+}
+.plan-name { font-size: 1.5rem; font-weight: 800; margin-bottom: .5rem; }
+.plan-price { font-size: 3rem; font-weight: 900; letter-spacing: -.04em; line-height: 1; color: var(--text); }
+.plan-price-sub { font-size: 1rem; color: var(--muted); margin-bottom: .375rem; min-height: 1.5rem; }
+.plan-savings { font-size: .95rem; color: var(--green); font-weight: 700; margin-bottom: 1.75rem; min-height: 1.4rem; }
+
+/* Feature list */
+.features {
+  list-style: none; flex: 1; margin-bottom: 2rem;
+  border-top: 2px solid var(--border);
+}
+.features li {
+  display: flex; gap: .625rem; align-items: flex-start;
+  padding: .65rem 0; border-bottom: 1px solid #E0E0E0;
+  font-size: 1rem; line-height: 1.5;
+}
+.fi { font-size: 1.1rem; font-weight: 900; flex-shrink: 0; margin-top: .1em; width: 1.2em; text-align: center; }
+.fi.y { color: var(--green); }
+.fi.n { color: var(--red); }
+.fi-label { color: var(--muted); font-style: italic; font-size: .9rem; }
+
+/* Buttons */
+.btn {
+  display: block; width: 100%; padding: 1rem 1.5rem;
+  text-align: center; font-size: 1.05rem; font-weight: 800;
+  text-decoration: none; border-radius: 6px; cursor: pointer;
+  border: 3px solid var(--blue); background: var(--blue); color: #fff;
+  transition: background .15s, border-color .15s;
+  min-height: 44px;
+}
+.btn:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+.btn.outline { background: transparent; color: var(--blue); }
+.btn.outline:hover { background: var(--blue-light); }
+
+/* Section */
+.section { margin-bottom: 5rem; }
+.section-title { font-size: 2.25rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .5rem; }
+.section-desc { font-size: 1.1rem; color: var(--muted); max-width: 640px; margin-bottom: 2.5rem; }
+
+/* Volume grid */
+.volume { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+@media (max-width: 700px) { .volume { grid-template-columns: repeat(2, 1fr); } }
+.vol-card {
+  border: 2px solid var(--border); border-radius: 8px;
+  padding: 1.5rem 1.25rem; text-align: center;
+}
+.vol-range { font-size: 1.15rem; font-weight: 800; margin-bottom: .375rem; }
+.vol-label { font-size: 1rem; color: var(--muted); }
+
+/* CTA box */
+.cta-box {
+  background: var(--surface); border: 2px solid var(--border);
+  border-radius: 8px; padding: 3.5rem 2.5rem; text-align: center;
+}
+.cta-box h2 { font-size: 2rem; font-weight: 900; margin-bottom: .75rem; }
+.cta-box p { font-size: 1.1rem; color: var(--muted); margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+.cta-box .btn { width: auto; display: inline-block; padding: 1rem 3rem; }
+
+/* Panel show/hide */
+.panel { display: none; }
+.panel.show { display: block; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<div class="design-note" role="note">
+  <strong>V1: ADA Accessibility Champion</strong>
+  Goal: WCAG 2.1 AAA compliance as the design constraint. 7:1+ contrast on all text. 18px minimum body text.
+  No color as sole indicator — check/cross icons paired with text labels on every feature row.
+  Visible 3px orange focus outlines on all interactive elements. Skip-to-content link. Semantic HTML5 + ARIA.
+  44px minimum touch targets on all buttons and controls. System fonts for maximum OS-native readability.
+  The aesthetic is clean, unambiguous, and confident — accessible does not mean boring.
+</div>
+
+<header role="banner">
+  <a href="/" class="site-name" aria-label="SpecialNeeds.com — return to home page">SpecialNeeds.com</a>
+</header>
+
+<main id="main">
+  <div class="page-header">
+    <h1>Pricing</h1>
+    <p>Simple, transparent plans for every organization. No hidden fees. Cancel anytime.</p>
+  </div>
+
+  <div role="group" aria-label="Select billing frequency" class="billing-group">
+    <button id="btn-m" class="active" onclick="setBilling('m')" aria-pressed="true">Monthly</button>
+    <button id="btn-a" onclick="setBilling('a')" aria-pressed="false">Annually <span class="savings-pill" aria-label="save up to 20 percent">Save 20%</span></button>
+  </div>
+
+  <div class="panel show" id="p-m" aria-label="Monthly pricing plans">
+    <div class="plans">
+
+      <article class="plan-card" aria-label="Free plan">
+        <h2 class="plan-name">Free</h2>
+        <div class="plan-price" aria-label="Price: free">$0</div>
+        <div class="plan-price-sub">no credit card required</div>
+        <div class="plan-savings">&nbsp;</div>
+        <ul class="features" aria-label="Free plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: 1–2</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: 200 words</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Verified Badge <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Analytics <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Review Response <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Priority Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Featured Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Account Support <span class="fi-label">— not included</span></span></li>
+        </ul>
+        <a href="/waitlist" class="btn outline" aria-label="Get started with the Free plan — no credit card required">Get Started Free</a>
+      </article>
+
+      <article class="plan-card" aria-label="Professional plan, $49 per month">
+        <h2 class="plan-name">Professional</h2>
+        <div class="plan-price" aria-label="Price: $49 per month">$49</div>
+        <div class="plan-price-sub">per month</div>
+        <div class="plan-savings">&nbsp;</div>
+        <ul class="features" aria-label="Professional plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: Up to 10</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: 1,000 words</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Verified Badge</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Analytics: Views, searches &amp; clicks</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Review Response</span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Priority Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Featured Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Account Support <span class="fi-label">— not included</span></span></li>
+        </ul>
+        <a href="/waitlist" class="btn" aria-label="Get started with the Professional plan at $49 per month">Get Started</a>
+      </article>
+
+      <article class="plan-card featured" aria-label="Premium plan, $99 per month, most popular">
+        <span class="plan-badge" aria-label="Most popular plan">Most Popular</span>
+        <h2 class="plan-name">Premium</h2>
+        <div class="plan-price" aria-label="Price: $99 per month">$99</div>
+        <div class="plan-price-sub">per month</div>
+        <div class="plan-savings">&nbsp;</div>
+        <ul class="features" aria-label="Premium plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Verified Badge</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Analytics: Detailed + competitive benchmarking</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Review Response</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Priority Placement</span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Featured Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Account Support <span class="fi-label">— not included</span></span></li>
+        </ul>
+        <a href="/waitlist" class="btn" aria-label="Get started with the Premium plan at $99 per month">Get Started</a>
+      </article>
+
+      <article class="plan-card" aria-label="Featured plan, $149 per month">
+        <h2 class="plan-name">Featured</h2>
+        <div class="plan-price" aria-label="Price: $149 per month">$149</div>
+        <div class="plan-price-sub">per month</div>
+        <div class="plan-savings">&nbsp;</div>
+        <ul class="features" aria-label="Featured plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Verified Badge</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Analytics: Detailed + competitive benchmarking</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Review Response</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Priority Placement</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Featured Placement</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Account Support</span></li>
+        </ul>
+        <a href="/waitlist" class="btn" aria-label="Get started with the Featured plan at $149 per month">Get Started</a>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="panel" id="p-a" aria-label="Annual pricing plans">
+    <div class="plans">
+
+      <article class="plan-card" aria-label="Free plan">
+        <h2 class="plan-name">Free</h2>
+        <div class="plan-price" aria-label="Price: free">$0</div>
+        <div class="plan-price-sub">no credit card required</div>
+        <div class="plan-savings">&nbsp;</div>
+        <ul class="features" aria-label="Free plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: 1–2</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: 200 words</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Verified Badge <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Analytics <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Review Response <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Priority Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Featured Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Account Support <span class="fi-label">— not included</span></span></li>
+        </ul>
+        <a href="/waitlist" class="btn outline" aria-label="Get started with the Free plan — no credit card required">Get Started Free</a>
+      </article>
+
+      <article class="plan-card" aria-label="Professional plan, $470 per year">
+        <h2 class="plan-name">Professional</h2>
+        <div class="plan-price" aria-label="Price: $470 per year">$470</div>
+        <div class="plan-price-sub">per year</div>
+        <div class="plan-savings" style="color:var(--green)">Save $118 vs. monthly</div>
+        <ul class="features" aria-label="Professional plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: Up to 10</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: 1,000 words</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Verified Badge</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Analytics: Views, searches &amp; clicks</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Review Response</span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Priority Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Featured Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Account Support <span class="fi-label">— not included</span></span></li>
+        </ul>
+        <a href="/waitlist" class="btn" aria-label="Get started with the Professional plan at $470 per year">Get Started</a>
+      </article>
+
+      <article class="plan-card featured" aria-label="Premium plan, $950 per year, most popular">
+        <span class="plan-badge" aria-label="Most popular plan">Most Popular</span>
+        <h2 class="plan-name">Premium</h2>
+        <div class="plan-price" aria-label="Price: $950 per year">$950</div>
+        <div class="plan-price-sub">per year</div>
+        <div class="plan-savings" style="color:var(--green)">Save $238 vs. monthly</div>
+        <ul class="features" aria-label="Premium plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Verified Badge</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Analytics: Detailed + competitive benchmarking</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Review Response</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Priority Placement</span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Featured Placement <span class="fi-label">— not included</span></span></li>
+          <li><span class="fi n" aria-hidden="true">✗</span><span>Account Support <span class="fi-label">— not included</span></span></li>
+        </ul>
+        <a href="/waitlist" class="btn" aria-label="Get started with the Premium plan at $950 per year">Get Started</a>
+      </article>
+
+      <article class="plan-card" aria-label="Featured plan, $1,430 per year">
+        <h2 class="plan-name">Featured</h2>
+        <div class="plan-price" aria-label="Price: $1,430 per year">$1,430</div>
+        <div class="plan-price-sub">per year</div>
+        <div class="plan-savings" style="color:var(--green)">Save $358 vs. monthly</div>
+        <ul class="features" aria-label="Featured plan features">
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Photos: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Listing Description: Unlimited</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Monthly View Count</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Verified Badge</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Analytics: Detailed + competitive benchmarking</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Review Response</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Priority Placement</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Featured Placement</span></li>
+          <li><span class="fi y" aria-hidden="true">✓</span><span>Account Support</span></li>
+        </ul>
+        <a href="/waitlist" class="btn" aria-label="Get started with the Featured plan at $1,430 per year">Get Started</a>
+      </article>
+
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="vol-heading">
+    <h2 class="section-title" id="vol-heading">Multiple Locations?</h2>
+    <p class="section-desc">Volume discounts apply automatically. The more locations you list, the less you pay per location.</p>
+    <div class="volume" role="list">
+      <div class="vol-card" role="listitem">
+        <div class="vol-range">1–5 locations</div>
+        <div class="vol-label">Standard rate</div>
+      </div>
+      <div class="vol-card" role="listitem">
+        <div class="vol-range">6–15 locations</div>
+        <div class="vol-label">15% off per location</div>
+      </div>
+      <div class="vol-card" role="listitem">
+        <div class="vol-range">16–50 locations</div>
+        <div class="vol-label">25% off per location</div>
+      </div>
+      <div class="vol-card" role="listitem">
+        <div class="vol-range">50+ locations</div>
+        <div class="vol-label">Custom enterprise pricing</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-box" role="complementary" aria-labelledby="cta-heading">
+    <h2 id="cta-heading">Have questions about pricing?</h2>
+    <p>We're happy to help you find the right fit for your organization.</p>
+    <a href="/waitlist" class="btn" aria-label="Join the SpecialNeeds.com waitlist">Join the Waitlist</a>
+  </div>
+</main>
+
+<script>
+function setBilling(t) {
+  ['m','a'].forEach(function(x) {
+    document.getElementById('p-'+x).classList.toggle('show', x===t);
+    var b = document.getElementById('btn-'+x);
+    b.classList.toggle('active', x===t);
+    b.setAttribute('aria-pressed', x===t ? 'true' : 'false');
+  });
+}
+</script>
+</body>
+</html>

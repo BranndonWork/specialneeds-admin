@@ -1,0 +1,74 @@
+// pages/api/v1/assets/upload/index.js
+// endpoint: /api/v1/assets/upload/
+
+import appConfig from "@config/config";
+import privateConfig from "@config/private";
+import axios from "axios";
+import multer from "multer";
+import { createRouter } from "next-connect";
+
+const LOCAL_API_BASE_URL = `${appConfig.siteUrl}/api/v1`;
+const DJANGO_API_BASE_URL = `${privateConfig.apiEndpoint}/api/v1`;
+
+const getUser = async (req) => {
+  const endpoint = `${LOCAL_API_BASE_URL}/token/get-user/`;
+  try {
+    const response = await axios.get(endpoint, { headers: { cookie: req.headers.cookie } });
+    const user = response.data;
+    if (!user?.id) throw new Error("Unauthorized");
+    return user;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    throw new Error("Authentication failed");
+  }
+};
+
+const parseUploadData = (req) => {
+  const { url, base64, content_type, content_id, alt } = req.body;
+  if (!url && !base64) throw new Error("No file or url provided");
+  if (!content_type || !content_id) throw new Error("content_type and content_id are required");
+  return { url, base64, content_type, content_id, alt };
+};
+
+const upload = multer({ storage: multer.memoryStorage() });
+const router = createRouter();
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "10mb",
+    },
+  },
+};
+
+router.use(upload.single("media"));
+router.post(async (req, res) => {
+  let user;
+  try {
+    user = await getUser(req);
+  } catch (error) {
+    return res.status(401).json({ error: error.message });
+  }
+
+  try {
+    const uploadData = parseUploadData(req);
+
+    const result = await axios.post(`${DJANGO_API_BASE_URL}/core/assets/`, uploadData, {
+      headers: { cookie: req.headers.cookie },
+    });
+    console.log("Upload result:", result);
+
+    if (!result?.data?.response?.url) throw new Error("Upload failed");
+    res.status(200).json(result.data.response);
+  } catch (error) {
+    console.error("Error with file upload:", error);
+    res.status(400).json({ error: `Upload failed: ${error.message}` });
+  }
+});
+
+export default router.handler({
+  onError: (err, req, res) => {
+    console.error(err.stack);
+    res.status(err.statusCode || 500).end(err.message);
+  },
+});

@@ -1,0 +1,108 @@
+// pages/api/v1/assets/get/[...path].js
+import config from "@config/config";
+import axios from "axios";
+
+const R2_PUB_ORIGIN = process.env.R2_ASSET_PUBLIC_HOST;
+const ASSET_ORIGIN = process.env.R2_ASSET_ORIGIN;
+const ASSET_PROXY_SECRET = process.env.ASSET_PROXY_SECRET;
+
+const standardizeKey = (key) => {
+  const standardizedKey = key.replace(/%2f/g, "/").replace(/\/\//g, "/").trim("/");
+  console.log("GET", `Incoming key: ${key}`);
+  console.log("GET", `Standardized key: ${standardizedKey}`);
+  return standardizedKey;
+};
+
+const getEnvAlias = () => {
+  if (config.host.includes("staging")) return "_staging";
+  if (config.host.includes("www")) return "_sn";
+  return "_dev";
+};
+
+const getR2PubAlias = () => {
+  if (config.host.includes("www")) return "_prod_r2_pub";
+  if (config.host.includes("staging")) return "_stag_r2_pub";
+  return "_r2_pub_dv";
+};
+
+const getCloudImgUrls = (key) => {
+  const standardizedKey = standardizeKey(key);
+  return [
+    `https://cylgfffnta.cloudimg.io/${getEnvAlias()}/${standardizedKey}`,
+    `https://cylgfffnta.cloudimg.io/${ASSET_ORIGIN}/${standardizedKey}`,
+    `https://cylgfffnta.cloudimg.io/${getR2PubAlias()}/${standardizedKey}`,
+  ];
+};
+
+const fetchImage = async (url, key) => {
+  try {
+    console.log("GET", `Fetching key ${key} from URL: ${url}`);
+    const response = await axios.get(url, { responseType: "arraybuffer" });
+    if (response.status === 200 && response.data) {
+      console.log("GET", "Image found!", url);
+      const data = response.data;
+      const contentType = response.headers["content-type"];
+      return { data, contentType };
+    }
+  } catch (error) {
+    console.error("Error fetching image:", error);
+  }
+  return null;
+};
+
+const sendImageResponse = (res, data, contentType) => {
+  res.setHeader("Content-Type", contentType);
+  res.send(Buffer.from(data, "binary"));
+};
+
+const serveFromCloudImg = async (req, res) => {
+  const { path, ...reqQueryParams } = req.query;
+  const key = path.join("/");
+  const urls = getCloudImgUrls(key);
+
+  for (const url of urls) {
+    console.log("GET", `Trying URL: ${url}?${new URLSearchParams(reqQueryParams).toString()}`);
+    const result = await fetchImage(
+      url + "?" + new URLSearchParams(reqQueryParams).toString(),
+      key
+    );
+    if (result) {
+      sendImageResponse(res, result.data, result.contentType);
+      return true;
+    }
+  }
+  return false;
+};
+
+const serveFromR2 = async (req, res) => {
+  const { path } = req.query;
+  const key = path.join("/");
+  const urls = [
+    `https://${ASSET_ORIGIN}/${standardizeKey(key)}`,
+    `${R2_PUB_ORIGIN}/${standardizeKey(key)}`,
+  ];
+
+  for (const url of urls) {
+    const result = await fetchImage(url, key);
+    if (result) {
+      sendImageResponse(res, result.data, result.contentType);
+      return true;
+    }
+  }
+  return false;
+};
+
+export default async function handler(req, res) {
+  if (req.headers["x-asset-proxy-secret"] !== ASSET_PROXY_SECRET)
+    return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    if (await serveFromCloudImg(req, res)) return;
+    if (await serveFromR2(req, res)) return;
+
+    res.status(404).json({ error: "Not Found" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}

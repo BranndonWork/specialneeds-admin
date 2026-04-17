@@ -1,0 +1,174 @@
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .content-details-area {
+    page-break-inside: avoid;
+    padding-bottom: 2em;
+  }
+
+  .content-details-image {
+    display: none;
+  }
+
+  .listings-details-content {
+    margin-top: 3em;
+  }
+
+  .listings-details-content h3 {
+    font-size: 2em;
+  }
+
+  .listings-details-desc {
+    margin-top: 2em;
+  }
+
+  .listings_details_content {
+    font-size: 1.2em;
+  }
+
+  .listings-details-desc li {
+    margin-bottom: 1em;
+  }
+
+  .mb-4 h4 {
+    font-size: 1.5em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  .listings-review-comments {
+    display: none;
+  }
+
+  .listings-sidebar {
+    display: none;
+  }
+
+  /* Hide unnecessary elements */
+  .content-details-image img {
+    display: none;
+  }
+
+  .listings-details-content .meta,
+  .listings-details-content h3,
+  .listings-details-content ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .listings-details-desc {
+    margin-top: 60px;
+  }
+
+  .listings_details_content ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .listings_details_content ul li {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .mb-4 h4 {
+    margin-top: 30px;
+  }
+
+  .mb-4 span {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  #reviews-wrapper {
+    margin-top: 60px;
+  }
+
+  .listings-review-comments {
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  /* Show only necessary elements */
+  body * {
+    visibility: hidden;
+  }
+
+  section.content-details-area,
+  section.content-details-area * {
+    visibility: visible;
+    margin-top: 0;
+  }
+
+  .navbar-area {
+    display: none;
+  }
+
+  .listings-details-content h3 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 10px;
+  }
+
+  .listings_details_content ul li {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .mb-4 h4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .listings-sidebar {
+    margin-top: 30px;
+    padding: 0;
+  }
+
+  .listings-sidebar h3 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  .listings-widget.claim_listing {
+    margin-top: 20px;
+  }
+
+  .listings-widget.claim_listing h3 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  .default-btn {
+    display: none;
+  }
+
+  /* Hide unnecessary elements */
+  .content-details-image img {
+    display: none;
+  }
+
+  .default-btn {
+    display: none;
+  }
+
+  /* Show only necessary elements */
+  body * {
+    visibility: hidden;
+  }
+
+  section.content-details-area,
+  section.content-details-area * {
+    visibility: visible;
+  }
+
+  .add-review,
+  .listing-sidebar {
+    display: none;
+  }
+}

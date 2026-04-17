@@ -1,0 +1,18 @@
+# Project Manager Git Ignore
+
+# Option 1: If you want to commit the database (recommended for small teams)
+# Uncomment the line below to ignore exports only
+# exports/
+
+# Option 2: If you prefer to export and commit JSON/YAML instead of the db
+# Uncomment the line below to ignore the database
+# project.db
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Python cache (if running pm_cli.py directly)
+__pycache__/
+*.pyc

@@ -1,0 +1,8 @@
+{
+  "copiedMessage": "We've copied the error message for you. Please paste it into an email or support ticket and send it to us. This will help us figure out what's wrong and how we can fix it. Thank you for your help!",
+  "errorMessagePrefix": "If you keep seeing this error message, don't worry, we're here to help. Please contact our support team and be sure to include the error information below so we can better understand the problem.",
+  "copyErrorInformation": "Copy Error Information",
+  "successfulCopy": "We've copied the error message for you. Please paste it into an email or support ticket and send it to us. This will help us figure out what's wrong and how we can fix it. Thank you for your help!",
+  "defaultErrorMessage": "The action you were trying to perform might have encountered an issue. Please try again or contact support if the problem persists.",
+  "unknownError": "Unknown Error"
+}

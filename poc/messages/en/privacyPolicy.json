@@ -1,0 +1,49 @@
+{
+  "pageTitle": "Privacy Policy",
+  "subTitle": "Privacy Policy for SpecialNeeds.com",
+  "policies": [
+    {
+      "title": "1. Our Promise",
+      "content": "Hi there! At SpecialNeeds.com, we care a lot about keeping your information private. We promise to do our best to keep your information safe and sound. This means we collect only the necessary information to provide you with the best possible experience on our site, and we take all the necessary steps to protect your information from unauthorized access, use, or disclosure."
+    },
+    {
+      "title": "2. What We Collect",
+      "content": "When you join our site, we collect your email, display name, and password. We don't ever collect your location unless you tell us it's okay. Additionally, we use various analytics tools, which may collect other information like which pages you visit on our site, your IP address, and other data related to your use of our site. These tools help us understand how our site is used and enable us to improve your experience."
+    },
+    {
+      "title": "3. How We Collect It",
+      "content": "We collect information from you when you fill out forms on our site, like when you sign up. We also use cookies and Google Analytics to learn more about how you use our site. If you choose to enable the distance search feature, we'll collect your location information after getting your consent by clicking a button."
+    },
+    {
+      "title": "4. How We Use It",
+      "content": "We use your information to help you use our site and to make our site better for you. We also use it to see how people use our site, so we can make it better for everyone. Your location information, if you choose to share it, is used to help you find resources and services near you."
+    },
+    {
+      "title": "5. Who We Share It With",
+      "content": "The majority of your information is kept confidential and is not shared with any third parties outside of SpecialNeeds.com. However, for users interacting with our directory listings (such as camps, schools, etc.), we may share aggregated and anonymized analytics data with the owners of these listings. This data may include metrics like the number of page views, time spent on the site, and other related usage statistics. It's important to note that this shared data will not include any personally identifiable information and is solely used to provide insights to our paid listing owners."
+    },
+    {
+      "title": "6. How We Keep It Safe",
+      "content": "We use some fancy tech stuff to keep your information safe, like HTTPS for secure browsing, bcrypt to keep your password safe, and encryption to keep your location safe if you choose to share it with us. We also store your encrypted location information (if provided) in your browser's local storage and not on our servers, to add an extra layer of security."
+    },
+    {
+      "title": "7. Changing or Deleting Your Info",
+      "content": "You can change your email and password whenever you want. You can't change your display name once it's set, though. If you want to delete your account, you can do that, too. And remember, you can always tell us to stop using your location info by revoking your consent."
+    },
+    {
+      "title": "8. Kids Under 13",
+      "content": "Our site isn't made for kids under 13. We don't collect information from anyone under 13, and if we become aware of any such information, we will take steps to delete it."
+    },
+    {
+      "title": "9. People Outside the U.S.",
+      "content": "Our site is made for people in the U.S. Even though we collect some information from people outside the U.S. through Google Analytics, our website is not targeted at them, and we do not use their information for anything other than Google Analytics."
+    },
+    {
+      "title": "10. Changes to This Policy",
+      "content": "Sometimes we might need to change this policy. If we do, we'll send you an email, and we'll put a notice on our site and on our social media accounts, if we have any. Please keep checking so you always know our latest policy."
+    },
+    {
+      "title": "Remember, we're here to help. If you have any questions about this privacy policy, just ask!"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+// ./pages/article/index.js
+
+import AlgoliaCategoryFilter from "@components/Search/AlgoliaCategoryFilter";
+import AlgoliaResults from "@components/Search/AlgoliaResults";
+import DisplaySearchState from "@components/Search/DisplaySearchState";
+import { SearchInput } from "@components/Search/Form";
+import SearchFooter from "@components/Search/SearchFooter";
+import SearchHeader from "@components/Search/SearchHeader";
+import Footer from "@components/_App/Footer";
+import HTMLHeaderMetaData from "@components/_App/HTMLHeaderMetaData";
+import Navbar from "@components/_App/Navbar";
+import { useSearch } from "@hooks/useSearch";
+import StickyBox from "react-sticky-box";
+
+const SearchIndex = () => {
+  const contentType = "article";
+  const title = "Articles";
+  const subTitle = "Discover informative articles and resources tailored to special needs individuals and their families.";
+  useSearch({ searchIndex: contentType });
+
+  return (
+    <>
+      <HTMLHeaderMetaData title={title} description={subTitle} />
+      <Navbar />
+      <div id="algolia-search">
+        <SearchHeader formTitle={title} formSubTitle={subTitle} />
+        <div className="container">
+          <DisplaySearchState />
+          <div id="algolia-search-wrapper">
+            <div id="algolia-hits-wrapper">
+              <AlgoliaResults />
+            </div>
+            <div className="sticky-box-wrapper">
+              <StickyBox offsetTop={110} offsetBottom={20}>
+                <div id="algolia-sidebar-wrapper">
+                  <SearchInput compact={true} />
+                  <AlgoliaCategoryFilter />
+                </div>
+              </StickyBox>
+            </div>
+          </div>
+          <SearchFooter />
+        </div>
+      </div>
+      <Footer bgColor="bg-f5f5f5" />
+    </>
+  );
+};
+
+export default SearchIndex;

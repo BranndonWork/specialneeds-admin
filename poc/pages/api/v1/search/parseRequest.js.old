@@ -1,0 +1,60 @@
+import Logger from "@utils/logging";
+import { buildMeilisearchFilter } from "./buildMeilisearchFilter";
+import { getUser } from "./getUser";
+const logger = new Logger("./pages/api/v1/search/parseRequest.js");
+
+export const parseRequest = async (req) => {
+  const loadAllForRole = ""; // use 'editor' to load all listings for editors
+  const response = {};
+  logger.disabled("req.query:", req.query);
+  const {
+    q = "",
+    sortBy = "default",
+    // sortDirection = "asc",
+    perPage = 12,
+    pageNumber = 1,
+    index,
+    aroundLatLng,
+    aroundRadius,
+    ...filters
+  } = req.query;
+
+  const user = (await getUser(req)) || {};
+
+  if (loadAllForRole == "editor" && user?.roles?.editor) {
+    delete filters.user_id;
+  }
+
+  const userId = user?.id;
+  let filterString = buildMeilisearchFilter(req, filters, user);
+  if (loadAllForRole != "editor" && !user?.roles?.editor) {
+    if (index === "listings") {
+      filterString = filterString.replace("user_id =", "owner_id =");
+    } else if (index === "articles") {
+      filterString = filterString.replace("user_id =", "author_id =");
+    }
+  }
+
+  // const algoliaSortBy =
+  //   sortBy !== "default" && (sortBy !== "distance" || (sortBy === "distance" && aroundLatLng && aroundRadius))
+  //     ? { customRanking: [`${sortBy}:${sortDirection}`] }
+  //     : {};
+
+  let locationBasedSearch =
+    sortBy == "distance" && aroundLatLng && aroundRadius ? { aroundLatLng, aroundRadius } : {};
+
+  return {
+    q,
+    index,
+    sortBy: {},
+    perPage,
+    pageNumber,
+    filters,
+    filterString,
+    userIsVerified: userId && userId == filters.user_id,
+    locationBasedSearch,
+    userId,
+    user,
+    ...response,
+  };
+};

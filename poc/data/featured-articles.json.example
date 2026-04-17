@@ -1,0 +1,6 @@
+{
+  "articleIds": [],
+  "lastUpdated": null,
+  "updatedBy": null,
+  "_comment": "This file is used for local development only. In production (Vercel), data is stored in Vercel KV. Article IDs should be integers corresponding to article IDs in the Django database."
+}

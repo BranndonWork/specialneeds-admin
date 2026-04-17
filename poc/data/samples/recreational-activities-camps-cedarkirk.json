@@ -1,0 +1,340 @@
+{
+  "category_data": {
+    "camp_basics": {
+      "label": "Camp Basics",
+      "description": "Fundamental details about the camp such as financial aid availability, transportation options, type of camp stay, and family friendliness.",
+      "fields": {
+        "camp_stay": {
+          "label": "Camp Stay",
+          "description": "Specifies if the camp is a day camp, overnight camp, or another type.",
+          "attributes": {
+            "type": "text",
+            "value": "Day Camp"
+          }
+        },
+        "financial_aid_available": {
+          "label": "Financial Aid Available",
+          "description": "The camp provides financial aid options.",
+          "attributes": {
+            "type": "checkbox",
+            "value": false
+          }
+        },
+        "transportation_available": {
+          "label": "Transportation Available",
+          "description": "Transportation services are available at this camp.",
+          "attributes": {
+            "type": "checkbox",
+            "value": true
+          }
+        },
+        "family_camp": {
+          "label": "Family Camp",
+          "description": "Parents and children can attend this camp together.",
+          "attributes": {
+            "type": "checkbox",
+            "value": ""
+          }
+        }
+      }
+    },
+    "camper_age_groups": {
+      "label": "Camper Age Groups",
+      "description": "Specifies the age ranges the camp caters to, broken down by gender or co-ed groups.",
+      "fields": {
+        "co_ed_age_max": {
+          "label": "Co-ed Age Max",
+          "description": "The oldest age accepted in co-ed groups.",
+          "attributes": {
+            "type": "number",
+            "value": 18
+          }
+        },
+        "co_ed_age_min": {
+          "label": "Co-ed Age Min",
+          "description": "The youngest age accepted in co-ed groups.",
+          "attributes": {
+            "type": "number",
+            "value": 7
+          }
+        },
+        "boys_age_max": {
+          "label": "Boys Age Max",
+          "description": "The oldest age accepted for boy-only groups.",
+          "attributes": {
+            "type": "number",
+            "value": ""
+          }
+        },
+        "boys_age_min": {
+          "label": "Boys Age Min",
+          "description": "The youngest age accepted for boy-only groups.",
+          "attributes": {
+            "type": "number",
+            "value": ""
+          }
+        },
+        "girls_age_max": {
+          "label": "Girls Age Max",
+          "description": "The oldest age accepted for girl-only groups.",
+          "attributes": {
+            "type": "number",
+            "value": ""
+          }
+        },
+        "girls_age_min": {
+          "label": "Girls Age Min",
+          "description": "The youngest age accepted for girl-only groups.",
+          "attributes": {
+            "type": "number",
+            "value": ""
+          }
+        }
+      }
+    },
+    "camp_activities_and_focus": {
+      "label": "Camp Activities and Focus",
+      "description": "Activities offered by the camp and its various focus areas.",
+      "fields": {
+        "featured_activities": {
+          "label": "Featured Activities",
+          "description": "Highlighted activities that the camp prominently offers or is recognized for.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Aquatic Activities"
+            ]
+          }
+        },
+        "additional_activities": {
+          "label": "Additional Activities",
+          "description": "Other recreational or educational activities that campers can engage in.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Climbing/Rappelling"
+            ]
+          }
+        },
+        "targeted_focus": {
+          "label": "Targeted Focus",
+          "description": "Areas or topics that the camp particularly emphasizes or specializes in.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "cultural_focus": {
+          "label": "Cultural Focus",
+          "description": "Emphasis on specific cultural traditions, themes, or celebrations during the camp.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Christianity"
+            ]
+          }
+        },
+        "specialty_clientele": {
+          "label": "Specialty Clientele",
+          "description": "Particular groups or communities that the camp aims to cater to or accommodate.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Inclusion/Mainstreaming"
+            ]
+          }
+        },
+        "agencies_clubs": {
+          "label": "Agencies & Clubs",
+          "description": "External organizations or clubs that collaborate with or support the camp.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "health_related_affiliations": {
+          "label": "Health-Related Affiliations",
+          "description": "Partnerships or associations with medical or health-focused organizations.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "independent_affiliations": {
+          "label": "Independent Affiliations",
+          "description": "Collaborations with non-religious and non-healthcare entities or initiatives.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "religious_affiliations": {
+          "label": "Religious Affiliations",
+          "description": "Connections or partnerships with faith-based groups or organizations.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        }
+      }
+    },
+    "camp_sessions": {
+      "label": "Camp Sessions",
+      "description": "Specifics about each available camp session.",
+      "fields": {
+        "session_details": {
+          "label": "Session Details",
+          "description": "Information about each session, including dates, duration, costs, and other relevant details.",
+          "button_text": "Add a new session",
+          "attributes": {
+            "type": "repeater",
+            "value": "",
+            "fields": {
+              "starts_on": {
+                "label": "Starts on",
+                "description": "Date marking the beginning of the camp session.",
+                "attributes": {
+                  "type": "text",
+                  "value": ""
+                }
+              },
+              "ends_on": {
+                "label": "Ends on",
+                "description": "Date marking the end of the camp session.",
+                "attributes": {
+                  "type": "text",
+                  "value": ""
+                }
+              },
+              "length": {
+                "label": "Length",
+                "description": "Duration of the entire camp session.",
+                "attributes": {
+                  "type": "text",
+                  "value": ""
+                }
+              },
+              "cost": {
+                "label": "Cost",
+                "description": "Total expense for attending the camp session.",
+                "attributes": {
+                  "type": "text",
+                  "value": ""
+                }
+              },
+              "notes": {
+                "label": "Notes",
+                "description": "Additional remarks or specifics about the camp session.",
+                "attributes": {
+                  "type": "textarea",
+                  "value": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "camp_leadership": {
+      "label": "Camp Leadership",
+      "description": "Overview of the individuals guiding and managing the camp.",
+      "fields": {
+        "director": {
+          "label": "Director",
+          "description": "The individual setting the camp's direction, vision, and overarching mission.",
+          "attributes": {
+            "type": "text",
+            "value": "John Reiter"
+          }
+        },
+        "operator": {
+          "label": "Operator",
+          "description": "The person overseeing the routine operations, ensuring the camp's effective functioning.",
+          "attributes": {
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "listing_data": {
+    "id": "cc158ac4-8dfb-40e4-a18c-26dfe5f33467",
+    "keywords": [
+      "Day Camp",
+      "Aquatic Activities",
+      "Inclusion/Mainstreaming",
+      "Christian Camp",
+      "Alafia River",
+      "Small Group Model",
+      "Climbing/Rappelling",
+      "Florida",
+      "Lithia",
+      "Cedarkirk"
+    ],
+    "category": {
+      "name": "Camps",
+      "slug": "recreational-activities/camps",
+      "description": "Recreational and educational camps for individuals with special needs.",
+      "parent": {
+        "name": "Recreational Activities",
+        "slug": "recreational-activities",
+        "description": "Services offering recreational and leisure activities tailored for individuals with special needs.",
+        "ready": false
+      },
+      "ready": true
+    },
+    "created_by": {
+      "id": "9d2686d9-2b74-52f1-8559-7f79e399298e",
+      "displayname": "Branndon",
+      "role": "superadmin"
+    },
+    "claimed_by": {},
+    "images": [],
+    "lat_long": [
+      "27.891776",
+      "-82.2421787"
+    ],
+    "location_name": null,
+    "contact_name": "Helen Harrell Howard",
+    "email": "camps@cedarkirk.com",
+    "phone": "",
+    "website": "",
+    "created_at": "2024-01-24T11:58:38.846589Z",
+    "updated_at": "2024-01-24T11:58:42.561812Z",
+    "discord": null,
+    "facebook": null,
+    "instagram": null,
+    "linkedin": null,
+    "pinterest": null,
+    "reddit": null,
+    "snapchat": null,
+    "telegram": null,
+    "tiktok": null,
+    "twitch": null,
+    "twitter": null,
+    "whatsapp": null,
+    "youtube": null,
+    "threads": null,
+    "title": "Cedarkirk",
+    "content": "<p>Cedarkirk is a beautiful Christian camp located in Lithia, FL, offering a unique and inclusive camping experience for children, youth, adults, and families. Nestled in the trees with the Alafia River running through it, Cedarkirk provides a serene and peaceful environment for all campers.</p><p>One of the standout features of Cedarkirk is its commitment to accessibility and inclusivity. The camp is dedicated to providing a welcoming and accommodating space for individuals with special needs. They offer a variety of programs and services tailored to meet the needs of campers with disabilities, ensuring that everyone can fully participate in the camping experience.</p><p>From accessible accommodations to specialized activities, Cedarkirk goes above and beyond to create an environment where everyone can feel included and supported. Their small group model camping ensures that each camper receives the attention and assistance they need to have a fulfilling and enjoyable experience.</p><p>At Cedarkirk, campers can engage in a wide range of recreational activities, including nature walks, canoeing, arts and crafts, and more. The camp's stunning natural surroundings provide the perfect backdrop for exploration and adventure, giving campers the opportunity to connect with the great outdoors in a safe and supportive setting.</p><p>Whether you're seeking a summer camp experience for a child with special needs or looking for a family retreat that can accommodate everyone, Cedarkirk is a fantastic choice. Their dedication to providing accessibility and inclusive programs makes them a standout option for individuals and families in the special needs community.</p>",
+    "summary": null,
+    "slug": "recreational-activities/camps/cedarkirk",
+    "source_url": "https://www.specialneeds.com/directory/camp/cedarkirk/",
+    "view_count": 0,
+    "status": "published",
+    "published_at": "2024-01-24T11:58:42.561812Z",
+    "verified_at": null,
+    "faqs": [],
+    "address": {
+      "street_1": "Lithia Pinecrest Road",
+      "street_2": "",
+      "city": "Lithia",
+      "state_province": "Florida",
+      "postal_code": "33547",
+      "country": "United States"
+    },
+    "verified_by": null
+  },
+  "cached": true
+}

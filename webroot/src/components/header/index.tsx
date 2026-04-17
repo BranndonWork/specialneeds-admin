@@ -1,4 +1,4 @@
-import { Box, IconButton, HStack, Button, useColorMode } from "@chakra-ui/react";
+import { Box, IconButton, HStack, Button, Image, useColorMode } from "@chakra-ui/react";
 import { IconSun, IconMoonStars, IconLogout } from "@tabler/icons-react";
 import { useLogout, useGetIdentity } from "@refinedev/core";
 
@@ -17,10 +17,13 @@ export const Header = () => {
       w="full"
       bg="chakra-body-bg"
     >
-      <Box fontSize="sm" fontWeight="medium">
-        {user?.displayname || user?.email}
+      <Box bg="white" borderRadius="md" px="3" py="1">
+        <Image src="/logo-full.png" alt="SpecialNeeds.com Management" h="32px" w="auto" />
       </Box>
       <HStack spacing={2}>
+        <Box fontSize="sm" fontWeight="medium" mr="2">
+          {user?.displayname || user?.email}
+        </Box>
         <IconButton
           variant="ghost"
           aria-label="Toggle theme"

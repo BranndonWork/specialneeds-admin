@@ -1,1 +1,2 @@
-export * from "./posts";
+export * from "./articles";
+export * from "./directory";

@@ -1,0 +1,26 @@
+{
+  "section1": {
+    "heading": "About"
+  },
+  "section2": {
+    "heading": "Discover"
+  },
+  "section3": {
+    "heading": "Explore"
+  },
+  "languages": {
+    "heading": "Languages",
+    "selectOptions": [
+      "English",
+      "Spanish",
+      "French",
+      "German",
+      "Italian",
+      "Portuguese",
+      "Russian",
+      "Japanese",
+      "Arabic",
+      "Chinese"
+    ]
+  }
+}

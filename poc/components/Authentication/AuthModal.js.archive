@@ -1,0 +1,111 @@
+import Utils from "@utils/index";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../contexts";
+// Tabs
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import Typography from "@mui/material/Typography";
+import { Modal } from "react-bootstrap";
+// Forms
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
+
+import AlreadyLoggedIn from "./AlreadyLoggedIn";
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography component={"span"}>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+//auth state
+const INITIAL_USER = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+const INITIAL_AUTH_STATE = {
+  email: "",
+  password: "",
+};
+
+export default ({ user, socket, runAction, queryApi }) => {
+  const [tabToDisplay, setTabToDisplay] = useState(0);
+  const { toggleAuthModal, setDisplayAuthModal, displayAuthModal } = useContext(AppContext);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleChangeTab = (event, newValue) => {
+    setTabToDisplay(newValue);
+  };
+
+  useEffect(() => {
+    if (Utils.tokenStatus(token) === "valid") {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, []);
+  console.log("TODO: Fix registration and reset password forms.");
+
+  return (
+    <>
+      <Modal
+        className="default-modal"
+        show={displayAuthModal}
+        onHide={toggleAuthModal}
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton className="close-button no-border">
+          {loggedIn ? (
+            <AlreadyLoggedIn />
+          ) : (
+            <Box sx={{ width: "100%" }}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs value={tabToDisplay} onChange={handleChangeTab} aria-label="basic tabs example">
+                  <Tab label="Login" {...a11yProps(0)} />
+                  <Tab label="Sign Up" {...a11yProps(1)} />
+                  <Tab label="Help" {...a11yProps(2)} />
+                </Tabs>
+              </Box>
+              <TabPanel value={tabToDisplay} index={0}>
+                <LoginForm user={user} socket={socket} runAction={runAction} queryApi={queryApi} />
+              </TabPanel>
+              <TabPanel value={tabToDisplay} index={1}>
+                <RegisterForm user={user} socket={socket} runAction={runAction} queryApi={queryApi} />
+              </TabPanel>
+              <TabPanel value={tabToDisplay} index={2}>
+                Item Three
+              </TabPanel>
+            </Box>
+          )}
+        </Modal.Header>
+      </Modal>
+    </>
+  );
+};

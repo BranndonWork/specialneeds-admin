@@ -1,0 +1,88 @@
+{
+  "_comment": "API Endpoint Configuration - Add v2 when backend implements endpoint",
+
+  "getUser": {
+    "v1": "token/get-user",
+    "v2": "users/me"
+  },
+  "runAction": {
+    "v1": "core/run-action"
+  },
+
+  "searchDirectory": {
+    "v1": "search/directory"
+  },
+  "searchListings": {
+    "v1": "listings/search"
+  },
+  "getListings": {
+    "v1": "listings"
+  },
+  "createListing": {
+    "v1": "listings/create"
+  },
+  "updateListing": {
+    "v1": "listings"
+  },
+  "getListing": {
+    "v1": "listings"
+  },
+  "getListingCategories": {
+    "v1": "listings/categories"
+  },
+
+  "getArticles": {
+    "v1": "articles"
+  },
+  "getArticle": {
+    "v1": "articles"
+  },
+  "getArticleCategories": {
+    "v1": "articles/categories"
+  },
+  "getArticleTags": {
+    "v1": "articles/tags"
+  },
+
+  "login": {
+    "v1": "auth/login"
+  },
+  "logout": {
+    "v1": "auth/logout"
+  },
+  "signup": {
+    "v1": "auth/signup"
+  },
+  "resetPassword": {
+    "v1": "auth/reset-password"
+  },
+  "forgotPassword": {
+    "v1": "auth/forgot-password"
+  },
+
+  "getEvents": {
+    "v1": "events"
+  },
+  "getEvent": {
+    "v1": "events"
+  },
+
+  "getSiteStats": {
+    "v1": "stats/site"
+  },
+
+  "contactForm": {
+    "v1": "contact/send"
+  },
+  "contactOwner": {
+    "v1": "contact/owner"
+  },
+
+  "logs": {
+    "v1": "logs"
+  },
+
+  "coreUtils": {
+    "v1": "core/utils"
+  }
+}

@@ -1,0 +1,461 @@
+{
+  "category_data": {
+    "school_information": {
+      "label": "School Information",
+      "description": "Basic information about the school, such as year founded and tuition cost.",
+      "fields": {
+        "school_type": {
+          "label": "School Type",
+          "description": "The classification of the school's operation.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "year_founded": {
+          "label": "Year Founded",
+          "description": "Year the school was established.",
+          "attributes": {
+            "type": "number",
+            "value": 1997
+          }
+        },
+        "yearly_tuition_cost": {
+          "label": "Yearly Tuition Cost",
+          "description": "Annual cost of tuition.",
+          "attributes": {
+            "type": "text",
+            "value": null
+          }
+        },
+        "tuition_notes": {
+          "label": "Tuition Notes",
+          "description": "Extra info related to tuition costs.",
+          "attributes": {
+            "type": "text",
+            "value": "All families must qualify for Private School Scholarship through Step up For Students"
+          }
+        },
+        "total_students": {
+          "label": "Total Students",
+          "description": "Number of students enrolled.",
+          "attributes": {
+            "type": "number",
+            "value": 102
+          }
+        },
+        "total_classroom_teachers": {
+          "label": "Total Classroom Teachers",
+          "description": "Number of full-time teachers.",
+          "attributes": {
+            "type": "number",
+            "value": 15
+          }
+        },
+        "percent_of_faculty_with_advanced_degree": {
+          "label": "Percent of Faculty with Advanced Degree",
+          "description": "Percentage of teachers with postgrad degrees.",
+          "attributes": {
+            "type": "number",
+            "value": null
+          }
+        },
+        "average_class_size": {
+          "label": "Average Class Size",
+          "description": "Average number of students per class.",
+          "attributes": {
+            "type": "number",
+            "value": 15
+          }
+        },
+        "grades_offered": {
+          "label": "Grades Offered",
+          "description": "Range of grades the school offers.",
+          "attributes": {
+            "type": "text",
+            "value": "5-8"
+          }
+        },
+        "video_url": {
+          "label": "Video URL",
+          "description": "Link to a promotional school video.",
+          "attributes": {
+            "type": "url",
+            "value": ""
+          }
+        }
+      }
+    },
+    "admissions_information": {
+      "label": "Admissions Information",
+      "description": "Information about the admissions process and requirements.",
+      "fields": {
+        "admissions_director": {
+          "label": "Admissions Director",
+          "description": "Person overseeing the admissions process.",
+          "attributes": {
+            "type": "text",
+            "value": "Anita Reece"
+          }
+        },
+        "admissions_associate": {
+          "label": "Admissions Associate",
+          "description": "Staff member assisting with admissions.",
+          "attributes": {
+            "type": "text",
+            "value": null
+          }
+        },
+        "admissions_phone": {
+          "label": "Admissions Phone",
+          "description": "Phone number for admissions inquiries.",
+          "attributes": {
+            "type": "tel",
+            "value": ""
+          }
+        },
+        "admissions_email": {
+          "label": "Admissions Email",
+          "description": "Email for questions related to admissions.",
+          "attributes": {
+            "type": "email",
+            "value": ""
+          }
+        },
+        "admission_deadline": {
+          "label": "Admission Deadline",
+          "description": "Final date to submit admission applications.",
+          "attributes": {
+            "type": "text",
+            "value": "None / Rolling"
+          }
+        },
+        "acceptance_rate": {
+          "label": "Acceptance Rate",
+          "description": "Percentage of applicants who are accepted.",
+          "attributes": {
+            "type": "number",
+            "value": 60
+          }
+        },
+        "percent_on_financial_aid": {
+          "label": "Percent on Financial Aid",
+          "description": "Percentage of students receiving financial aid.",
+          "attributes": {
+            "type": "number",
+            "value": null
+          }
+        },
+        "average_financial_aid_grant": {
+          "label": "Average Financial Aid Grant",
+          "description": "Typical amount awarded per financial aid grant.",
+          "attributes": {
+            "type": "text",
+            "value": null
+          }
+        }
+      }
+    },
+    "student_body_information": {
+      "label": "Student Body Information",
+      "description": "Information about the student body.",
+      "fields": {
+        "student_body_type": {
+          "label": "Student Body Type",
+          "description": "Indicates the gender composition of the student body.",
+          "attributes": {
+            "type": "text",
+            "value": "Co-ed"
+          }
+        },
+        "percent_of_students_of_color": {
+          "label": "Percent of Students of Color",
+          "description": "Percentage of students who identify as a race other than white.",
+          "attributes": {
+            "type": "number",
+            "value": 100
+          }
+        }
+      }
+    },
+    "academic_programs_information": {
+      "label": "Academic Programs Information",
+      "description": "Information about the academic programs offered by the school.",
+      "fields": {
+        "learning_programs_supported": {
+          "label": "Learning Programs Supported",
+          "description": "Different learning programs the school offers or supports.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "special_education_programs": {
+          "label": "Special Education Programs",
+          "description": "Special education support or programs provided.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "ADD/ADHD Support"
+            ]
+          }
+        },
+        "list_of_courses_offered": {
+          "label": "List of Courses Offered",
+          "description": "Regular academic courses available.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "advanced_courses": {
+          "label": "Advanced Courses",
+          "description": "Advanced-level courses for students seeking challenges.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "ap_courses": {
+          "label": "AP Courses",
+          "description": "Advanced Placement courses for college credit.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "matriculation_data": {
+          "label": "Matriculation Data",
+          "description": "Link to data on student post-graduation paths.",
+          "attributes": {
+            "type": "url",
+            "value": null
+          }
+        }
+      }
+    },
+    "sports_and_extracurricular_information": {
+      "label": "Sports and Extracurricular Information",
+      "description": "Information about sports and extracurricular activities offered by the school.",
+      "fields": {
+        "sports": {
+          "label": "Sports",
+          "description": "Sports programs provided by the school.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Basketball",
+              "Flag Football",
+              "Golf",
+              "Martial Arts",
+              "Soccer",
+              "Tennis",
+              "Track and Field",
+              "Volleyball"
+            ]
+          }
+        },
+        "clubs_and_organizations": {
+          "label": "Clubs and Organizations",
+          "description": "Student clubs and organizations at the school.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "recreational_athletic_programs": {
+          "label": "Recreational Athletic Programs",
+          "description": "Athletic activities offered for recreation and skill-building.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        },
+        "arts_and_music_programs": {
+          "label": "Arts and Music Programs",
+          "description": "School's offerings in the arts and music.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        }
+      }
+    },
+    "additional_information": {
+      "label": "Additional Information",
+      "description": "Other information about the school.",
+      "fields": {
+        "classroom_dress_code": {
+          "label": "Classroom Dress Code",
+          "description": "Type of clothing students wear in class.",
+          "attributes": {
+            "type": "text",
+            "value": "Formal"
+          }
+        },
+        "school_memberships": {
+          "label": "School Memberships",
+          "description": "Associations or organizations the school is part of.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Florida Council of Independent Schools (FCIS)"
+            ]
+          }
+        },
+        "religious_affiliations": {
+          "label": "Religious Affiliations",
+          "description": "Religious group(s) the school is affiliated with.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Nonsectarian"
+            ]
+          }
+        },
+        "school_calendar": {
+          "label": "School Calendar",
+          "description": "Link to the school's annual calendar.",
+          "attributes": {
+            "type": "url",
+            "value": "https://stpete.academyprep.org/events"
+          }
+        },
+        "summer_program_details": {
+          "label": "Summer Program Details",
+          "description": "What the school's summer programs involve.",
+          "attributes": {
+            "type": "text",
+            "value": null
+          }
+        },
+        "summer_program_cost": {
+          "label": "Summer Program Cost",
+          "description": "Cost of participating in summer programs.",
+          "attributes": {
+            "type": "text",
+            "value": null
+          }
+        },
+        "summer_school_offered": {
+          "label": "Summer School Offered",
+          "description": "Whether the school offers summer school.",
+          "attributes": {
+            "type": "checkbox",
+            "value": true
+          }
+        },
+        "offers_post_graduate_year": {
+          "label": "Offers Post Graduate Year",
+          "description": "Does the school offer an additional year after graduation?",
+          "attributes": {
+            "type": "checkbox",
+            "value": null
+          }
+        },
+        "awards": {
+          "label": "Awards",
+          "description": "Awards or recognitions the school has received.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "average_sat_score": {
+          "label": "Average SAT Score",
+          "description": "Average SAT score of students at the school.",
+          "attributes": {
+            "type": "number",
+            "value": null
+          }
+        },
+        "average_act_score": {
+          "label": "Average ACT Score",
+          "description": "Average ACT score of students at the school.",
+          "attributes": {
+            "type": "number",
+            "value": null
+          }
+        }
+      }
+    }
+  },
+  "listing_data": {
+    "id": "aa95a1ae-f24b-442e-9946-8352d85cf216",
+    "keywords": [],
+    "category": {
+      "name": "Schools",
+      "slug": "education/schools",
+      "description": "Educational institutions specifically catering to special needs.",
+      "parent": {
+        "name": "Education",
+        "slug": "education",
+        "description": "Specialized educational services and resources for individuals with various special needs.",
+        "ready": false
+      },
+      "ready": true
+    },
+    "created_by": {
+      "id": "9d2686d9-2b74-52f1-8559-7f79e399298e",
+      "displayname": "Branndon",
+      "role": "superadmin"
+    },
+    "claimed_by": {},
+    "images": [
+      {
+        "url": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/7b236943-c973-4a36-473b-940ca566cf00/public",
+        "alt": "Academy Prep Center Of St. Petersburg"
+      },
+      {
+        "url": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/121d7f27-d3d1-4c81-66d3-091580ba3400/public",
+        "alt": "Academy Prep Center Of St. Petersburg"
+      }
+    ],
+    "lat_long": [
+      "27.7484700",
+      "-82.6643590"
+    ],
+    "location_name": null,
+    "contact_name": null,
+    "email": null,
+    "phone": "(727) 322-0800",
+    "website": "https://stpete.academyprep.org/",
+    "created_at": "2026-03-11T16:33:07.305535Z",
+    "updated_at": "2026-03-24T01:31:23.576073Z",
+    "discord": null,
+    "facebook": null,
+    "instagram": null,
+    "linkedin": null,
+    "pinterest": null,
+    "reddit": null,
+    "snapchat": null,
+    "telegram": null,
+    "tiktok": null,
+    "twitch": null,
+    "twitter": null,
+    "whatsapp": null,
+    "youtube": null,
+    "threads": null,
+    "title": "Academy Prep Center Of St. Petersburg",
+    "content": " Academy Prep is designed to promote an appreciation for hard work, growth in personal responsibility, and academic and social skills. To accomplish these guiding principles, our programs are aimed at educating \"the whole child.\" Our curriculum is based upon Sunshine State standards and geared toward bringing students to grade level and beyond-particularly in mathematics and language arts. Upon completing the Academy Prep program, most of our students matriculate into college preparatory high schools. Standardized testing serves to help us assess our students' progress through our curriculum and to \"benchmark\" them in relation to students in the local area and nation. ",
+    "summary": "Academy Prep Center Of St. Petersburg ranks within the top 20% of private schools in Florida. Serving 102 students in grades 5-8, this schoo",
+    "slug": "education/schools/academy-prep-center-of-st-petersburg",
+    "source_url": "https://www.privateschoolreview.com/academy-prep-center-of-st-petersburg-profile",
+    "canonical_key": "education/schools|academy-prep-center-of-st-petersburg|saint-petersburg|fl",
+    "view_count": 0,
+    "status": "published",
+    "published_at": "2026-03-11T16:33:07.297556Z",
+    "verified_at": null,
+    "faqs": [],
+    "address": {
+      "street_1": "2301 22nd Ave S",
+      "street_2": "",
+      "city": "Saint Petersburg",
+      "state_province": "Florida",
+      "postal_code": "33712",
+      "country": "United States"
+    },
+    "verified_by": null
+  },
+  "cached": true
+}

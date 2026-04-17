@@ -1,0 +1,117 @@
+import Logger from "@utils/logging";
+import config from "@config/config";
+import { addDistanceToResults } from "@utils/search/addDistanceToResults";
+import { convertThumbnailURLs } from "@utils/search/convertThumbnailURLs";
+import { attributesToRetrieve } from "./attributesToRetrieve";
+
+const logger = new Logger("./pages/api/v1/search/searchMeilisearch.js");
+
+export const searchMeilisearch = async (req) => {
+  const { q, perPage, pageNumber, filterString, index: indexName, locationBasedSearch } = req.data;
+
+  const maxPerQuery = 1000;
+  let parsedPerPage = parseInt(perPage, 10);
+  const parsedPageNumber = parseInt(pageNumber, 10);
+
+  const searchBody = {
+    q: q || "",
+    attributesToRetrieve: attributesToRetrieve[indexName],
+    limit: Math.min(parsedPerPage, maxPerQuery),
+    offset: (parsedPageNumber - 1) * parsedPerPage,
+    attributesToHighlight: ["content", "title", "summary"],
+    highlightPreTag: "<em>",
+    highlightPostTag: "</em>",
+    facets: ["category_name"],
+  };
+
+  if (filterString) {
+    searchBody.filter = filterString;
+  }
+
+  if (Object.keys(locationBasedSearch).length > 0) {
+    const { aroundLatLng, aroundRadius } = locationBasedSearch;
+    if (aroundLatLng && aroundRadius) {
+      const [lat, lng] = aroundLatLng.split(",").map(parseFloat);
+      searchBody.sort = [`_geoPoint(${lat}, ${lng}):asc`];
+      searchBody.filter = searchBody.filter
+        ? `${searchBody.filter} AND _geoRadius(${lat}, ${lng}, ${aroundRadius})`
+        : `_geoRadius(${lat}, ${lng}, ${aroundRadius})`;
+    }
+  }
+
+  let results = [];
+  let totalHits = 0;
+  let searchResponse = null;
+
+  try {
+    if (!config.meilisearchHost) {
+      throw new Error("Meilisearch host not configured");
+    }
+
+    const host = config.meilisearchHost.startsWith("http")
+      ? config.meilisearchHost
+      : `https://${config.meilisearchHost}`;
+
+    const response = await fetch(`${host}/indexes/${indexName}/search`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(searchBody),
+    });
+
+    searchResponse = await response.json();
+
+    results = searchResponse.hits || [];
+    totalHits = searchResponse.estimatedTotalHits || 0;
+
+    results = results.map((hit) => {
+      const formattedContent = hit._formatted?.content || hit.content || "";
+      const formattedTitle = hit._formatted?.title || hit.title || "";
+      const formattedSummary = hit._formatted?.summary || hit.summary || "";
+
+      return {
+        ...hit,
+        objectID: hit.id || hit.objectID,
+        _highlightResult: {
+          content: {
+            value: formattedContent,
+            matchLevel: formattedContent.includes("<em>") ? "full" : "none",
+          },
+          title: {
+            value: formattedTitle,
+            matchLevel: formattedTitle.includes("<em>") ? "full" : "none",
+          },
+          summary: {
+            value: formattedSummary,
+            matchLevel: formattedSummary.includes("<em>") ? "full" : "none",
+          },
+        },
+        _snippetResult: {
+          content: {
+            value: formattedContent,
+            matchLevel: formattedContent.includes("<em>") ? "full" : "none",
+          },
+        },
+      };
+    });
+  } catch (error) {
+    logger.error("Meilisearch search error:", error);
+    throw error;
+  }
+
+  addDistanceToResults(results);
+  convertThumbnailURLs(results);
+
+  const categories = searchResponse?.facetDistribution?.category_name || {};
+
+  const finalResults = {
+    timestamp: new Date().toISOString(),
+    results,
+    categories,
+    pageNumber: parsedPageNumber,
+    perPage: parsedPerPage,
+    totalHits,
+    totalPages: Math.ceil(totalHits / parsedPerPage),
+  };
+
+  return finalResults;
+};

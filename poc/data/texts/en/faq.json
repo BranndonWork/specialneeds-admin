@@ -1,0 +1,37 @@
+{
+  "pageTitle": "Frequently Asked Questions",
+  "faqs": [
+    {
+      "question": "What exactly is a directory listing?",
+      "answer": "Our directory is an extensive collection where each listing represents a unique entity. This can range from specialized schools and therapeutic summer camps to expert therapists. Every listing has its own dedicated page, allowing it to showcase its distinct features and benefits."
+    },
+    {
+      "question": "Do I have to commit to an annual contract?",
+      "answer": "There is no requirement for an annual contract. We offer both monthly and annual payment options to suit your preferences. Our goal is to ensure you are satisfied with our service, with no obligations to a long-term commitment."
+    },
+    {
+      "question": "How long until my submission is approved?",
+      "answer": "Our review team works efficiently to approve submissions, typically completing the process within a few days. They are dedicated to ensuring your listing goes live promptly after your submission."
+    },
+    {
+      "question": "Can I submit content for free?",
+      "answer": "Absolutely! We support the sharing of knowledge and offer the option to create listings at no cost. However, each submission must meet our quality standards before approval."
+    },
+    {
+      "question": "Is there a maximum number of listings I can create?",
+      "answer": "We offer a range of plans to suit different needs. To see the current plans and the maximum number of listings available for each, please visit our <a href='/pricing/'>Pricing</a>. It's important that each listing is unique and adds value to our directory."
+    },
+    {
+      "question": "What if I want to remove my content?",
+      "answer": "You have complete control over your content. If you decide to remove it, we will assist you in doing so efficiently. Our aim is to facilitate a seamless experience for you."
+    },
+    {
+      "question": "How do I create a directory listing?",
+      "answer": "Creating a directory listing is straightforward. Simply register with us, provide information about your service, and your listing will be set up promptly. Our team is always available to assist you whenever needed."
+    },
+    {
+      "question": "What are the additional features of the Directory Listing?",
+      "answer": "Our Directory Listing platform offers a variety of features including advanced search filters, user ratings, and reviews. These tools are designed to enhance your experience and help you fully utilize our platform."
+    }
+  ]
+}

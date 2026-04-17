@@ -1,0 +1,52 @@
+import React from "react";
+
+export default ({ socket, runAction, queryApi, article }) => {
+  return (
+    <section className="widget widget_instagram">
+      <ul>
+        <li>
+          <div className="box">
+            <img src="/images/article/article4.jpg?width=600" alt="image" />
+            <i className="bx bxl-instagram"></i>
+            <a href="https://www.instagram.com/" className="link-btn" target="_blank" rel="noreferrer"></a>
+          </div>
+        </li>
+        <li>
+          <div className="box">
+            <img src="/images/article/article5.jpg?width=600" alt="image" />
+            <i className="bx bxl-instagram"></i>
+            <a href="https://www.instagram.com/" className="link-btn" target="_blank" rel="noreferrer"></a>
+          </div>
+        </li>
+        <li>
+          <div className="box">
+            <img src="/images/article/article6.jpg?width=600" alt="image" />
+            <i className="bx bxl-instagram"></i>
+            <a href="https://www.instagram.com/" className="link-btn" target="_blank" rel="noreferrer"></a>
+          </div>
+        </li>
+        <li>
+          <div className="box">
+            <img src="/images/article/article7.jpg?width=600" alt="image" />
+            <i className="bx bxl-instagram"></i>
+            <a href="https://www.instagram.com/" className="link-btn" target="_blank" rel="noreferrer"></a>
+          </div>
+        </li>
+        <li>
+          <div className="box">
+            <img src="/images/article/article8.jpg?width=600" alt="image" />
+            <i className="bx bxl-instagram"></i>
+            <a href="https://www.instagram.com/" className="link-btn" target="_blank" rel="noreferrer"></a>
+          </div>
+        </li>
+        <li>
+          <div className="box">
+            <img src="/images/article/article9.jpg?width=600" alt="image" />
+            <i className="bx bxl-instagram"></i>
+            <a href="https://www.instagram.com/" className="link-btn" target="_blank" rel="noreferrer"></a>
+          </div>
+        </li>
+      </ul>
+    </section>
+  );
+};

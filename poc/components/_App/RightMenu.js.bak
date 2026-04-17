@@ -1,0 +1,115 @@
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../contexts";
+import { useNotifications } from "../../hooks/useNotifications";
+import NotificationMenu from "./NotificationMenu";
+import UserProfileMenu from "./UserProfileMenu";
+
+const RightMenu = ({ user, runAction, more }) => {
+  const { notifications, unreadCount, dismiss, dismissAll, markAllAsRead, markAsRead } = useNotifications({
+    runAction,
+  });
+
+  const { toggleAuthModal } = useContext(AppContext);
+  const [showMenu, setshowMenu] = useState(false);
+  const [displayUserProfileMenu, setDisplayUserProfileMenu] = useState(false);
+  const toggleMiniAuth = (event) => {
+    event && event.stopPropagation();
+    setDisplayUserProfileMenu((prevDisplayUserProfileMenu) => {
+      if (!prevDisplayUserProfileMenu) {
+        setshowMenu(false);
+      }
+      return !prevDisplayUserProfileMenu;
+    });
+  };
+
+  useEffect(() => {
+    const closeMenu = (event) => {
+      if (!event.target.closest(".mini-auth-class")) {
+        if (showMenu) {
+          setshowMenu(false);
+        }
+        if (displayUserProfileMenu) {
+          setDisplayUserProfileMenu(false);
+        }
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+    return () => {
+      document.removeEventListener("click", closeMenu);
+    };
+  }, [showMenu, displayUserProfileMenu]);
+
+  const toggleMenu = (event) => {
+    event.stopPropagation();
+    setshowMenu((prevShowMenu) => {
+      if (!prevShowMenu) {
+        setDisplayUserProfileMenu(false);
+      }
+      return !prevShowMenu;
+    });
+  };
+
+  return (
+    <div id="right-menu" className="others-option-for-responsive">
+      <div className="container">
+        <div className="dot-menu">
+          <div className="inner">
+            <NotificationMenu
+              notifications={notifications}
+              unreadCount={unreadCount}
+              dismiss={dismiss}
+              dismissAll={dismissAll}
+              markAllAsRead={markAllAsRead}
+              markAsRead={markAsRead}
+            />
+            <a href="#" className="dropdown-toggle nav-link no-caret user-drop">
+              {user && (user.role === "user" || user.role === "admin") ? (
+                <span
+                  onClick={toggleMiniAuth}
+                  data-toggle="modal"
+                  className="auth-one dropdown-toggle no-caret nav-link user-drop "
+                >
+                  {user.avatar ? (
+                    <img
+                      src={user.avatar}
+                      className="rounded-circle"
+                      alt="image"
+                      style={{ width: "26px", height: "26px" }}
+                    />
+                  ) : (
+                    <span className="default-user">
+                      <i className="bx bx-user"></i>
+                    </span>
+                  )}{" "}
+                  {user.displayname || "Menu"}
+                </span>
+              ) : (
+                <span data-toggle="modal" onClick={toggleAuthModal}>
+                  <a href="/login" title="Login to your account">
+                    Login
+                  </a>{" "}
+                  /{" "}
+                  <a href="/signup" title="Sign up for a new account">
+                    Sign Up
+                  </a>
+                </span>
+              )}
+            </a>
+          </div>
+        </div>
+        <UserProfileMenu showMenu={displayUserProfileMenu} setShowMenu={setDisplayUserProfileMenu} />
+      </div>
+
+      <style jsx>{`
+        @media (min-width: 1200px) {
+          .others-option.d-flex.align-items-center {
+            visibility: hidden;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default RightMenu;

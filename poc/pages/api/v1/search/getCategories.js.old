@@ -1,0 +1,124 @@
+import Utils from "@utils";
+import Logger from "@utils/logging";
+import config from "@config/config";
+
+const logger = new Logger("./pages/api/v1/search/getCategories.js");
+
+export const getCategories = async (req) => {
+  console.log("\n=== GET CATEGORIES START ===");
+  try {
+    let { q, filterString, locationBasedSearch, sortBy, filters, index: indexName } = req.data;
+
+    console.log(
+      "getCategories input - q:",
+      q,
+      "filterString:",
+      filterString,
+      "indexName:",
+      indexName
+    );
+
+    if (!q) {
+      for (const [key, value] of Object.entries(filters)) {
+        if (key.includes("category")) {
+          delete filters[key];
+        }
+      }
+      const filterStringArray = filterString.split(" AND ");
+      filterString = filterStringArray
+        .filter((filter) => !filter.includes("category"))
+        .join(" AND ");
+    }
+
+    const requestBody = {
+      q: q || "",
+      facets: ["category_name"],
+      limit: 0,
+    };
+
+    if (filterString) {
+      requestBody.filter = filterString;
+    }
+
+    const host = config.meilisearchHost.startsWith("http")
+      ? config.meilisearchHost
+      : `https://${config.meilisearchHost}`;
+
+    console.log("Fetching categories from:", `${host}/indexes/${indexName}/search`);
+    console.log("Request body:", JSON.stringify(requestBody, null, 2));
+
+    const response = await fetch(`${host}/indexes/${indexName}/search`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
+
+    const meilisearchResponse = await response.json();
+
+    console.log(
+      "Categories fetch response:",
+      JSON.stringify(
+        {
+          hasFacetDistribution: !!meilisearchResponse?.facetDistribution,
+          categoryCount: meilisearchResponse?.facetDistribution?.category_name
+            ? Object.keys(meilisearchResponse.facetDistribution.category_name).length
+            : 0,
+          sampleCategories: meilisearchResponse?.facetDistribution?.category_name
+            ? Object.entries(meilisearchResponse.facetDistribution.category_name).slice(0, 3)
+            : [],
+          limit: meilisearchResponse?.limit,
+          estimatedTotalHits: meilisearchResponse?.estimatedTotalHits,
+        },
+        null,
+        2
+      )
+    );
+
+    let results = meilisearchResponse?.facetDistribution?.category_name || {};
+
+    const slugToDisplayTitle = (slug) => {
+      return Utils.toTitleCase(slug.replace("/", " > ").replace(/-/g, " "));
+    };
+
+    // filters look like: {"category_slug":"social-engagement/dating-and-relationships"}
+    // facets look like:  {"category_name":{"Social Engagement > Dating and Relationships":1}}
+    // results look like: {"Social Engagement > Dating and Relationships":1}}
+    const titleCaseCategorySlug = filters["category_slug"]
+      ? slugToDisplayTitle(filters["category_slug"])
+      : null;
+    const titleCaseParentCategorySlug = filters["parent_category_slug"]
+      ? slugToDisplayTitle(filters["parent_category_slug"])
+      : null;
+
+    // the parent category slug is set, but there are no results for it, set the count to 0
+    if (titleCaseParentCategorySlug && !results[titleCaseParentCategorySlug]) {
+      results = { [titleCaseParentCategorySlug]: 0, ...results };
+    }
+
+    // if the category slug is set, but there are no results for it, set the count to 0
+    else if (titleCaseCategorySlug && !results[titleCaseCategorySlug]) {
+      results = { [titleCaseCategorySlug]: 0, ...results };
+    }
+
+    console.log(
+      "Final categories result:",
+      JSON.stringify(
+        {
+          categoriesCount: Object.keys(results).length,
+          sampleCategories: Object.entries(results).slice(0, 5),
+        },
+        null,
+        2
+      )
+    );
+    console.log("=== GET CATEGORIES END ===\n");
+
+    results = { ...results };
+
+    return results;
+  } catch (error) {
+    console.error("ERROR in getCategories:", error);
+    logger.error("Error in getCategories:", error);
+    return {};
+  }
+};

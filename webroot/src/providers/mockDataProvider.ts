@@ -30,9 +30,9 @@ const articles: IArticle[] = [
 ];
 
 const categories: ICategory[] = [
-  { id: 1, title: "Education" },
-  { id: 2, title: "Therapy" },
-  { id: 3, title: "Resources" },
+  { id: 1, name: "Education", slug: "education" },
+  { id: 2, name: "Therapy", slug: "therapy" },
+  { id: 3, name: "Resources", slug: "resources" },
 ];
 
 export const mockDataProvider = {

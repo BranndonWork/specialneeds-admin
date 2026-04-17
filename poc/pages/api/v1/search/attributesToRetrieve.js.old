@@ -1,0 +1,22 @@
+// ./pages/api/v1/search/attributesToRetrieve.js
+
+// https://www.algolia.com/doc/api-reference/search-api-parameters/
+
+const commonAttributes = [
+  "title",
+  "summary",
+  "thumbnail",
+  "slug",
+  "category_name",
+  "content",
+  "status",
+  "published_at_timestamp",
+  "scheduled_publish_at_timestamp",
+  "updated_at_timestamp",
+  "objectID",
+];
+
+export const attributesToRetrieve = {
+  listings: [...commonAttributes, "city", "state_province"],
+  articles: [...commonAttributes, "author_name", "author_avatar"],
+};

@@ -1,0 +1,163 @@
+// getPopular.js
+import config from "@config/config";
+import Utils from "@utils";
+import Logger from "@utils/logging";
+import algoliasearch from "algoliasearch/lite";
+import { attributesToRetrieve } from "./attributesToRetrieve";
+
+const searchClient = algoliasearch(config.algoliaId, config.algoliaPublicKey);
+const logger = new Logger("./pages/api/v1/search/getPopular.js");
+const defaultSettings = {
+  hitsPerPage: 12,
+  page: 0,
+  filters: "status:'published'",
+};
+
+const getClient = (index) => {
+  if (config.host.includes("www")) return searchClient.initIndex(`prod_${index}`);
+  if (config.host.includes("staging")) return searchClient.initIndex(`staging_${index}`);
+  return searchClient.initIndex(`dev_${index}`);
+};
+
+const convertThumbnailURLs = (results) => {
+  results.forEach((result) => {
+    if (result.thumbnail) {
+      if (result.thumbnail.includes("image/upload")) {
+        let thumbnailURL = result.thumbnail;
+        let thumbnailURLParts = thumbnailURL.split("/image/upload/");
+        let finalParts = thumbnailURLParts[1].split("/");
+
+        const versionRegex = /^v\d+$/;
+        const newPathParts = finalParts.filter((part) => !versionRegex.test(part));
+        const basePath = [
+          "wp-content",
+          "specialneeds",
+          "images",
+          "articles",
+          "listings",
+          "avatars",
+          "core",
+        ].includes(newPathParts[0])
+          ? ""
+          : "core/";
+
+        result.thumbnail = `/assets/${basePath}${newPathParts.join("/")}`;
+      } else if (result.thumbnail.includes("assets.specialneeds.com")) {
+        // split at assets.specialneeds.com and prefix it with /assets/
+        let thumbnailURL = result.thumbnail;
+        let thumbnailURLParts = thumbnailURL.split("assets.specialneeds.com");
+        result.thumbnail = `/assets/${thumbnailURLParts[1]}`;
+      }
+
+      // if it doesn't start with http, then replace all double slashes with single slashes
+      if (!result.thumbnail.startsWith("http"))
+        result.thumbnail = result.thumbnail.replace(/\/\//g, "/");
+      if (result.thumbnail.startsWith("/assets/"))
+        result.thumbnail = `${config.siteUrl}${result.thumbnail}`;
+
+      // set default url search params for thumbnail
+      console.log("result.thumbnail:", result.thumbnail);
+      const url = new URL(
+        result.thumbnail,
+        result.thumbnail.startsWith("http") ? undefined : config.host
+      );
+      console.log("url:", url);
+      const queryParams = [];
+      if (!url.searchParams.has("gravity")) queryParams.push("gravity=smart");
+      if (!url.searchParams.has("width")) queryParams.push("width=500");
+      if (!url.searchParams.has("height")) queryParams.push("height=500");
+      result.thumbnail = `${url.pathname}?${queryParams.join("&")}`;
+    }
+  });
+};
+
+const performSearch = async (index, settings) => {
+  // ALGOLIA DISABLED: Return empty response immediately
+  logger.warn("ALGOLIA DISABLED - RETURNING EMPTY POPULAR RESULTS");
+  return { timestamp: new Date().toISOString(), results: [] };
+
+  const algoliaClient = getClient(index);
+  try {
+    console.log("GET POPULAR", JSON.stringify({ ...defaultSettings, ...settings }));
+    const { hits } = await algoliaClient.search("", {
+      ...defaultSettings,
+      ...settings,
+    });
+    convertThumbnailURLs(hits);
+    return { timestamp: new Date().toISOString(), results: hits };
+  } catch (error) {
+    logger.error(`Algolia search error for index ${index}:`, error);
+    return { timestamp: new Date().toISOString(), results: [], error };
+  }
+};
+
+export const getPopularArticles = async (limit = 12) => {
+  const index = "articles";
+  const settings = {
+    attributesToRetrieve: attributesToRetrieve[index],
+    hitsPerPage: Math.min(limit, 100),
+    filters: `${defaultSettings.filters} AND NOT parent_category_slug:news`,
+  };
+
+  return await performSearch(index, settings);
+};
+
+export const getPopularListings = async (limit = 12) => {
+  const index = "listings";
+  const settings = {
+    attributesToRetrieve: attributesToRetrieve[index],
+    hitsPerPage: Math.min(limit, 100),
+  };
+
+  return await performSearch(index, settings);
+};
+
+export const getPopularNews = async (limit = 12) => {
+  const index = "articles";
+  const settings = {
+    attributesToRetrieve: attributesToRetrieve[index],
+    hitsPerPage: Math.min(limit, 100),
+    filters: `${defaultSettings.filters} AND parent_category_slug:news`,
+  };
+
+  return await performSearch(index, settings);
+};
+
+export const getCategories = async (index) => {
+  // ALGOLIA DISABLED: Return empty response immediately
+  logger.warn("ALGOLIA DISABLED - RETURNING EMPTY CATEGORIES");
+  return {};
+
+  const algoliaClient = getClient(index);
+
+  const searchPayload = {
+    facets: ["category_name"],
+    filters: "status:'published'",
+    maxValuesPerFacet: 1000,
+  };
+
+  const slugToDisplayTitle = (slug) => {
+    return Utils.toTitleCase(slug.replace("/", " > ").replace(/-/g, " "));
+  };
+
+  try {
+    const algoliaResponse = await algoliaClient.search("", searchPayload);
+    let results = algoliaResponse?.facets?.category_name || {};
+    results = Object.keys(results).reduce((acc, slug) => {
+      acc[slugToDisplayTitle(slug)] = results[slug];
+      return acc;
+    }, {});
+
+    return results;
+  } catch (error) {
+    logger.error("Algolia getListingCategories error:", error);
+    return {};
+  }
+};
+
+export const getPopular = async (index = "listings") => {
+  const settings = {
+    attributesToRetrieve: attributesToRetrieve[index],
+  };
+  return await performSearch(index, settings);
+};

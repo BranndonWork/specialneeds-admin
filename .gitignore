@@ -1,3 +1,10 @@
+# Node
+node_modules/
+.next/
+.nuxt/
+dist/
+build/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -124,3 +131,7 @@ dmypy.json
 
 # Poetry
 poetry.lock
+
+# Runtime files
+*.pid
+*.log

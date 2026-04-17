@@ -1,0 +1,79 @@
+/* Base Button Styles */
+.btn {
+  border-radius: 0 !important;
+  text-transform: unset;
+  border: none;
+  box-shadow: none !important;
+}
+
+.btn.btn-primary,
+.primary-btn,
+button.btn.btn-primary,
+form button.btn.btn-primary,
+form button.btn.btn-primary p {
+  background-color: var(--mainColor);
+  color: var(--whiteColor);
+}
+
+.secondary-btn,
+.btn-secondary,
+button.btn.btn-secondary,
+form button.btn.btn-secondary {
+  color: var(--blackColor);
+  background-color: var(--whiteColor) !important;
+}
+
+.secondary-btn:hover,
+.btn-secondary:hover,
+button.btn.btn-secondary:hover,
+form button.btn.btn-secondary:hover {
+  background-color: #f1f1f1 !important;
+  color: var(--blackColor) !important;
+}
+
+button.btn.btn-danger,
+form button.btn.btn-danger {
+  background: #db0303 !important;
+  color: var(--whiteColor);
+  text-transform: unset;
+  border: none;
+}
+
+/* Button Size Modifications */
+button.btn.btn-sm,
+form button.btn.btn-sm {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 14px;
+  font-weight: var(--fontNormal);
+}
+
+.small-btn {
+  padding: 10px 30px;
+}
+
+/* Button Hover Styles */
+button.btn.btn-primary:hover,
+form button.btn.btn-primary:hover {
+  background-color: var(--btn-hover-color);
+}
+
+button.btn.btn-danger:hover,
+form button.btn.btn-danger:hover {
+  background: #c20303 !important;
+}
+
+button.btn.btn-secondary:hover,
+form button.btn.btn-secondary:hover {
+  color: var(--blackColor);
+  background-color: #f0f0f0 !important;
+}
+
+.secondary-btn:hover,
+.btn-secondary:hover {
+  border-color: #ccc;
+  box-shadow: 4px 4px #ccc;
+  color: var(--blackColor);
+}

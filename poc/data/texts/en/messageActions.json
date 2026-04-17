@@ -1,0 +1,11 @@
+{
+  "deleteAction": "Delete",
+  "reportAction": "Report",
+  "confirmDeleteTitle": "Final Goodbye? 🗑️",
+  "confirmDeleteContent": "Are you absolutely sure you want to make this message disappear? 🎩🐇 Once it's gone, it's gone forever. No time machines around here, friend! ⏳🚫",
+  "confirmReportTitle": "Fly the Red Flag? 🚩",
+  "confirmReportContent": "You're about to report this message. If it's really a rascal, jot down a message for our moderation team. They'll appreciate your detective work! 🕵️‍♀️🔍",
+  "errorDeletingMessage": "Oops, something seems to have gone wrong while deleting your message. Let's try again! 🔄",
+  "errorReportingMessage": "Oops, something seems to have gone wrong while reporting your message. Let's try again! 🔄",
+  "reportReasonLabel": "Your Message to the Moderation Team (optional) 📝"
+}

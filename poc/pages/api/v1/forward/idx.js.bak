@@ -1,0 +1,40 @@
+// ./pages/api/v1/forward/index.js
+import { getToken } from "./getToken";
+import { handleDelete } from "./handleDelete";
+import { handleGet } from "./handleGet";
+import { handlePost } from "./handlePost";
+import { handlePut } from "./handlePut";
+
+const handler = async (req, res) => {
+  try {
+    req.token = getToken(req);
+
+    let response;
+    switch (req.method.toUpperCase()) {
+      case "GET":
+        response = await handleGet(req);
+        break;
+      case "POST":
+        response = await handlePost(req);
+        break;
+      case "PUT":
+        response = await handlePut(req);
+        break;
+      case "DELETE":
+        response = await handleDelete(req);
+        break;
+      default:
+        response = { status: 405, error: "Method not allowed." };
+        return;
+    }
+
+    const status = response?.status || 200;
+    res.status(status).json(response);
+  } catch (error) {
+    console.error(`Error in /api/v1/forward/: ${error}`);
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    res.status(500).json({ errorMessage: "Internal server error.", error: error.message });
+  }
+};
+
+export default handler;

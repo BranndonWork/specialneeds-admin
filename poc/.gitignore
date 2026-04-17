@@ -1,0 +1,6 @@
+.vercel
+.env*.local
+
+# next-sitemap generated files (regenerated on every build)
+public/sitemap*.xml
+public/robots.txt

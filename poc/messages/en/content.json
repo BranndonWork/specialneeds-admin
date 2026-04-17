@@ -1,0 +1,9 @@
+{
+  "note": "This namespace holds large content blocks like FAQs, privacy policy, terms and conditions, etc. These will be migrated from individual files as needed.",
+  "auth": {
+    "note": "Authentication-related content will be organized here"
+  },
+  "pages": {
+    "note": "Page-specific content will be organized here"
+  }
+}

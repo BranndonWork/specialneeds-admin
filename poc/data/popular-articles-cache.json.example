@@ -1,0 +1,6 @@
+{
+  "articles": [],
+  "lastUpdated": null,
+  "period": null,
+  "_comment": "This file is used for local development only. In production (Vercel), data is stored in Vercel Edge Config with key 'popular-articles'. Articles are automatically populated from Plausible Analytics."
+}

@@ -1,0 +1,79 @@
+{
+  "pageTitle": "Logout",
+  "pageDescription": "Logout",
+  "loggedIn": "Sorry! It looks like you're not logged in.",
+  "messages": [
+    {
+      "title": "Zippedy Zap, You're Out!",
+      "message": "You've successfully logged out!<br/>🎉 Can't wait to have more fun together next time! 😊"
+    },
+    {
+      "title": "Poof! You're Logged Out!",
+      "message": "Great job today!<br/>🌟 We'll see you again soon for more exciting adventures! 🎈"
+    },
+    {
+      "title": "Logged Out and Ready to Go!",
+      "message": "You're now logged out!<br/>🎉 See you later for more fun and smiles! 😄"
+    },
+    {
+      "title": "See You Later, Friend!",
+      "message": "You've successfully logged out!<br/>🌈 We'll meet again soon for more amazing moments! 🌟"
+    },
+    {
+      "title": "Bye for Now!",
+      "message": "You're logged out!<br/>⏳ Looking forward to creating more joyful memories together! 🎊"
+    },
+    {
+      "title": "Farewell, Buddy!",
+      "message": "You're now logged out!<br/>🎉 We'll catch up again soon for more fantastic times! 🎈"
+    },
+    {
+      "title": "Adios, Amigo!",
+      "message": "You've logged out!<br/>🌞 Can't wait to explore more fun together! 🌈"
+    },
+    {
+      "title": "Until Next Time!",
+      "message": "You're logged out!<br/>🎨 Excited to share more happy moments together! 🖌️"
+    },
+    {
+      "title": "So Long, Friend!",
+      "message": "Logged out!<br/>👋 We're looking forward to more laughter and joy next time! 🤗"
+    },
+    {
+      "title": "Ciao, Buddy!",
+      "message": "You're logged out!<br/>🎵 Can't wait for our next fun-filled session! 🎶"
+    },
+    {
+      "title": "Bon Voyage, Friend!",
+      "message": "You've logged out!<br/>⛵ We'll embark on more wonderful adventures together soon! 🌠"
+    },
+    {
+      "title": "Goodbye for Now!",
+      "message": "Logged out!<br/>🌟 Excited to have more fun and make more memories together! 🎉"
+    },
+    {
+      "title": "Hasta Luego, Amigo!",
+      "message": "You're logged out!<br/>🌼 Can't wait to share more good times and smiles together! 😊"
+    },
+    {
+      "title": "Catch You Later!",
+      "message": "Logged out!<br/>🎢 Excited to enjoy more thrilling moments with you next time! 🎡"
+    },
+    {
+      "title": "See You Soon!",
+      "message": "You've logged out!<br/>🏞️ Looking forward to our next great adventure together! 🌄"
+    },
+    {
+      "title": "Farewell for Now!",
+      "message": "You're logged out!<br/>🎠 See you soon for more fun and laughter! 😃"
+    },
+    {
+      "title": "Bye-Bye, Friend!",
+      "message": "You're logged out!<br/>🌟 Can't wait to see you again for more excitement and joy! 🎉"
+    },
+    {
+      "title": "Until We Meet Again!",
+      "message": "You've successfully logged out!<br/>🌈 We'll be here waiting for our next fun time together! 😊"
+    }
+  ]
+}

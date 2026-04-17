@@ -1,0 +1,34 @@
+export const buildFilterString = (req, filters, user) => {
+  const userId = user?.id;
+  // if a key parent_category_slug is found, convert it to "category"
+  if ("category" in filters) {
+    filters.parent_category_slug = filters.category;
+    delete filters.category;
+  }
+
+  for (const [key, value] of Object.entries(filters)) {
+    if (key === "parent_category_slug" && "sub_category" in filters) {
+      filters["category_slug"] = `${value}/${filters["sub_category"]}`;
+      delete filters["sub_category"];
+      delete filters["category"];
+    }
+  }
+  const baseFilters = Object.entries(filters).map(
+    ([key, value]) => `${key}:${isNaN(value) ? `'${value}'` : value}`
+  );
+  const { status, user_id } = req.query;
+
+  if (user_id && user?.roles?.editor) {
+    // do nothing, do not filter by user or status
+    // editors can see all articles regardless of status
+  } else if (userId && user_id == userId) {
+    if (status) baseFilters.push(`status:'${status}'`);
+    let stringToAdd = `user_id:'${user_id}'`;
+    if (!baseFilters.includes(stringToAdd)) baseFilters.push(stringToAdd);
+  } else {
+    baseFilters.push("status:'published'");
+  }
+
+  console.log("buildFilterString", baseFilters.join(" AND "));
+  return baseFilters.join(" AND ");
+};

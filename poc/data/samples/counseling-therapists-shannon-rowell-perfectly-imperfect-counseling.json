@@ -1,0 +1,335 @@
+{
+  "category_data": {
+    "basic_information": {
+      "label": "Basic Information",
+      "description": "Essential details about the therapist to help understand their professional background.",
+      "fields": {
+        "licenses": {
+          "label": "Licenses",
+          "description": "State licenses held by the therapist.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        },
+        "qualifications_details": {
+          "label": "Additional Qualifications",
+          "description": "Other qualifications and credentials.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "age_groups": {
+          "label": "Age Group",
+          "description": "The specific age groups the therapist primarily works with, helping potential clients identify a suitable fit.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Adults",
+              "Teen",
+              "Preteen"
+            ]
+          }
+        },
+        "membership": {
+          "label": "Member of",
+          "description": "Affiliations with professional organizations or bodies, indicating the therapist's active participation in the industry.",
+          "attributes": {
+            "type": "text",
+            "value": ""
+          }
+        },
+        "languages": {
+          "label": "Language",
+          "description": "Languages in which the therapist can conduct therapy.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        }
+      }
+    },
+    "education_and_training": {
+      "label": "Education and Training",
+      "description": "Detailed information about the therapist's educational qualifications, training, and other relevant credentials.",
+      "fields": {
+        "attended_school": {
+          "label": "Attended School",
+          "description": "The institutions where the therapist acquired their formal education, providing insights into their academic qualifications.",
+          "attributes": {
+            "type": "text",
+            "value": "Nova Southeastern University"
+          }
+        },
+        "degree_diplomas": {
+          "label": "Degree/Diploma",
+          "description": "Educational degrees or diplomas acquired by the therapist.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "year_graduated": {
+          "label": "Year Graduated",
+          "description": "The year the therapist graduated from their educational institution.",
+          "attributes": {
+            "type": "number",
+            "value": "2010"
+          }
+        },
+        "certificates": {
+          "label": "Certificate",
+          "description": "Certifications the therapist holds in their respective field.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        },
+        "credentials": {
+          "label": "Credentials",
+          "description": "Acronyms or abbreviations representing the therapist's qualifications.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        },
+        "prelicense": {
+          "label": "Prelicense by",
+          "description": "The institution or organization that provided the therapist's prelicensing.",
+          "attributes": {
+            "type": "text",
+            "value": ""
+          }
+        },
+        "supervisor_license": {
+          "label": "Supervisor License",
+          "description": "License number of the therapist's supervisory entity.",
+          "attributes": {
+            "type": "text",
+            "value": ""
+          }
+        },
+        "supervisor": {
+          "label": "Supervisor",
+          "description": "The name of the individual who supervised the therapist during their training or licensing phase.",
+          "attributes": {
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    },
+    "modalities_and_specialties": {
+      "label": "Modalities and Specialties",
+      "description": "The therapist's areas of expertise and methods of treatment.",
+      "fields": {
+        "issues": {
+          "label": "Issue",
+          "description": "Specific mental health or life issues the therapist is trained to handle.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Anxiety",
+              "Behavioral Issues",
+              "Bipolar Disorder",
+              "Child",
+              "Coping Skills",
+              "Depression",
+              "Dissociative Disorders (DID)",
+              "Divorce",
+              "Domestic Abuse",
+              "Domestic Violence",
+              "Emotional Disturbance",
+              "Family Conflict",
+              "Life Transitions",
+              "Parenting",
+              "Psychosis",
+              "Relationship Issues",
+              "Self Esteem",
+              "Suicidal Ideation",
+              "Testing and Evaluation",
+              "Women's Issues"
+            ]
+          }
+        },
+        "modalities": {
+          "label": "Modality",
+          "description": "Therapeutic methods or techniques used by the therapist.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": ""
+          }
+        },
+        "specialties": {
+          "label": "Specialty",
+          "description": "Areas where the therapist has advanced expertise or focus.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Sexual Abuse",
+              "Self-Harming",
+              "Trauma and PTSD"
+            ]
+          }
+        },
+        "therapy_types": {
+          "label": "Therapy Delivery Methods",
+          "description": "Varoius methods through which therapy is provided.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Cognitive Behavioral (CBT)",
+              "Cognitive Processing (CPT)",
+              "Dialectical Behavior (DBT)",
+              "EMDR",
+              "Emotionally Focused",
+              "Intervention",
+              "Mindfulness-Based (MBCT)",
+              "Motivational Interviewing",
+              "Person-Centered",
+              "Play Therapy",
+              "Reconsolidation of Traumatic Memories (RTM)",
+              "Relational",
+              "Trauma Focused"
+            ]
+          }
+        },
+        "client_focus_participants": {
+          "label": "Client Focus Participants",
+          "description": "The types of participants the therapist typically works with, like families, couples, or individuals.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Individuals",
+              "Couples",
+              "Family"
+            ]
+          }
+        }
+      }
+    },
+    "availability_and_payment_options": {
+      "label": "Availability and Payment Options",
+      "description": "Details about availability and payment methods offered by the therapist.",
+      "fields": {
+        "pay_by": {
+          "label": "Payment Methods",
+          "description": "Various payment methods accepted by the therapist.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": []
+          }
+        },
+        "insurance_plans": {
+          "label": "Accepted Insurance Plans",
+          "description": "Insurance plans the therapist accepts.",
+          "attributes": {
+            "type": "autocomplete",
+            "value": [
+              "Cigna and Evernorth",
+              "Out of Network"
+            ]
+          }
+        },
+        "offers_online_therapy": {
+          "label": "Offers Online Therapy",
+          "description": "Indicates if the therapist provides online therapy sessions.",
+          "attributes": {
+            "type": "checkbox",
+            "value": true
+          }
+        },
+        "waitlist_status": {
+          "label": "Waitlist Status",
+          "description": "Information about the therapist's waitlist status.",
+          "attributes": {
+            "type": "text",
+            "value": ""
+          }
+        },
+        "fees": {
+          "label": "Fees",
+          "description": "Details about the therapist's session fees.",
+          "attributes": {
+            "type": "text",
+            "value": "Individual Sessions $125"
+          }
+        }
+      }
+    }
+  },
+  "listing_data": {
+    "id": "bef386d8-e60d-4252-ad82-024457e2b91e",
+    "keywords": [],
+    "category": {
+      "name": "Therapists",
+      "slug": "counseling/therapists",
+      "description": "Therapy services including occupational, physical, and speech for special needs.",
+      "parent": {
+        "name": "Counseling",
+        "slug": "counseling",
+        "description": "Directory of mental and behavioral health services for special needs support.",
+        "ready": false
+      },
+      "ready": true
+    },
+    "created_by": {
+      "id": "9d2686d9-2b74-52f1-8559-7f79e399298e",
+      "displayname": "Branndon",
+      "role": "superadmin"
+    },
+    "claimed_by": {},
+    "images": [
+      {
+        "url": "https://imagedelivery.net/iQbJNjrNARW2nbQ489hjzg/ef49a124-775f-42e5-2e9b-2049c3e5f200/public",
+        "alt": ""
+      }
+    ],
+    "lat_long": [
+      "28.5499495",
+      "-81.752159"
+    ],
+    "location_name": null,
+    "contact_name": "",
+    "email": "",
+    "phone": "(407) 395-4359",
+    "website": "",
+    "created_at": "2024-01-25T15:20:43.062222Z",
+    "updated_at": "2024-03-14T12:32:16.474058Z",
+    "discord": null,
+    "facebook": null,
+    "instagram": null,
+    "linkedin": null,
+    "pinterest": null,
+    "reddit": null,
+    "snapchat": null,
+    "telegram": null,
+    "tiktok": null,
+    "twitch": null,
+    "twitter": null,
+    "whatsapp": null,
+    "youtube": null,
+    "threads": null,
+    "title": "Shannon Rowell: Perfectly Imperfect Counseling",
+    "content": "<p>Clermont, Florida's local counseling scene is made richer through the compassionate services provided by Shannon Rowell at Perfectly Imperfect Counseling. With a practice that encompasses nurturing support for children, adolescents, and adults, Shannon offers a beacon of hope for those grappling with a variety of psychological and emotional challenges.</p><p>Understanding that accessibility and relatability are fundamental in therapy, Shannon has centered her practice around aiding individuals and families confronting intricate life issues. From managing depression and anxiety to navigating the complexities of sexual abuse recovery, couples therapy, and the stresses of everyday life, her work is both inclusive and integral to the wellbeing of her clients. Moreover, her specialty in assisting children and teens means she's acutely attuned to the unique needs of younger clients, a skillset increasingly vital as they grow and find their place in the world.</p><p>Shannon's journey to becoming a counselor was informed by her own experiences during adolescence. Her personal trials have been transformed into a source of empathy and have granted her the capacity to genuinely connect with clients facing similar struggles. This connection is paramount for individuals within the special needs community who may have encountered barriers to finding understanding and effective care in the past.</p><p>Invested in offering a valuable experience, Shannon firmly believes in fostering a positive, safe therapeutic environment. This commitment is reflected in her tailored approaches that honor each person's unique story, promoting healing and growth.</p><p>Shannon Rowell's Perfectly Imperfect Counseling extends an invitation to those seeking a supportive path through life's hardships. For deeper insight into her counseling services and to understand how she can assist you or your loved ones, visit <a href=\"http://www.perfectlyimperfectcounseling.com\" target=\"_blank\">www.perfectlyimperfectcounseling.com</a>.</p>",
+    "summary": "Shannon Rowell offers counseling for children, adolescents, couples, and trauma recovery, utilizing her personal experiences.",
+    "slug": "counseling/therapists/shannon-rowell-perfectly-imperfect-counseling",
+    "source_url": "https://www.psychologytoday.com/profile/91706",
+    "view_count": 0,
+    "status": "published",
+    "published_at": "2024-01-25T15:20:46.552826Z",
+    "verified_at": null,
+    "faqs": "",
+    "address": {
+      "street_1": "1208 Bowman Street",
+      "street_2": "",
+      "city": "Clermont",
+      "state_province": "Florida",
+      "postal_code": "34711",
+      "country": "United States"
+    },
+    "verified_by": null
+  },
+  "cached": true
+}

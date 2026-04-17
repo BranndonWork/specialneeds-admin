@@ -1,0 +1,134 @@
+// pages/api/v1/assets/proxy/[...path].js
+import config from "@config/config";
+
+const ONE_MONTH = 60 * 60 * 24 * 30;
+const ASSET_PROXY_SECRET = process.env.ASSET_PROXY_SECRET;
+
+const getEnvAlias = () => {
+  if (config.host.includes("staging")) return "_staging";
+  if (config.host.includes("www")) return "_sn";
+  return "_dev";
+};
+
+const formatUrl = (url) =>
+  url.replace(/%3D/gi, "=").replace(/%3F/gi, "?").replace(/%26/gi, "&").replace(/%2F/gi, "/");
+
+const getReqParams = (req) => {
+  const { path, ...reqQueryParams } = req.query;
+  const targetPath = path.slice(1).join("/");
+  const targetBaseUrl = `https://cylgfffnta.cloudimg.io/${getEnvAlias()}`;
+  return { targetBaseUrl, targetPath, reqQueryParams };
+};
+
+const buildRequestHeaders = (req) => {
+  const headers = { Host: "cylgfffnta.cloudimg.io" };
+  const realIp = req?.headers?.["x-real-ip"] || req?.connection?.remoteAddress || "";
+  const forwardedFor = req?.headers?.["x-forwarded-for"] || req?.connection?.remoteAddress || "";
+  if (realIp) headers["X-Real-IP"] = realIp;
+  if (forwardedFor) headers["X-Forwarded-For"] = forwardedFor;
+  headers["X-Forwarded-Proto"] = req?.headers?.["x-forwarded-proto"] || "https";
+
+  return headers;
+};
+
+const getResponse = async (targetUrl, headers) => {
+  if (targetUrl.endsWith("?")) targetUrl = targetUrl.slice(0, -1);
+  try {
+    const headersForLocalSite = {};
+    headersForLocalSite["x-asset-proxy-secret"] = ASSET_PROXY_SECRET;
+    console.log("PROXY Fetching image", targetUrl);
+    const response = await fetch(targetUrl, { headers: headersForLocalSite });
+    if (response.ok) return response;
+    console.log("PROXY Image miss", targetUrl, response);
+  } catch (error) {
+    console.error("PROXY Error fetching image", error);
+  }
+  return null;
+};
+
+const fetchAndServe = async (req, res, targetUrl) => {
+  const response = await getResponse(targetUrl, buildRequestHeaders(req));
+  if (response) {
+    try {
+      // Set cache headers - let CDN handle caching
+      res.setHeader("Cache-Control", `public, max-age=${ONE_MONTH}`);
+      const arrayBuffer = await response.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      const headers = Object.fromEntries(response.headers.entries());
+      res.setHeader("Content-Type", headers["content-type"]);
+      res.end(buffer);
+      return true;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return false;
+};
+
+const handleImage = async (req, res, defaultArgs, pathPrefix = "") => {
+  try {
+    const { targetBaseUrl, targetPath, reqQueryParams } = getReqParams(req);
+    const queryParams = new URLSearchParams({ ...reqQueryParams });
+
+    const { width, height, ...remainingDefaultArgs } = defaultArgs;
+
+    if (!reqQueryParams.width && !reqQueryParams.height) {
+      if (width) queryParams.set("width", width);
+      if (height) queryParams.set("height", height);
+    }
+
+    for (const [key, value] of Object.entries(remainingDefaultArgs)) {
+      if (!reqQueryParams[key]) queryParams.set(key, value);
+    }
+    // if the target path already contains the path prefix, don't add it again
+    const cleanTarget = targetPath.replace(pathPrefix, "");
+    const url = formatUrl(
+      `${config.siteUrl}/api/v1/assets/get/${pathPrefix}${cleanTarget}?${queryParams}`
+    );
+    console.log("PROXY Image URL", url);
+    return await fetchAndServe(req, res, url);
+  } catch (error) {
+    console.warn(`Error handling ${pathPrefix}image`, error);
+  }
+  return false;
+};
+
+const attemptImageServe = async (req, res) => {
+  const { path } = req.query;
+
+  const imageHandlers = {
+    assets: {
+      articles: () => handleImage(req, res, { width: "800", height: "800", gravity: "smart" }),
+      listings: () => handleImage(req, res, { width: "800", height: "800", gravity: "smart" }),
+      avatars: () => handleImage(req, res, { width: "300", func: "bound" }),
+    },
+    "wp-content": () => handleImage(req, res, {}, "wp-content/"),
+    specialneeds: () => handleImage(req, res, {}, "specialneeds/"),
+    core: () => handleImage(req, res, {}, "core/"),
+  };
+
+  const handlerFound = imageHandlers[path[0]]?.[path[1]] || imageHandlers[path[0]];
+  if (typeof handlerFound !== "function") return await imageHandlers.core();
+  return await handlerFound();
+};
+
+export default async function handler(req, res) {
+  if (req.headers["x-asset-proxy-secret"] !== ASSET_PROXY_SECRET)
+    return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const imageServed = await attemptImageServe(req, res);
+    if (imageServed) return;
+
+    // Return 404 - let CDN cache the 404 response
+    console.log("PROXY Returning 404 for asset", req.url);
+    if (getEnvAlias() === "_sn") {
+      res.setHeader("Cache-Control", `public, max-age=60`);
+    }
+    res.status(404).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching content");
+  }
+}

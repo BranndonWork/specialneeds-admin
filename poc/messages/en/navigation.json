@@ -1,0 +1,39 @@
+{
+  "footer": {
+    "section1": {
+      "heading": "About"
+    },
+    "section2": {
+      "heading": "Discover"
+    },
+    "section3": {
+      "heading": "Explore"
+    }
+  },
+  "links": {
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up"
+  },
+  "languages": {
+    "heading": "Languages",
+    "options": [
+      "English",
+      "Spanish",
+      "French",
+      "German",
+      "Italian",
+      "Portuguese",
+      "Russian",
+      "Japanese",
+      "Arabic",
+      "Chinese"
+    ]
+  },
+  "copyright": {
+    "copyright": "Copyright",
+    "reserved": "All Rights Reserved"
+  }
+}

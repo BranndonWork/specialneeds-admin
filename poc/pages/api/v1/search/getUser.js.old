@@ -1,0 +1,32 @@
+import config from "@config/config";
+import Logger from "@utils/logging";
+const logger = new Logger("./pages/api/v1/search/getUser.js");
+
+export const getUser = async (req) => {
+  const endpoint = config.siteUrl + `/api/v1/token/get-user/`;
+  logger.disabled("getUser DEBUG 1", { endpoint });
+  try {
+    const forwardHeaders = {
+      "Content-Type": "application/json",
+      ...(req.headers.cookie && { cookie: req.headers.cookie }),
+    };
+    logger.disabled("getUser DEBUG 2", { forwardHeaders });
+    const res = await fetch(config.siteUrl + `/api/v1/token/get-user/`, {
+      method: "GET",
+      headers: forwardHeaders,
+    });
+    logger.disabled("getUser DEBUG 3", { res });
+
+    if (res.ok) {
+      return await res.json();
+    }
+    return {
+      status: res.status,
+      statusText: res.statusText,
+      ok: res.ok,
+    };
+  } catch (error) {
+    logger.error("getUser error", error);
+    return null;
+  }
+};

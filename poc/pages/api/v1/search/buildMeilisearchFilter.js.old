@@ -1,0 +1,35 @@
+export const buildMeilisearchFilter = (req, filters, user) => {
+  const userId = user?.id;
+
+  if ("category" in filters) {
+    filters.parent_category_slug = filters.category;
+    delete filters.category;
+  }
+
+  for (const [key, value] of Object.entries(filters)) {
+    if (key === "parent_category_slug" && "sub_category" in filters) {
+      filters["category_slug"] = `${value}/${filters["sub_category"]}`;
+      delete filters["sub_category"];
+      delete filters["category"];
+    }
+  }
+
+  const baseFilters = Object.entries(filters).map(([key, value]) =>
+    isNaN(value) ? `${key} = '${value}'` : `${key} = ${value}`
+  );
+
+  const { status, user_id } = req.query;
+
+  if (user_id && user?.roles?.editor) {
+  } else if (userId && user_id == userId) {
+    if (status) baseFilters.push(`status = '${status}'`);
+    const userFilter = `user_id = '${user_id}'`;
+    if (!baseFilters.includes(userFilter)) {
+      baseFilters.push(userFilter);
+    }
+  } else {
+    baseFilters.push("status = 'published'");
+  }
+
+  return baseFilters.join(" AND ");
+};

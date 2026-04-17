@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — SpecialNeeds.com (V3: Trends)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/*
+ * DESIGN THEME: 2025 Design Trends
+ * Strategy: Dark mode glassmorphism with animated gradient accents. Bento-grid inspired layout.
+ * Gradient mesh background with noise texture for depth. Animated gradient border on the
+ * recommended card — one well-executed effect that creates delight. Syne display font for headings
+ * (angular, modern, technical edge). Frosted glass cards with backdrop-filter: blur().
+ * Gradient text headings. Floating badge with glow. Scroll-revealed stagger on plan cards.
+ * Inspired by: linear.app, vercel.com, raycast.com pricing pages.
+ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #06060F;
+  --surface: rgba(255,255,255,0.04);
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.1);
+  --text: #F0F0FF;
+  --muted: rgba(240,240,255,0.5);
+  --violet: #7B61FF;
+  --cyan: #00D4FF;
+  --violet-dim: rgba(123,97,255,0.2);
+  --cyan-dim: rgba(0,212,255,0.15);
+  --green: #00FF9B;
+  --green-dim: rgba(0,255,155,0.15);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* Mesh background */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(123,97,255,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 70%, rgba(0,212,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 50% 100%, rgba(0,255,155,0.08) 0%, transparent 60%),
+    var(--bg);
+}
+/* Noise texture */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.4;
+}
+
+/* Design note */
+.design-note {
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  color: rgba(240,240,255,0.65);
+  padding: .875rem 2rem;
+  font-family: monospace; font-size: .78rem; line-height: 1.7;
+  position: relative; z-index: 10;
+}
+.design-note strong { color: var(--violet); }
+
+/* Header */
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 2.5rem;
+  background: rgba(6,6,15,0.7); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky; top: 0; z-index: 50;
+}
+.logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+  color: var(--text); text-decoration: none; letter-spacing: -.02em;
+}
+.logo span { color: var(--violet); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  color: #fff; padding: .5rem 1.25rem; border-radius: 8px;
+  text-decoration: none; font-size: .875rem; font-weight: 500;
+}
+
+/* Hero */
+.hero {
+  text-align: center; padding: 7rem 2rem 4rem;
+  position: relative;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--violet); margin-bottom: 1.5rem;
+  border: 1px solid rgba(123,97,255,0.3); padding: .35rem 1rem; border-radius: 100px;
+  background: rgba(123,97,255,0.08);
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800; letter-spacing: -.04em; line-height: 1.05;
+  background: linear-gradient(135deg, #FFFFFF 0%, #94B4FF 40%, #00D4FF 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 1.25rem;
+}
+.hero p {
+  font-size: 1.1rem; color: var(--muted);
+  max-width: 520px; margin: 0 auto 3rem;
+}
+
+/* Billing toggle */
+.billing-wrap {
+  display: flex; justify-content: center; align-items: center; gap: .75rem;
+  margin-bottom: 4rem;
+}
+.toggle-group {
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px; padding: .25rem; display: flex; gap: .25rem;
+}
+.toggle-btn {
+  padding: .6rem 1.375rem; border: none; background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; font-weight: 500; cursor: pointer; color: var(--muted);
+  border-radius: 8px; transition: all .2s;
+}
+.toggle-btn.active {
+  background: linear-gradient(135deg, var(--violet-dim), var(--cyan-dim));
+  color: var(--text); border: 1px solid rgba(123,97,255,0.4);
+}
+.save-chip {
+  background: rgba(0,255,155,0.1); border: 1px solid rgba(0,255,155,0.25);
+  color: var(--green); font-size: .75rem; font-weight: 600;
+  padding: .25rem .75rem; border-radius: 100px;
+}
+
+/* Plans grid */
+main { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+.plans {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem; align-items: start; margin-bottom: 5rem;
+}
+@media (max-width: 960px) { .plans { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .plans { grid-template-columns: 1fr; } }
+
+/* Card animation */
+.plan-card {
+  background: var(--glass); backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 2rem 1.75rem;
+  display: flex; flex-direction: column;
+  animation: fadeUp .5s ease backwards;
+  transition: transform .2s, border-color .2s;
+}
+.plan-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
+.plan-card:nth-child(1) { animation-delay: .05s; }
+.plan-card:nth-child(2) { animation-delay: .1s; }
+.plan-card:nth-child(3) { animation-delay: .15s; }
+.plan-card:nth-child(4) { animation-delay: .2s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Recommended card with animated gradient border */
+.plan-card.recommended {
+  background: rgba(123,97,255,0.08);
+  position: relative; z-index: 0;
+  border: none; padding: calc(2rem + 1px) calc(1.75rem + 1px);
+}
+.plan-card.recommended::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -1;
+  border-radius: 16px; padding: 1.5px;
+  background: linear-gradient(135deg, var(--violet), var(--cyan), var(--violet));
+  background-size: 200% 200%;
+  animation: gradientSpin 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+@keyframes gradientSpin {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.rec-glow {
+  position: absolute; top: -50px; left: 50%; transform: translateX(-50%);
+  width: 140px; height: 100px;
+  background: radial-gradient(ellipse, rgba(123,97,255,0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rec-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  color: #fff; font-size: .75rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: .3rem 1.1rem; border-radius: 100px; white-space: nowrap;
+}
+
+.plan-tier {
+  font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .875rem;
+}
+.plan-card.recommended .plan-tier { color: var(--violet); }
+
+.plan-price-wrap { margin-bottom: .5rem; }
+.plan-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 3.25rem; font-weight: 800; letter-spacing: -.05em; line-height: 1;
+  color: var(--text);
+}
+.plan-price.free {
+  background: linear-gradient(135deg, var(--text), var(--muted));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.plan-card.recommended .plan-price {
+  background: linear-gradient(135deg, #fff, var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.plan-period { font-size: .85rem; color: var(--muted); margin-bottom: .25rem; }
+.plan-save { font-size: .8rem; color: var(--green); font-weight: 600; margin-bottom: 1.75rem; min-height: 1.25rem; }
+
+.sep { height: 1px; background: var(--glass-border); margin-bottom: 1.5rem; }
+
+.features { list-style: none; flex: 1; margin-bottom: 2rem; }
+.features li {
+  display: flex; gap: .625rem; align-items: flex-start;
+  padding: .5rem 0; font-size: .875rem; color: var(--muted);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.features li.on { color: rgba(240,240,255,0.85); }
+.feat-dot {
+  width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; margin-top: .1em;
+  display: flex; align-items: center; justify-content: center; font-size: .65rem;
+}
+.feat-dot.y { background: var(--green-dim); color: var(--green); }
+.feat-dot.n { background: rgba(255,255,255,0.05); color: var(--muted); }
+.plan-card.recommended .feat-dot.y { background: rgba(123,97,255,0.2); color: var(--violet); }
+
+.btn {
+  display: block; padding: .875rem; text-align: center; font-size: .95rem; font-weight: 600;
+  text-decoration: none; border-radius: 10px; border: 1px solid var(--glass-border);
+  background: var(--glass); color: var(--text); cursor: pointer; transition: all .2s;
+}
+.btn:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.1); }
+.btn-glow {
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  border: none; color: #fff;
+}
+.btn-glow:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(123,97,255,0.4); }
+
+/* Volume section */
+.section-header { text-align: center; margin-bottom: 2.5rem; }
+.section-header h2 {
+  font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: -.04em;
+  margin-bottom: .5rem;
+}
+.section-header p { font-size: 1rem; color: var(--muted); }
+
+.bento {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 5rem;
+}
+@media (max-width: 700px) { .bento { grid-template-columns: repeat(2, 1fr); } }
+.bento-card {
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border); border-radius: 12px;
+  padding: 1.5rem; text-align: center;
+  transition: border-color .2s;
+}
+.bento-card:hover { border-color: rgba(123,97,255,0.4); }
+.bento-range {
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+  color: var(--text); margin-bottom: .375rem;
+}
+.bento-label { font-size: .875rem; color: var(--muted); }
+.bento-card:last-child { border-color: rgba(0,212,255,0.25); }
+.bento-card:last-child .bento-label { color: var(--cyan); }
+
+/* CTA */
+.cta-wrap {
+  position: relative; text-align: center;
+  background: var(--glass); backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border); border-radius: 20px;
+  padding: 5rem 2rem; overflow: hidden;
+}
+.cta-wrap::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 400px; height: 200px;
+  background: radial-gradient(ellipse, rgba(123,97,255,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-wrap h2 {
+  font-family: 'Syne', sans-serif; font-size: 2.25rem; font-weight: 800;
+  letter-spacing: -.04em; margin-bottom: .75rem;
+}
+.cta-wrap p { font-size: 1rem; color: var(--muted); margin-bottom: 2.25rem; }
+.cta-wrap .btn-glow { width: auto; display: inline-block; padding: 1rem 2.5rem; font-size: 1rem; }
+
+.panel { display: none; }
+.panel.show { display: block; }
+</style>
+</head>
+<body>
+
+<div class="design-note">
+  <strong>V3: 2025 Design Trends</strong> —
+  Dark glassmorphism with backdrop-filter: blur(). Radial mesh gradient background + noise texture overlay for depth.
+  Animated gradient border on recommended card (CSS @keyframes, no JS). Syne display font — angular, technically precise.
+  Gradient text headings. Bento-grid inspired volume section. Staggered card fade-up animation on load.
+  Inspired by linear.app / raycast.com aesthetic. Every effect serves a purpose — no gratuitous decoration.
+</div>
+
+<header>
+  <a href="/" class="logo">Special<span>Needs</span>.com</a>
+  <a href="/waitlist" class="nav-cta">Join Waitlist</a>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Transparent Pricing</div>
+  <h1>Visibility that<br>moves the needle</h1>
+  <p>Plans for every stage. Start free, scale as you grow. No surprises, no lock-in.</p>
+</div>
+
+<div class="billing-wrap">
+  <div class="toggle-group">
+    <button class="toggle-btn active" id="btn-m" onclick="setBill('m')">Monthly</button>
+    <button class="toggle-btn" id="btn-a" onclick="setBill('a')">Annually</button>
+  </div>
+  <span class="save-chip" id="save-chip">Save 20%</span>
+</div>
+
+<main>
+
+  <div class="panel show" id="p-m">
+    <div class="plans">
+      <div class="plan-card">
+        <div class="plan-tier">Free</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price free">$0</div>
+          <div class="plan-period">no credit card needed</div>
+          <div class="plan-save">&nbsp;</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li><span class="feat-dot n">—</span>1–2 photos</li>
+          <li><span class="feat-dot n">—</span>200 word description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li><span class="feat-dot n">—</span>Verified badge</li>
+          <li><span class="feat-dot n">—</span>Analytics</li>
+          <li><span class="feat-dot n">—</span>Review response</li>
+          <li><span class="feat-dot n">—</span>Priority placement</li>
+          <li><span class="feat-dot n">—</span>Featured placement</li>
+          <li><span class="feat-dot n">—</span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tier">Professional</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">$49</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-save">&nbsp;</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="on"><span class="feat-dot y">✓</span>Up to 10 photos</li>
+          <li class="on"><span class="feat-dot y">✓</span>1,000 word description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li class="on"><span class="feat-dot y">✓</span>Verified badge</li>
+          <li class="on"><span class="feat-dot y">✓</span>Analytics: views, searches &amp; clicks</li>
+          <li class="on"><span class="feat-dot y">✓</span>Review response</li>
+          <li><span class="feat-dot n">—</span>Priority placement</li>
+          <li><span class="feat-dot n">—</span>Featured placement</li>
+          <li><span class="feat-dot n">—</span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+      <div class="plan-card recommended">
+        <div class="rec-glow"></div>
+        <div class="rec-badge">Most Popular</div>
+        <div class="plan-tier">Premium</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">$99</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-save">&nbsp;</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited photos</li>
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li class="on"><span class="feat-dot y">✓</span>Verified badge</li>
+          <li class="on"><span class="feat-dot y">✓</span>Detailed analytics + benchmarking</li>
+          <li class="on"><span class="feat-dot y">✓</span>Review response</li>
+          <li class="on"><span class="feat-dot y">✓</span>Priority placement</li>
+          <li><span class="feat-dot n">—</span>Featured placement</li>
+          <li><span class="feat-dot n">—</span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn btn-glow">Get Started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tier">Featured</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">$149</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-save">&nbsp;</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited photos</li>
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li class="on"><span class="feat-dot y">✓</span>Verified badge</li>
+          <li class="on"><span class="feat-dot y">✓</span>Detailed analytics + benchmarking</li>
+          <li class="on"><span class="feat-dot y">✓</span>Review response</li>
+          <li class="on"><span class="feat-dot y">✓</span>Priority placement</li>
+          <li class="on"><span class="feat-dot y">✓</span>Featured on homepage &amp; categories</li>
+          <li class="on"><span class="feat-dot y">✓</span>Dedicated account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p-a">
+    <div class="plans">
+      <div class="plan-card">
+        <div class="plan-tier">Free</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price free">$0</div>
+          <div class="plan-period">no credit card needed</div>
+          <div class="plan-save">&nbsp;</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li><span class="feat-dot n">—</span>1–2 photos</li>
+          <li><span class="feat-dot n">—</span>200 word description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li><span class="feat-dot n">—</span>Verified badge</li>
+          <li><span class="feat-dot n">—</span>Analytics</li>
+          <li><span class="feat-dot n">—</span>Review response</li>
+          <li><span class="feat-dot n">—</span>Priority placement</li>
+          <li><span class="feat-dot n">—</span>Featured placement</li>
+          <li><span class="feat-dot n">—</span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tier">Professional</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">$470</div>
+          <div class="plan-period">per year · ~$39/mo</div>
+          <div class="plan-save" style="color:var(--green)">Save $118</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="on"><span class="feat-dot y">✓</span>Up to 10 photos</li>
+          <li class="on"><span class="feat-dot y">✓</span>1,000 word description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li class="on"><span class="feat-dot y">✓</span>Verified badge</li>
+          <li class="on"><span class="feat-dot y">✓</span>Analytics: views, searches &amp; clicks</li>
+          <li class="on"><span class="feat-dot y">✓</span>Review response</li>
+          <li><span class="feat-dot n">—</span>Priority placement</li>
+          <li><span class="feat-dot n">—</span>Featured placement</li>
+          <li><span class="feat-dot n">—</span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+
+      <div class="plan-card recommended">
+        <div class="rec-glow"></div>
+        <div class="rec-badge">Most Popular</div>
+        <div class="plan-tier">Premium</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">$950</div>
+          <div class="plan-period">per year · ~$79/mo</div>
+          <div class="plan-save" style="color:var(--green)">Save $238</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited photos</li>
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li class="on"><span class="feat-dot y">✓</span>Verified badge</li>
+          <li class="on"><span class="feat-dot y">✓</span>Detailed analytics + benchmarking</li>
+          <li class="on"><span class="feat-dot y">✓</span>Review response</li>
+          <li class="on"><span class="feat-dot y">✓</span>Priority placement</li>
+          <li><span class="feat-dot n">—</span>Featured placement</li>
+          <li><span class="feat-dot n">—</span>Account support</li>
+        </ul>
+        <a href="/waitlist" class="btn btn-glow">Get Started</a>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tier">Featured</div>
+        <div class="plan-price-wrap">
+          <div class="plan-price">$1,430</div>
+          <div class="plan-period">per year · ~$119/mo</div>
+          <div class="plan-save" style="color:var(--green)">Save $358</div>
+        </div>
+        <div class="sep"></div>
+        <ul class="features">
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited photos</li>
+          <li class="on"><span class="feat-dot y">✓</span>Unlimited description</li>
+          <li class="on"><span class="feat-dot y">✓</span>Monthly view count</li>
+          <li class="on"><span class="feat-dot y">✓</span>Verified badge</li>
+          <li class="on"><span class="feat-dot y">✓</span>Detailed analytics + benchmarking</li>
+          <li class="on"><span class="feat-dot y">✓</span>Review response</li>
+          <li class="on"><span class="feat-dot y">✓</span>Priority placement</li>
+          <li class="on"><span class="feat-dot y">✓</span>Featured on homepage &amp; categories</li>
+          <li class="on"><span class="feat-dot y">✓</span>Dedicated account support</li>
+        </ul>
+        <a href="/waitlist" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <section style="margin-bottom:5rem">
+    <div class="section-header">
+      <h2>Multiple Locations?</h2>
+      <p>Volume discounts apply automatically. The more locations, the less per location.</p>
+    </div>
+    <div class="bento">
+      <div class="bento-card">
+        <div class="bento-range">1–5 locations</div>
+        <div class="bento-label">Standard rate</div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-range">6–15 locations</div>
+        <div class="bento-label">15% off per location</div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-range">16–50 locations</div>
+        <div class="bento-label">25% off per location</div>
+      </div>
+      <div class="bento-card">
+        <div class="bento-range">50+ locations</div>
+        <div class="bento-label" style="color:var(--cyan)">Custom enterprise pricing</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-wrap">
+    <h2>Have questions about pricing?</h2>
+    <p>We're happy to help you find the right fit for your organization.</p>
+    <a href="/waitlist" class="btn btn-glow">Join the Waitlist</a>
+  </div>
+
+</main>
+
+<script>
+function setBill(t) {
+  ['m','a'].forEach(function(x) {
+    document.getElementById('p-'+x).classList.toggle('show', x===t);
+    document.getElementById('btn-'+x).classList.toggle('active', x===t);
+  });
+  document.getElementById('save-chip').style.visibility = t === 'a' ? 'visible' : 'hidden';
+}
+</script>
+</body>
+</html>

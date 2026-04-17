@@ -1,0 +1,101 @@
+// ./pages/api/v1/search/index.js
+import { getMeilisearchClient } from "@lib/meilisearch";
+import { parseRequest } from "./parseRequest";
+import { searchMeilisearch } from "./searchMeilisearch";
+
+const cacheTTL = 60;
+
+const searchHandler = async (req, res) => {
+  if (req.method !== "GET") {
+    console.log(`Method ${req.method} is not allowed`);
+    return res.status(405).end();
+  }
+  const errorContext = {
+    path: req.path,
+    query: req.query,
+    headers: req.headers,
+    serverUrl: req.url,
+  };
+
+  try {
+    if (!req.query.index) {
+      errorContext.errorMessage = "Missing index parameter.";
+      return res.status(400).json({ errorMessage: "Missing index parameter.", errorContext });
+    }
+  } catch (error) {
+    console.error(`Error in /api/search/: ${error}`);
+    errorContext.errorMessage = error.message;
+    res
+      .status(500)
+      .json({
+        errorIndex: 1,
+        errorMessage: "Internal server error.",
+        error: error.message,
+        errorContext,
+      });
+  }
+
+  try {
+    req.searchClient = getMeilisearchClient();
+  } catch (error) {
+    console.error(`Error initializing Meilisearch client: ${error}`);
+    errorContext.errorMessage = error.message;
+    res
+      .status(500)
+      .json({
+        errorIndex: 3,
+        errorMessage: "Failed to initialize search client.",
+        error: error.message,
+        errorContext,
+      });
+  }
+  try {
+    req.data = await parseRequest(req);
+  } catch (error) {
+    console.error(`Error in /api/search/: ${error}`);
+    errorContext.errorMessage = error.message;
+    res
+      .status(500)
+      .json({
+        errorIndex: 4,
+        errorMessage: "Internal server error.",
+        error: error.message,
+        errorContext,
+      });
+  }
+  try {
+    errorContext.data = { ...req.data };
+    delete errorContext.data.searchClient;
+  } catch (error) {
+    console.error(`Error in /api/search/: ${error}`);
+    errorContext.errorMessage = error.message;
+    res
+      .status(500)
+      .json({
+        errorIndex: 5,
+        errorMessage: "Internal server error.",
+        error: error.message,
+        errorContext,
+      });
+  }
+
+  try {
+    const results = await searchMeilisearch(req);
+    errorContext.results = results;
+    res.setHeader("Cache-Control", `s-maxage=${cacheTTL}, stale-while-revalidate`);
+    res.status(200).json(results);
+  } catch (error) {
+    console.error(`Error executing search: ${error}`);
+    errorContext.errorMessage = error.message;
+    res
+      .status(500)
+      .json({
+        errorIndex: 6,
+        errorMessage: "Search execution failed.",
+        error: error.message,
+        errorContext,
+      });
+  }
+};
+
+export default searchHandler;

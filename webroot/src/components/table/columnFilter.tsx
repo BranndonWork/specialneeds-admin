@@ -16,7 +16,7 @@ export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
   // eslint-disable-next-line
   const [state, setState] = useState(null as null | { value: any });
 
-  if (!column.getCanFilter()) {
+  if (!column.getCanFilter() || (column.columnDef?.meta as any)?.hideFilterIcon) {
     return null;
   }
 

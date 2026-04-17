@@ -1,0 +1,17 @@
+{
+  "dashboardButton": "Go to Dashboard",
+  "emailLabel": "Email",
+  "forgotPasswordMessage": "Forgot your password?",
+  "forgotPasswordAnchorText": "Click here to reset it.",
+  "loggedIn": "Hey there, <displayname>! You're already logged in. 🎉",
+  "login": "Login",
+  "loginButton": "Let's Go! 🎉",
+  "loginSuccess": "Yay! You're in! 🎉",
+  "noAccount": "Don't have an account?",
+  "pageHeader": "Welcome Back, Friend! 🤗",
+  "pageTitle": "Login",
+  "passwordLabel": "Password",
+  "signup": "Sign up now",
+  "unknownError": "Oops, something seems to have gone wrong. Let's try again!",
+  "welcomeMessage": "It's great to see you again! 😄 Let's log you in with your email and password."
+}
